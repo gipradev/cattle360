@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="cattleDataModel"
+            type="com.android.cattle360.data.demmyModels.CattleDataModel" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.user.home.Cattle.CattleFragment">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/imageSliderContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8_dp"
+            android:layout_marginEnd="@dimen/dimen_8_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cattleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16_dp"
+            android:text="@{cattleDataModel.modelname}"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="@dimen/font_25_sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/imageSliderContainer" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:id="@+id/cattleWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            app:backgroundTint="?attr/colorOnPrimary"
+            android:layout_marginTop="@dimen/dimen_16_dp"
+            app:icon="@drawable/ic_kilogram"
+            app:iconGravity="textEnd"
+            android:text="@{cattleDataModel.modelWeight}"
+            android:textSize="@dimen/font_16_sp"
+            app:layout_constraintEnd_toEndOf="@+id/guideline7"
+            app:layout_constraintTop_toBottomOf="@+id/imageSliderContainer" />
+
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cattleCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:text="@{cattleDataModel.category}"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/cattleName" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/bidAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8_dp"
+            android:text="@{`₹ `+cattleDataModel.bidAmount}"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="@dimen/font_20_sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/cattleCategory" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cattleDes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autoSizeTextType="uniform"
+            android:layout_marginTop="@dimen/dimen_16_dp"
+            android:text="@{`About Cattle : \n`+`\n`+cattleDataModel.modeldesc}"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/bidAmount" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/startBiddingButton"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            android:layout_marginBottom="16dp"
+            app:backgroundTint="?attr/colorPrimary"
+            android:text="Start Bidding"
+            android:textAllCaps="false"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/dimen_16_dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/dimen_16_dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

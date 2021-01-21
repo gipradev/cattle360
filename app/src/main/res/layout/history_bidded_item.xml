@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="liveBidModel"
+            type="com.android.cattle360.data.demmyModels.LiveBidModel" />
+
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="@dimen/dimen_8_dp"
+        android:clickable="true">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cattleItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_10_dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            coilFullCurvedLoader="@{liveBidModel.image}"
+            android:layout_width="@dimen/dimen_160_dp"
+            android:layout_height="@dimen/dimen_140_dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView2"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_20_sp"
+            android:layout_marginStart="@dimen/dimen_8_dp"
+            android:text="@{liveBidModel.title}"
+            android:textColor="?attr/colorOnSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/subTitle"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8_dp"
+            android:text="@{liveBidModel.subTitle}"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="@dimen/font_16_sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/materialTextView2"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView2" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bidButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_40_dp"
+            android:autoSizeTextType="uniform"
+            android:clickable="false"
+            android:text="@{`Bid amount - ₹ `+liveBidModel.bidAmount}"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="@+id/subTitle"
+            app:layout_constraintStart_toStartOf="@+id/subTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.android.cattle360.data.demmyModels.BiddingModelViewModel" />
+
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dimen_16_dp"
+        android:paddingBottom="@dimen/dimen_16_dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Make an Offer"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="@dimen/font_25_sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintTop_toTopOf="@id/guideline3" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/biddingTextField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_32_dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:startIconDrawable="@drawable/ic_rupee_indian"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/seekText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Bidding amount"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="0dp"
+            app:dsb_indicatorColor="?attr/colorPrimary"
+            app:dsb_progressColor="?attr/colorPrimary"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/biddingTextField" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/AppCompatSeekBar"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            android:layout_marginTop="@dimen/dimen_16_dp"
+            android:visibility="gone"
+            android:progressTint="?attr/colorPrimary"
+            android:thumbTint="?attr/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintTop_toBottomOf="@+id/biddingTextField" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="₹ 0 \n min"
+            app:layout_constraintStart_toStartOf="@+id/addButton"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="₹ 20000 \n max"
+            app:layout_constraintEnd_toEndOf="@+id/checkOutButton"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16_dp"
+            android:layout_marginEnd="@dimen/dimen_8_dp"
+            android:layout_marginBottom="@dimen/dimen_16_dp"
+            android:text="Add"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/checkOutButton"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView6" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/checkOutButton"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8_dp"
+            android:layout_marginTop="@dimen/dimen_16_dp"
+            android:layout_marginBottom="@dimen/dimen_16_dp"
+            android:stateListAnimator="@null"
+            android:text="Check out"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toEndOf="@+id/addButton"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView7" />
+
+        <!--        <com.google.android.material.tabs.TabLayout-->
+        <!--            android:id="@+id/tabLayout2"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:background="@android:color/transparent"-->
+        <!--            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/guideline2"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/guideline1"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:tabIndicatorHeight="@dimen/dimen_1_dp"-->
+        <!--            />-->
+
+
+        <!--        <androidx.viewpager2.widget.ViewPager2-->
+        <!--            android:id="@+id/fragmentViewPager"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="@dimen/dimen_200_dp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/tabLayout2"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/tabLayout2"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/tabLayout2" />-->
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/dimen_16_dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/font_16_sp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/dimen_8_dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

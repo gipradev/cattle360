@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph.xml"
+    app:startDestination="@id/homeFragment">
+
+     <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.android.cattle360.ui.user.home.HomeFragment"
+        android:label="" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchLocationFragment"
+            app:destination="@id/searchLocationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+         <action
+             android:id="@+id/action_homeFragment_to_cattleFragment"
+             app:destination="@id/cattleFragment"
+             app:enterAnim="@anim/slide_in_right"
+             app:exitAnim="@anim/slide_out_left"
+             app:popEnterAnim="@anim/slide_in_left"
+             app:popExitAnim="@anim/slide_out_right"/>
+         <action
+             android:id="@+id/action_homeFragment_to_biddingSheetFragment"
+             app:destination="@id/biddingSheetFragment" />
+         <action
+             android:id="@+id/action_homeFragment_to_categoryListFragment"
+             app:destination="@id/categoryListFragment"
+             app:enterAnim="@anim/slide_in_right"
+             app:exitAnim="@anim/slide_out_left"
+             app:popEnterAnim="@anim/slide_in_left"
+             app:popExitAnim="@anim/slide_out_right"/>
+
+     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.android.cattle360.ui.user.search.SearchFragment"
+        android:label=""
+        tools:layout="@layout/search_fragment" />
+    <fragment
+        android:id="@+id/biddingFragment"
+        android:name="com.android.cattle360.ui.user.bidding.BiddingFragment"
+        android:label=""
+        tools:layout="@layout/bidding_fragment" />
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="com.android.cattle360.ui.user.history.BiddingHistoryFragment"
+        android:label=""
+        tools:layout="@layout/bidding_history_fragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.android.cattle360.ui.user.profile.ProfileFragment"
+        android:label=""
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_addressListFragment"
+            app:destination="@id/addressListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_profileFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_profileFragment_to_walletFragment"
+            app:destination="@id/walletFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/searchLocationFragment"
+        android:name="com.android.cattle360.ui.appStart.searchLocation.SearchLocationFragment"
+        android:label="Delivery address" />
+    <fragment
+        android:id="@+id/addressListFragment"
+        android:name="com.android.cattle360.ui.user.profile.deliveryAddress.AddressListFragment"
+        android:label="Delivery Address" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.android.cattle360.ui.user.profile.changePassword.ChangePasswordFragment"
+        android:label="Change Password" />
+    <fragment
+        android:id="@+id/cattleFragment"
+        android:name="com.android.cattle360.ui.user.home.Cattle.CattleFragment"
+        android:label="Cattle" >
+        <action
+            android:id="@+id/action_cattleFragment_to_biddingSheetFragment"
+            app:destination="@id/biddingSheetFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryListFragment"
+        android:name="com.android.cattle360.ui.user.home.category.categoryList.CategoryListFragment"
+        android:label="" />
+    <dialog
+        android:id="@+id/biddingSheetFragment"
+        android:name="com.android.cattle360.ui.user.home.Cattle.BiddingSheet.BiddingSheetFragment"
+        android:label="BiddingSheetFragment" >
+        <action
+            android:id="@+id/action_biddingSheetFragment_to_cattleCartFragment"
+            app:destination="@id/cattleCartFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </dialog>
+    <fragment
+        android:id="@+id/walletFragment"
+        android:name="com.android.cattle360.ui.user.profile.wallet.WalletFragment"
+        android:label="My Wallet" />
+    <fragment
+        android:id="@+id/cattleCartFragment"
+        android:name="com.android.cattle360.ui.user.home.cattleCart.CattleCartFragment"
+        android:label="CattleCartFragment" />
+</navigation>

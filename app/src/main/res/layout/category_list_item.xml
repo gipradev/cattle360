@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.android.cattle360.data.demmyModels.CategoryLiveStockModel" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cattleItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:padding="@dimen/dimen_10_dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            coilFullCurvedLoader="@{model.image}"
+            android:layout_width="@dimen/dimen_160_dp"
+            android:layout_height="@dimen/dimen_160_dp"
+            android:layout_margin="@dimen/dimen_8_dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_right_arrow_circular"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{model.title}"
+            android:textColor="?attr/colorOnSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/subTitle"
+            android:layout_width="@dimen/dimen_0_dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8_dp"
+            android:text="@{model.subTitle}"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="@dimen/font_10_sp"
+            app:layout_constraintEnd_toEndOf="@+id/materialTextView8"
+            app:layout_constraintStart_toStartOf="@+id/materialTextView8"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView8" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bidButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="@dimen/dimen_0_dp"
+            android:layout_height="wrap_content"
+            android:outlineSpotShadowColor="@color/grey"
+            android:text="Start bidding"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/subTitle"
+            app:layout_constraintStart_toStartOf="@+id/subTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

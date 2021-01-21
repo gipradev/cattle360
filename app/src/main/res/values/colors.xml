@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_apple">#418235</color>
+    <color name="golden_dream">#EECB27</color>
+
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="light">#DEFFFFFF</color>
+    <color name="dark">#121212</color>
+    <color name="grey">#808080</color>
+    <color name="green">#0F0</color>
+    <color name="red">#F00</color>
+
+
+    <!--    Dark theme colors-->
+
+    <color name="green_apple_dark">#aed9a9</color>
+    <color name="golden_dream_dark">#f7ed96</color>
+
+</resources>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        tools:context=".ui.user.bidding.BiddingFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView3"
+                android:layout_width="@dimen/dimen_0_dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:minHeight="?actionBarSize"
+                android:padding="@dimen/dimen_8_dp"
+                android:text="Live Bidding"
+                android:textAllCaps="false"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="@dimen/font_20_sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView4"
+                android:layout_width="@dimen/dimen_0_dp"
+                android:layout_height="@dimen/dimen_120_dp"
+                android:layout_marginTop="@dimen/dimen_16_dp"
+                android:layout_marginBottom="@dimen/dimen_16_dp"
+                app:cardBackgroundColor="?attr/colorPrimary"
+                app:cardCornerRadius="@dimen/dimen_8_dp"
+                app:cardElevation="@dimen/dimen_6_dp"
+                app:layout_constraintEnd_toEndOf="@+id/materialTextView3"
+                app:layout_constraintStart_toStartOf="@+id/materialTextView3"
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView3">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_12_dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/historyHeader"
+                        android:layout_width="@dimen/dimen_0_dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_8_dp"
+                        android:text="Total Bid Amount "
+                        android:textColor="?attr/colorOnPrimary"
+                        android:textSize="@dimen/font_18_sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_12_dp"
+                        android:text="₹ 35207.00"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:textSize="@dimen/font_40_sp"
+                        app:layout_constraintEnd_toEndOf="@+id/historyHeader"
+                        app:layout_constraintStart_toStartOf="@+id/historyHeader"
+                        app:layout_constraintTop_toBottomOf="@+id/historyHeader" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/liveBiddingFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/materialCardView4"
+                android:layout_marginTop="@dimen/dimen_16_dp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

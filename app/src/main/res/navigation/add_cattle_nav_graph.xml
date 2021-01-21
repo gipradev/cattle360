@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_cattle_nav_graph"
+    app:startDestination="@id/enterLocationFragment">
+
+    <fragment
+        android:id="@+id/cattleImageFragment"
+        android:name="com.android.cattle360.ui.executive.addCattle.uploadImage.CattleImageFragment"
+        android:label="cattle_image_fragment"
+        tools:layout="@layout/cattle_image_fragment" />
+    <fragment
+        android:id="@+id/enterLocationFragment"
+        android:name="com.android.cattle360.ui.executive.addCattle.enterLocation.EnterLocationFragment"
+        android:label="enter_location_fragment"
+        tools:layout="@layout/enter_location_fragment" >
+        <action
+            android:id="@+id/action_enterLocationFragment_to_enterCattleFragment"
+            app:destination="@id/enterCattleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/enterCattleFragment"
+        android:name="com.android.cattle360.ui.executive.addCattle.enterCattle.EnterCattleFragment"
+        android:label="EnterCattleFragment" >
+        <action
+            android:id="@+id/action_enterCattleFragment_to_cattleImageFragment"
+            app:destination="@id/cattleImageFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+</navigation>

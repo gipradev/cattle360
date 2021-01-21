@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorOnPrimary"
+        tools:context=".ui.appStart.otp.OtpFragment">
+
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/dimen_100_dp"
+            android:layout_height="@dimen/dimen_100_dp"
+            android:layout_marginStart="@dimen/dimen_16_dp"
+            android:layout_marginTop="?actionBarSize"
+            android:src="@mipmap/ic_logo_round"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/enterText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16_dp"
+            android:text="Please enter OTP number"
+            android:textSize="@dimen/font_20_sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+
+        <com.chaos.view.PinView
+            android:id="@+id/otpPinView"
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8_dp"
+            android:layout_marginTop="@dimen/dimen_16_dp"
+            android:cursorVisible="true"
+            android:inputType="numberPassword"
+            android:padding="@dimen/dimen_10_dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:cursorColor="?attr/colorOnSecondary"
+            app:cursorWidth="2dp"
+            app:hideLineWhenFilled="true"
+            app:itemCount="5"
+            app:itemHeight="48dp"
+            app:itemRadius="4dp"
+            app:itemSpacing="@dimen/font_20_sp"
+            app:itemWidth="48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enterText"
+            app:lineColor="?attr/colorPrimary"
+            app:lineWidth="2dp"
+            app:viewType="rectangle" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/helperText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16_dp"
+            android:text="An OTP will send via SMS"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/otpPinView" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/otpButton"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_margin="16dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:text="Submit"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
