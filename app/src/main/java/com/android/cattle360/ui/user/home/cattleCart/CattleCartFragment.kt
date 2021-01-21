@@ -3,6 +3,7 @@ package com.android.cattle360.ui.user.home.cattleCart
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.android.cattle360.databinding.CattleCartFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 
@@ -30,7 +31,13 @@ class CattleCartFragment :
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-       
+
+        viewModel.getCartData()
+
+        viewModel.cartResponse.observe(viewLifecycleOwner, Observer {
+
+        })
+
     }
 
 

@@ -13,6 +13,37 @@
         tools:context=".ui.user.home.cattleCart.CattleCartFragment">
 
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/cartCattleFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/priceDetailFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/priceDetailFragment"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_200_dp"
+            app:layout_constraintBottom_toTopOf="@+id/checkOutFab"
+            app:layout_constraintEnd_toEndOf="@+id/checkOutFab"
+            app:layout_constraintStart_toStartOf="@+id/checkOutFab" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/checkOutFab"
+            android:layout_width="@dimen/dimen_0_dp"
+            android:layout_height="?actionBarSize"
+            android:layout_margin="@dimen/dimen_16_dp"
+            app:cornerRadius="@dimen/dimen_8_dp"
+            android:gravity="center"
+            android:text="Check Out"
+            android:textAllCaps="false"
+            android:textSize="@dimen/font_20_sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
