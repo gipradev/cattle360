@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.android.cattle360.data.demmyModels.CartDataModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="?android:listDivider"
+        android:orientation="vertical"
+        android:showDividers="middle|end|beginning"
+        android:paddingBottom="@dimen/dimen_16_dp"
+        tools:context=".ui.user.home.cattleCart.cartPrice.CartPriceFragment">
+
+
+        <RelativeLayout
+            android:layout_margin="@dimen/dimen_8_dp"
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item Total"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="@dimen/font_16_sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/itemTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@{`₹ `+model.itemTotal}"
+                android:textSize="@dimen/font_16_sp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/linearLayout2"
+            android:layout_margin="@dimen/dimen_8_dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tax"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="@dimen/font_16_sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@{`₹ `+model.taxAmount}"
+                android:textSize="@dimen/font_16_sp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/linearLayout3"
+            android:layout_margin="@dimen/dimen_8_dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Extra Charges"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="@dimen/font_16_sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/extraCharges"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@{`₹ `+model.deliveryCharge}"
+                android:textSize="@dimen/font_16_sp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/dimen_8_dp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Paid"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="@dimen/font_16_sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/totalPaid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@{`₹ `+model.totalAmount}"
+                android:textSize="@dimen/font_16_sp" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</layout>

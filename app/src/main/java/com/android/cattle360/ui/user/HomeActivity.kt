@@ -10,6 +10,11 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import com.android.cattle360.R
+import com.android.cattle360.data.util.Constants.LABEL_ADDRESS_FRAGMENT
+import com.android.cattle360.data.util.Constants.LABEL_CART_FRAGMENT
+import com.android.cattle360.data.util.Constants.LABEL_CATTLE_FRAGMENT
+import com.android.cattle360.data.util.Constants.LABEL_CHANGE_PASSWORD_FRAGMENT
+import com.android.cattle360.data.util.Constants.LABEL_WALLET_FRAGMENT
 import com.android.cattle360.data.util.changeStatusBarColor
 import com.android.cattle360.data.util.visibility
 import com.android.cattle360.databinding.ActivityHomeBinding
@@ -37,6 +42,8 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
         binding.homeToolbar.title = ""
         setSupportActionBar(binding.homeToolbar)
 
+
+
         navController = findNavController(R.id.home_nav_host)
         binding.bottomNavigationView.setupWithNavController(navController)
 
@@ -51,23 +58,29 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
             val mode = resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
             when (destination.id) {
                 R.id.searchLocationFragment -> {
+                    binding.toolbarTitle.text = LABEL_ADDRESS_FRAGMENT
                     binding.bottomNavigationView.visibility(false)
                     binding.homeToolbar.visibility(true)
+
                 }
                 R.id.addressListFragment -> {
                     binding.homeToolbar.visibility(true)
+                    binding.toolbarTitle.text = LABEL_ADDRESS_FRAGMENT
                     binding.bottomNavigationView.visibility(false)
                 }
                 R.id.changePasswordFragment -> {
                     binding.homeToolbar.visibility(true)
+                    binding.toolbarTitle.text = LABEL_CHANGE_PASSWORD_FRAGMENT
                     binding.bottomNavigationView.visibility(false)
                 }
                 R.id.cattleFragment -> {
                     binding.homeToolbar.visibility(true)
+                    binding.toolbarTitle.text = LABEL_CATTLE_FRAGMENT
                     binding.bottomNavigationView.visibility(false)
                 }
                 R.id.walletFragment -> {
                     binding.homeToolbar.visibility(true)
+                    binding.toolbarTitle.text = LABEL_WALLET_FRAGMENT
                     binding.bottomNavigationView.visibility(false)
 
                 }
@@ -75,7 +88,6 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                     binding.bottomNavigationView.visibility(false)
                 }
                 R.id.biddingFragment -> {
-
                     changeStatusBarToGreen(mode, window)
                     binding.bottomNavigationView.visibility(true)
                     binding.homeToolbar.visibility(false)
@@ -86,9 +98,10 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                     binding.bottomNavigationView.visibility(false)
                     binding.homeToolbar.visibility(false)
                 }
-                R.id.cattleCartFragment ->{
+                R.id.cattleCartFragment -> {
                     binding.bottomNavigationView.visibility(false)
                     binding.homeToolbar.visibility(true)
+                    binding.toolbarTitle.text = LABEL_CART_FRAGMENT
                 }
 
                 R.id.orderFragment -> {

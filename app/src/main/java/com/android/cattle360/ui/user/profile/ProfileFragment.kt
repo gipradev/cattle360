@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
+import androidx.transition.TransitionInflater
 import com.android.cattle360.R
 import com.android.cattle360.databinding.ProfileFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
@@ -15,6 +16,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel, ProfileFragmentBinding, P
     companion object {
         fun newInstance() = ProfileFragment()
     }
+
 
     override fun getViewModel(): Class<ProfileViewModel> {
         return ProfileViewModel::class.java
@@ -79,6 +81,13 @@ class ProfileFragment : BaseFragment<ProfileViewModel, ProfileFragmentBinding, P
             }
 
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        exitTransition = inflater.inflateTransition( R.transition.fade)
+        enterTransition = inflater.inflateTransition( R.transition.slide_right)
     }
 
 }

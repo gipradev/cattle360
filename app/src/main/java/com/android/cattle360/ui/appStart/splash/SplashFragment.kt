@@ -30,6 +30,7 @@ class SplashFragment : BaseFragment<SplashViewModel, SplashFragmentBinding, Spla
         binding.loginButton.setOnClickListener {
             userTokenValidation()
         }
+
     }
 
     private fun userTokenValidation() {

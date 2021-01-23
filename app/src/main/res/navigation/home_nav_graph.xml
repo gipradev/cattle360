@@ -121,5 +121,5 @@
     <fragment
         android:id="@+id/cattleCartFragment"
         android:name="com.android.cattle360.ui.user.home.cattleCart.CattleCartFragment"
-        android:label="CattleCartFragment" />
+        android:label="Cart" />
 </navigation>

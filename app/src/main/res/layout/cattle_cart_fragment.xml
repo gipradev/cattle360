@@ -26,10 +26,10 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/priceDetailFragment"
             android:layout_width="0dp"
-            android:layout_height="@dimen/dimen_200_dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/checkOutFab"
-            app:layout_constraintEnd_toEndOf="@+id/checkOutFab"
-            app:layout_constraintStart_toStartOf="@+id/checkOutFab" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <com.google.android.material.button.MaterialButton

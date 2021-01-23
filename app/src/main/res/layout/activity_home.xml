@@ -12,15 +12,27 @@
         android:layout_height="match_parent"
         tools:context=".ui.user.HomeActivity">
 
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/homeToolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="?attr/colorOnPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:titleTextColor="?attr/colorPrimary" />
+            app:titleTextColor="?attr/colorPrimary">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginEnd="@dimen/dimen_76_dp"
+                android:textSize="@dimen/font_20_sp"
+                android:textColor="?attr/colorPrimary"/>
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
 
 
         <fragment

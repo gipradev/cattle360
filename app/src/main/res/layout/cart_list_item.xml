@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.android.cattle360.data.demmyModels.CartListModel" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cattleItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:padding="@dimen/dimen_8_dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            coilFullCurvedLoader="@{model.image}"
+            android:layout_width="@dimen/dimen_76_dp"
+            android:layout_height="@dimen/dimen_76_dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView8"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_20_dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="@dimen/dimen_8_dp"
+            android:autoSizeTextType="uniform"
+            android:text="@{model.modelName}"
+            android:textColor="?attr/colorOnSecondary"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/subTitle"
+            android:layout_width="@dimen/dimen_0_dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8_dp"
+            android:text="@{`₹ `+model.modelPrice}"
+            android:textColor="?attr/colorOnSecondary"
+            app:layout_constraintEnd_toEndOf="@+id/materialTextView8"
+            app:layout_constraintStart_toStartOf="@+id/materialTextView8"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView8" />
+
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/ic_menu_delete"
+            android:backgroundTint="?attr/colorOnSecondary"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/materialTextView8" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
