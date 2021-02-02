@@ -31,7 +31,6 @@ class ExecutiveActivity : BaseActivity<ExecutiveActivityViewModel, ActivityExecu
         binding.bottomNavBar.setupWithNavController(navController)
         NavigationUI.setupWithNavController(binding.bottomNavBar, navController)
 
-
     }
 
     fun addNewCattle(view: View) {

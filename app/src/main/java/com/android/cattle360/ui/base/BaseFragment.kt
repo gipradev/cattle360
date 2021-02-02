@@ -1,5 +1,6 @@
 package com.android.cattle360.ui.base
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,8 @@ import com.android.cattle360.data.network.RemoteDataSource
 abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding, R : BaseRepository> :
     Fragment() {
 
+
+
     protected lateinit var binding: DB
     protected lateinit var viewModel: VM
     protected val remoteDataSource = RemoteDataSource()
@@ -25,9 +28,9 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding, R : BaseRe
     ): View? {
 
         binding = getFragmentBinding(inflater, container)
-//        val factory = ViewModelFactory(getFragmentRepository())
-//        viewModel = ViewModelProvider(this, factory).get(getViewModel())
-        viewModel = ViewModelProvider(this).get(getViewModel())
+        val factory = ViewModelFactory(getFragmentRepository())
+        viewModel = ViewModelProvider(this, factory).get(getViewModel())
+      //  viewModel = ViewModelProvider(this).get(getViewModel())
 
         return binding.root
     }

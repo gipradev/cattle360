@@ -15,8 +15,9 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompa
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val factory = ViewModelFactory()
-        viewModel = ViewModelProvider(this, factory).get(getViewModel())
+//        val factory = ViewModelFactory()
+//        viewModel = ViewModelProvider(this, factory).get(getViewModel())
+        viewModel = ViewModelProvider(this).get(getViewModel())
         binding = DataBindingUtil.setContentView(this, getBinding())
         setContentView(binding.root)
 

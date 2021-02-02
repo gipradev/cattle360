@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
+import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.databinding.SplashFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 
@@ -19,8 +20,7 @@ class SplashFragment : BaseFragment<SplashViewModel, SplashFragmentBinding, Spla
     override fun getViewModel(): Class<SplashViewModel> = SplashViewModel::class.java
 
     override fun getFragmentRepository(): SplashRepository {
-        return SplashRepository()
-        //remoteDataSource.buildApi(ApiService::class.java)
+        return SplashRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
 
 

@@ -7,7 +7,7 @@ import com.android.cattle360.R
 import com.android.cattle360.databinding.ActivityAddCattleBinding
 import com.android.cattle360.ui.base.BaseActivity
 
-class AddCattleActivity : BaseActivity<AddCattleViewModel, ActivityAddCattleBinding>() {
+class  AddCattleActivity : BaseActivity<AddCattleViewModel, ActivityAddCattleBinding>() {
 
     private lateinit var navController: NavController
 

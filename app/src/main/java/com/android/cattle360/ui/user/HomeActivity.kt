@@ -33,7 +33,6 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
         super.onCreate(savedInstanceState)
 
 
-
         binding.homeToolbar.title = ""
         setSupportActionBar(binding.homeToolbar)
 
