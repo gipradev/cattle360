@@ -5,5 +5,6 @@ data class GetLoginResponse(
     val mobileno: String,
     val password: String,
     val status: String,
-    val userid: String
+    val userid: String,
+    val usertype: String
 )

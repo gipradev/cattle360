@@ -10,10 +10,13 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import com.android.cattle360.R
+import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.util.changeStatusBarColor
 import com.android.cattle360.data.util.visibility
 import com.android.cattle360.databinding.ActivityHomeBinding
 import com.android.cattle360.ui.base.BaseActivity
+import com.android.cattle360.ui.base.BaseRepository
+import com.android.cattle360.ui.user.home.HomeRepository
 import com.android.cattle360.ui.user.home.HomeViewModel
 
 
@@ -132,6 +135,11 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+//    override fun getFragmentRepository(): BaseRepository {
+//
+//        return HomeRepository(remoteDataSource.buildApi(ApiService::class.java))
+//    }
 
 
 }

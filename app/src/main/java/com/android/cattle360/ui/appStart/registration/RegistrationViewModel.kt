@@ -10,19 +10,19 @@ import kotlinx.coroutines.launch
 
 class RegistrationViewModel(private val  repository: RegistrationRepository ): BaseViewModel() {
     // TODO: Implement the ViewModel
-
     val registrationResponse : LiveData<Resource<GetRegistrationResponse?>> = MutableLiveData()
-
-    fun registration(Name: String,
-                     Last_Name: String,
+    fun registration(name: String,
+                     lastname: String,
                      mobile: String,
                      email: String,
                      password: String,
                      confirm_password: String) = viewModelScope.launch {
         println("On View model ")
-
+        println("before${registrationResponse.value} ")
         registrationResponse as MutableLiveData
-        registrationResponse.value = repository.onRegistration(Name,Last_Name,mobile,email,password,confirm_password)
+        registrationResponse.value = repository.onRegistration(name,lastname,mobile,email,password,confirm_password)
+        println("after" +
+                "${registrationResponse.value} ")
     }
 
 

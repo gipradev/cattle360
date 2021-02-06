@@ -57,7 +57,7 @@ class OtpFragment : BaseFragment<OtpViewModel, OtpFragmentBinding, OtpRepository
                         }
                         is Resource.Failure -> {
                             println("Failure  : ${it}")
-                            Snackbar.make(requireView(),"${it.errorBody}", Snackbar.LENGTH_LONG).show()
+                            Snackbar.make(requireView(),"${it}", Snackbar.LENGTH_LONG).show()
                         }
 
                     }

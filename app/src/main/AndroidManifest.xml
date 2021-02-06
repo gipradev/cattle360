@@ -14,19 +14,22 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cattle360">
-        <activity android:name=".ui.executive.addCattle.AddCattleActivity"></activity>
+        <activity android:name=".ui.executive.addCattle.AddCattleActivity">
+
+        </activity>
         <activity android:name=".ui.executive.ExecutiveActivity">
 
         </activity>
-        <activity android:name=".ui.user.HomeActivity">
 
-        </activity>
-        <activity android:name=".ui.appStart.MainActivity">
+        <activity android:name=".ui.user.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.appStart.MainActivity">
+
         </activity>
         
         

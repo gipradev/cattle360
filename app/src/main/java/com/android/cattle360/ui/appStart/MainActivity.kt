@@ -10,12 +10,16 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.cattle360.R
 import com.android.cattle360.databinding.ActivityMainBinding
 import com.android.cattle360.ui.base.BaseActivity
+import com.android.cattle360.ui.base.BaseRepository
+import com.android.cattle360.ui.user.home.HomeViewModel
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
-    override fun getViewModel(): Class<MainViewModel> = MainViewModel::class.java
+    override fun getViewModel(): Class<MainViewModel> {
+        return MainViewModel::class.java
+    }
 
     override fun getBinding(): Int = R.layout.activity_main
 
@@ -26,7 +30,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         setSupportActionBar(binding.toolbar)
         navController = findNavController(R.id.nav_fragment)
         binding.toolbar.setupWithNavController(navController)
-
 
         appBarConfiguration =
             AppBarConfiguration(
@@ -44,6 +47,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+//    override fun getFragmentRepository(): BaseRepository {
+//        return BaseRepository()
+//    }
 
 
 }

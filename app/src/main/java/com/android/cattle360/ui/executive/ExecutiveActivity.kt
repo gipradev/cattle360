@@ -10,14 +10,17 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.cattle360.R
 import com.android.cattle360.databinding.ActivityExecutiveBinding
 import com.android.cattle360.ui.base.BaseActivity
+import com.android.cattle360.ui.base.BaseRepository
 import com.android.cattle360.ui.executive.addCattle.AddCattleActivity
+import com.android.cattle360.ui.executive.exeHome.ExecutiveHomeViewModel
 
-class ExecutiveActivity : BaseActivity<ExecutiveActivityViewModel, ActivityExecutiveBinding>() {
+class ExecutiveActivity : BaseActivity<ExecutiveHomeViewModel, ActivityExecutiveBinding>() {
 
     private lateinit var navController: NavController
 
-    override fun getViewModel(): Class<ExecutiveActivityViewModel> =
-        ExecutiveActivityViewModel::class.java
+    override fun getViewModel(): Class<ExecutiveHomeViewModel> {
+        return  ExecutiveHomeViewModel::class.java
+    }
 
     override fun getBinding(): Int = R.layout.activity_executive
 
@@ -30,7 +33,6 @@ class ExecutiveActivity : BaseActivity<ExecutiveActivityViewModel, ActivityExecu
         navController = findNavController(R.id.executive_nav_fragment)
         binding.bottomNavBar.setupWithNavController(navController)
         NavigationUI.setupWithNavController(binding.bottomNavBar, navController)
-
     }
 
     fun addNewCattle(view: View) {
@@ -38,5 +40,10 @@ class ExecutiveActivity : BaseActivity<ExecutiveActivityViewModel, ActivityExecu
         val intent = Intent(applicationContext, AddCattleActivity::class.java)
         startActivity(intent)
     }
+
+//    override fun getFragmentRepository(): BaseRepository {
+//
+//        return ExecutiveRepository()
+//    }
 
 }

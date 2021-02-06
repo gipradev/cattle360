@@ -33,6 +33,8 @@ class SplashFragment : BaseFragment<SplashViewModel, SplashFragmentBinding, Spla
     }
 
     private fun userTokenValidation() {
+
+
         NavHostFragment.findNavController(this)
             .navigate(R.id.action_splashFragment_to_loginFragment)
     }

@@ -24,9 +24,9 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST(REGISTRATION)
-    suspend fun registration(
-        @Field("c_firstname")  Name: String,
-        @Field("c_lastname") Last_Name: String,
+    suspend fun registrationAPI(
+        @Field("c_firstname")  name: String,
+        @Field("c_lastname") lastname: String,
         @Field("mobile_no") moblile: String,
         @Field("email") email: String,
         @Field("C_PASSWORD") password: String,
@@ -35,6 +35,6 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST(LOGIN)
-    suspend fun login( @Field("mobile_no")  mobile: String,
-                       @Field("password") password: String) : GetLoginResponse
+    suspend fun loginAPI(@Field("mobile_no") mobile: String,
+                      @Field("password") password: String) : GetLoginResponse
 }

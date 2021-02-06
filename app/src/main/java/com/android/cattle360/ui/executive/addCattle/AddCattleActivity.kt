@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import com.android.cattle360.R
 import com.android.cattle360.databinding.ActivityAddCattleBinding
 import com.android.cattle360.ui.base.BaseActivity
+import com.android.cattle360.ui.base.BaseRepository
 
 class  AddCattleActivity : BaseActivity<AddCattleViewModel, ActivityAddCattleBinding>() {
 
@@ -21,4 +22,8 @@ class  AddCattleActivity : BaseActivity<AddCattleViewModel, ActivityAddCattleBin
         navController = findNavController(R.id.add_cattle_nav_fragment)
 
     }
+
+//    override fun getFragmentRepository(): BaseRepository {
+//    return AddCattleRepository()
+//    }
 }

@@ -8,6 +8,6 @@ class PasswordRepository (private var api : ApiService?= null): BaseRepository()
 
     suspend fun userLogin(mobile: String,password: String) = safeApiCall {
         println("On ApiService ")
-        api?.login(mobile,password)
+        api?.loginAPI(mobile,password)
     }
 }

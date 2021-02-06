@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.cattle360.R
+import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.databinding.HomeFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.user.home.banner.BannerFragment
@@ -20,10 +21,12 @@ class HomeFragment : BaseFragment<HomeViewModel, HomeFragmentBinding, HomeReposi
         return HomeFragmentBinding.inflate(layoutInflater, container, false)
     }
 
-    override fun getViewModel(): Class<HomeViewModel> = HomeViewModel::class.java
+    override fun getViewModel(): Class<HomeViewModel>{
+        return HomeViewModel::class.java
+    }
 
     override fun getFragmentRepository(): HomeRepository {
-        return HomeRepository()
+        return HomeRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
 
 

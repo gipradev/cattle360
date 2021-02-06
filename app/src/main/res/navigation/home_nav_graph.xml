@@ -8,7 +8,8 @@
      <fragment
         android:id="@+id/homeFragment"
         android:name="com.android.cattle360.ui.user.home.HomeFragment"
-        android:label="" >
+        android:label="home"
+         tools:layout="@layout/home_fragment">
         <action
             android:id="@+id/action_homeFragment_to_searchLocationFragment"
             app:destination="@id/searchLocationFragment"
@@ -80,19 +81,23 @@
     <fragment
         android:id="@+id/searchLocationFragment"
         android:name="com.android.cattle360.ui.appStart.searchLocation.SearchLocationFragment"
-        android:label="Delivery address" />
+        android:label="Delivery address"
+        tools:layout="@layout/search_location_fragment"/>
     <fragment
         android:id="@+id/addressListFragment"
         android:name="com.android.cattle360.ui.user.profile.deliveryAddress.AddressListFragment"
-        android:label="Delivery Address" />
+        android:label="Delivery Address"
+        tools:layout="@layout/address_list_fragment"/>
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.android.cattle360.ui.user.profile.changePassword.ChangePasswordFragment"
-        android:label="Change Password" />
+        android:label="Change Password"
+        tools:layout="@layout/change_password_fragment"/>
     <fragment
         android:id="@+id/cattleFragment"
         android:name="com.android.cattle360.ui.user.home.Cattle.CattleFragment"
-        android:label="Cattle" >
+        android:label="Cattle"
+        tools:layout="@layout/cattle_fragment">
         <action
             android:id="@+id/action_cattleFragment_to_biddingSheetFragment"
             app:destination="@id/biddingSheetFragment" />
@@ -101,11 +106,13 @@
     <fragment
         android:id="@+id/categoryListFragment"
         android:name="com.android.cattle360.ui.user.home.category.categoryList.CategoryListFragment"
-        android:label="" />
+        android:label=""
+        tools:layout="@layout/category_list_fragment"/>
     <dialog
         android:id="@+id/biddingSheetFragment"
         android:name="com.android.cattle360.ui.user.home.Cattle.BiddingSheet.BiddingSheetFragment"
-        android:label="BiddingSheetFragment" >
+        android:label="BiddingSheetFragment"
+        tools:layout="@layout/bidding_sheet_fragment">
         <action
             android:id="@+id/action_biddingSheetFragment_to_cattleCartFragment"
             app:destination="@id/cattleCartFragment"
@@ -121,5 +128,6 @@
     <fragment
         android:id="@+id/cattleCartFragment"
         android:name="com.android.cattle360.ui.user.home.cattleCart.CattleCartFragment"
-        android:label="CattleCartFragment" />
+        android:label="CattleCartFragment"
+        tools:layout="@layout/cattle_cart_fragment"/>
 </navigation>

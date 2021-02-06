@@ -2,7 +2,9 @@ package com.android.cattle360.ui.base
 
 import com.android.cattle360.data.network.Resource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.handleCoroutineException
 import kotlinx.coroutines.withContext
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.HttpException
 
 open class BaseRepository {
@@ -22,7 +24,7 @@ open class BaseRepository {
                     }
                     else -> {
 
-                        Resource.Failure(true, null, null)
+                        Resource.Failure(true,null , null)
                     }
                 }
             }

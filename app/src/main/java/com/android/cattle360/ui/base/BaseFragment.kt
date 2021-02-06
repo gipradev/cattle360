@@ -14,8 +14,6 @@ import com.android.cattle360.data.network.RemoteDataSource
 abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding, R : BaseRepository> :
     Fragment() {
 
-
-
     protected lateinit var binding: DB
     protected lateinit var viewModel: VM
     protected val remoteDataSource = RemoteDataSource()
@@ -30,8 +28,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding, R : BaseRe
         binding = getFragmentBinding(inflater, container)
         val factory = ViewModelFactory(getFragmentRepository())
         viewModel = ViewModelProvider(this, factory).get(getViewModel())
-      //  viewModel = ViewModelProvider(this).get(getViewModel())
-
+      //viewModel = ViewModelProvider(this).get(getViewModel())
         return binding.root
     }
 

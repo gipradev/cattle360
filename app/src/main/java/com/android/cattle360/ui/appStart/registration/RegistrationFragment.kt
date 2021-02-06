@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
+import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.RegistrationFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
@@ -27,7 +28,7 @@ class RegistrationFragment :
     override fun getViewModel(): Class<RegistrationViewModel> = RegistrationViewModel::class.java
 
     override fun getFragmentRepository(): RegistrationRepository {
-        return RegistrationRepository()
+        return RegistrationRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -39,41 +40,35 @@ class RegistrationFragment :
 
         binding.saveUserButton.setOnClickListener {
 
-            viewModel.registration(binding.firstNameEditText.toString(),
-                binding.lastNameEditText.toString(),
-                binding.mobileEditText.toString(),
-                binding.email.toString(),
-                binding.password.toString(),
-                binding.confirmPassword.toString())
+            viewModel.registration(binding.firstNameEditText.text.toString(),
+                binding.lastNameEditText.text.toString(),
+                binding.mobileEditText.text.toString(),
+                binding.emailEditText.text.toString(),
+                binding.passwordEditText.text.toString(),
+                binding.confirmPasswordEditText.text.toString())
+           
             viewModel.registrationResponse.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+              //  println("sssssssssssssssssssssss ${it}")
                 when (it) {
                     is Resource.Loading -> {
-                        println("Loading ")
+                        println("Loading ${it}")
                     }
                     is Resource.Success -> {
                         if (it.value?.status.equals("1")) {
-                            println("Success  : ${it}")
-
-
+                            println("Success 1 : ${it}")
+                            println("Success 1 messsge : ${it.value?.message}")
                             val intent = Intent(requireContext(), HomeActivity::class.java)
                             startActivity(intent)
                             activity?.finish()
                         } else if (it.value?.status.equals("0")){
                             println("else if 0  : ${it}")
+                            println("Success 0: ${it.value?.message}")
                             Snackbar.make(
                                 requireView(),
                                 "${it.value?.message}",
                                 Snackbar.LENGTH_LONG
                             ).show()
                     }
-                        else {
-                            println("else  : ${it}")
-                            Snackbar.make(
-                                requireView(),
-                                "${it.value?.message}",
-                                Snackbar.LENGTH_LONG
-                            ).show()
-                        }
                     }
                     is Resource.Failure -> {
                         println("Failure  : ${it}")

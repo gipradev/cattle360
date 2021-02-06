@@ -1,7 +1,6 @@
 package com.android.cattle360.ui.appStart.login
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -9,7 +8,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
 import com.android.cattle360.data.network.ApiService
@@ -17,7 +15,6 @@ import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.LoginFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.launch
 
 
 class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding, LoginRepository>() {
@@ -57,12 +54,12 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding, LoginRe
                     val mobile = s.toString()
                     if (TextUtils.isEmpty(mobile)) {
                         binding.numberTextField.requestFocus();
-                        binding.numberTextField.setError("Please Enter Mobile Number");
+                        binding.numberTextField.setError("Please enter mobile number");
                         // Log.e("Validation", "Enter Mobile No or Email")
                     } else {
                         validPhone = false
                         binding.numberTextField.requestFocus();
-                        binding.numberTextField.setError("Invalid Mobile Number");
+                        binding.numberTextField.setError("Invalid mobile number");
                         // Log.e("Validation", "Invalid Mobile No")
                     }
                 }
@@ -76,8 +73,7 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding, LoginRe
                         println("Loading ")
                     }
                     is Resource.Success -> {
-
-                        if (it.value?.status.equals("1")) {
+                        if (it.value?.status.equals("1") && it.value?.usertype.equals("customer")) {
                             println("Success  : ${it}")
                             val sharedPreference =  requireContext().getSharedPreferences("pref",Context.MODE_PRIVATE)
                             val mobileno= binding.mobileEditText.text.toString()
@@ -88,8 +84,15 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding, LoginRe
                             editor.commit()
                             NavHostFragment.findNavController(this)
                                 .navigate(R.id.action_loginFragment_to_otpFragment)
-                        } else if (it.value?.status.equals("0")) {
+                        } else if (it.value?.status.equals("0") ) {
                             println("login  : ${it}")
+                            val sharedPreference =  requireContext().getSharedPreferences("pref",Context.MODE_PRIVATE)
+                            val mobileno= binding.mobileEditText.text.toString()
+                            println("mob.........................noo$mobileno")
+                            var editor = sharedPreference.edit()
+                            editor.putString("mobileno",mobileno)
+                            editor.apply()
+                            editor.commit()
                             NavHostFragment.findNavController(this)
                                 .navigate(R.id.action_loginFragment_to_passwordFragment)
                         } else {

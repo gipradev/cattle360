@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.android.cattle360.ui.appStart.splash.SplashFragment"
-        android:label="">
+        tools:layout="@layout/splash_fragment">
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -20,7 +20,7 @@
      <fragment
         android:id="@+id/loginFragment"
         android:name="com.android.cattle360.ui.appStart.login.LoginFragment"
-        android:label="">
+         tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/action_loginFragment_to_otpFragment"
             app:destination="@id/otpFragment"
@@ -35,11 +35,18 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
+         <action
+             android:id="@+id/action_loginFragment_to_splashFragment"
+             app:destination="@id/splashFragment"
+             app:enterAnim="@anim/slide_in_right"
+             app:exitAnim="@anim/slide_out_left"
+             app:popEnterAnim="@anim/slide_in_left"
+             app:popExitAnim="@anim/slide_out_right" />
+     </fragment>
     <fragment
         android:id="@+id/otpFragment"
         android:name="com.android.cattle360.ui.appStart.otp.OtpFragment"
-        android:label="">
+        tools:layout="@layout/otp_fragment">
         <action
             android:id="@+id/action_otpFragment_to_registrationFragment"
             app:destination="@id/registrationFragment"
@@ -49,11 +56,19 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             />
+        <action
+            android:id="@+id/action_otpFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/passwordFragment"
         android:name="com.android.cattle360.ui.appStart.password.PasswordFragment"
-        android:label=""/>
+        tools:layout="@layout/password_fragment" >
+    </fragment>
     <fragment
         android:id="@+id/registrationFragment"
         android:name="com.android.cattle360.ui.appStart.registration.RegistrationFragment"
