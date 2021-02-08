@@ -3,6 +3,8 @@ package com.android.cattle360.ui.user
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Window
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,26 +17,21 @@ import com.android.cattle360.data.util.changeStatusBarColor
 import com.android.cattle360.data.util.visibility
 import com.android.cattle360.databinding.ActivityHomeBinding
 import com.android.cattle360.ui.base.BaseActivity
-import com.android.cattle360.ui.base.BaseRepository
-import com.android.cattle360.ui.user.home.HomeRepository
-import com.android.cattle360.ui.user.home.HomeViewModel
 
-
-class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
+class HomeActivity : BaseActivity<HomeActivityViewModel, ActivityHomeBinding>() {
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
 
-    override fun getViewModel(): Class<HomeViewModel> {
-        return HomeViewModel::class.java
+    override fun getViewModel(): Class<HomeActivityViewModel> {
+        return HomeActivityViewModel::class.java
     }
 
     override fun getBinding(): Int = R.layout.activity_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         binding.homeToolbar.title = ""
         setSupportActionBar(binding.homeToolbar)
@@ -44,8 +41,6 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
 
         appBarConfiguration = AppBarConfiguration(navController.graph)
 
-        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
-        NavigationUI.setupWithNavController(binding.homeToolbar, navController, appBarConfiguration)
 
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
@@ -113,6 +108,8 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
 
             }
         }
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
+        NavigationUI.setupWithNavController(binding.homeToolbar, navController, appBarConfiguration)
 
 
     }

@@ -14,6 +14,7 @@ import com.android.cattle360.data.network.RemoteDataSource
 abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding, R : BaseRepository> :
     Fragment() {
 
+
     protected lateinit var binding: DB
     protected lateinit var viewModel: VM
     protected val remoteDataSource = RemoteDataSource()

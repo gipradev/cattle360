@@ -14,6 +14,10 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cattle360">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBea7Nim66YQ4VWTlPoSSj5N4pSghbNNrY"/>
         <activity android:name=".ui.executive.addCattle.AddCattleActivity">
 
         </activity>
@@ -22,14 +26,14 @@
         </activity>
 
         <activity android:name=".ui.user.HomeActivity">
+
+        </activity>
+        <activity android:name=".ui.appStart.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ui.appStart.MainActivity">
-
         </activity>
         
         

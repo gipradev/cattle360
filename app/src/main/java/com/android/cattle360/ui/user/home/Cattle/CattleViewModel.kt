@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.android.cattle360.data.demmyModels.CattleModel
 import com.android.cattle360.data.demmyModels.cattleModelSupplier
 import com.android.cattle360.ui.base.BaseViewModel
+import com.android.cattle360.ui.user.home.category.CategoryRepository
 
-class CattleViewModel : BaseViewModel() {
+class CattleViewModel(private val  repository: CattleRepository) : BaseViewModel() {
 
     val cattleResponse: LiveData<CattleModel> = MutableLiveData()
 

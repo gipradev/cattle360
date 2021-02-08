@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.android.cattle360.data.demmyModels.BannerModel
 import com.android.cattle360.data.demmyModels.bannerSupplier
 import com.android.cattle360.ui.base.BaseViewModel
+import com.android.cattle360.ui.user.bidding.BiddingRepository
 
-class BannerViewModel : BaseViewModel() {
+class BannerViewModel(private val  repository: BannerRepository) : BaseViewModel() {
 
     val bannerResponse: LiveData<List<BannerModel>> = MutableLiveData()
 

@@ -21,14 +21,11 @@ class HomeFragment : BaseFragment<HomeViewModel, HomeFragmentBinding, HomeReposi
         return HomeFragmentBinding.inflate(layoutInflater, container, false)
     }
 
-    override fun getViewModel(): Class<HomeViewModel>{
-        return HomeViewModel::class.java
-    }
+    override fun getViewModel(): Class<HomeViewModel> = HomeViewModel::class.java
 
     override fun getFragmentRepository(): HomeRepository {
         return HomeRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
