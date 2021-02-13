@@ -31,22 +31,45 @@ class CattleImageFragment :
         return AddCattleRepository()
     }
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val pincode_value = requireArguments().getString("pincode_value")
+        val area_value = requireArguments().getString("area_value")
+        val district_value = requireArguments().getString("pincode_value")
+        val state_value = requireArguments().getString("pincode_value")
+
+        val title_value= requireArguments().getString("title_value")
+        val category_value= requireArguments().getString("category_value")
+        val weight_value= requireArguments().getString("weight_value")
+        val age_value= requireArguments().getString("age_value")
+        val color_value= requireArguments().getString("color_value")
+        val biddingamount_value= requireArguments().getString("biddingamount_value")
+        val customerprice_value= requireArguments().getString("customerprice_value")
 
         launchUploadFragment()
 
         binding.imagePreviousButton.setOnClickListener {
             requireActivity().onBackPressed()
         }
+        binding.imageNextButton.setOnClickListener {
+           insertAllCattleDetails()
+        }
+    }
+
+    private fun insertAllCattleDetails() {
+
+
+
     }
 
     private fun launchUploadFragment() {
+
         activity?.supportFragmentManager!!.beginTransaction().replace(
             R.id.uploadFragment,
             UploadFragment.newInstance(), UploadFragment::class.java.toString()
         ).commit()
+
     }
 
 }

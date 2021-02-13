@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.cattle360.databinding.ExecutiveProfileFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
-import com.android.cattle360.ui.executive.ExecutiveRepository
 
 class ExecutiveProfileFragment :
-    BaseFragment<ExecutiveProfileViewModel, ExecutiveProfileFragmentBinding, ExecutiveRepository>() {
+    BaseFragment<ExecutiveProfileViewModel, ExecutiveProfileFragmentBinding, ExecutiveProfileRepository>() {
 
     companion object {
         fun newInstance() = ExecutiveProfileFragment()
@@ -25,8 +24,8 @@ class ExecutiveProfileFragment :
         return ExecutiveProfileViewModel::class.java
     }
 
-    override fun getFragmentRepository(): ExecutiveRepository {
-        return ExecutiveRepository()
+    override fun getFragmentRepository(): ExecutiveProfileRepository {
+        return ExecutiveProfileRepository()
     }
 
 

@@ -6,11 +6,10 @@ import android.view.ViewGroup
 import com.android.cattle360.R
 import com.android.cattle360.databinding.ExecutiveHomeFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
-import com.android.cattle360.ui.executive.ExecutiveRepository
 import com.android.cattle360.ui.executive.exeHome.availableCattle.AvailableCattleFragment
 
 class ExecutiveHomeFragment :
-    BaseFragment<ExecutiveHomeViewModel, ExecutiveHomeFragmentBinding, ExecutiveRepository>() {
+    BaseFragment<ExecutiveHomeViewModel, ExecutiveHomeFragmentBinding, ExecutiveHomeRepository>() {
 
     companion object {
         fun newInstance() = ExecutiveHomeFragment()
@@ -27,8 +26,8 @@ class ExecutiveHomeFragment :
         return ExecutiveHomeViewModel::class.java
     }
 
-    override fun getFragmentRepository(): ExecutiveRepository {
-        return ExecutiveRepository()
+    override fun getFragmentRepository(): ExecutiveHomeRepository {
+        return ExecutiveHomeRepository()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

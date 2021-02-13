@@ -15,12 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cattle360">
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBea7Nim66YQ4VWTlPoSSj5N4pSghbNNrY"/>
-        <activity android:name=".ui.executive.addCattle.AddCattleActivity">
 
-        </activity>
+        <activity android:name=".ui.executive.addCattle.AddCattleActivity"/>
+
+
         <activity android:name=".ui.executive.ExecutiveActivity">
 
         </activity>

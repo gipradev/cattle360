@@ -14,12 +14,12 @@ import com.android.cattle360.ui.base.BaseRepository
 import com.android.cattle360.ui.executive.addCattle.AddCattleActivity
 import com.android.cattle360.ui.executive.exeHome.ExecutiveHomeViewModel
 
-class ExecutiveActivity : BaseActivity<ExecutiveHomeViewModel, ActivityExecutiveBinding>() {
+class ExecutiveActivity : BaseActivity<ExecutiveActivityViewModel,ActivityExecutiveBinding>() {
 
     private lateinit var navController: NavController
 
-    override fun getViewModel(): Class<ExecutiveHomeViewModel> {
-        return  ExecutiveHomeViewModel::class.java
+    override fun getViewModel(): Class<ExecutiveActivityViewModel> {
+        return  ExecutiveActivityViewModel::class.java
     }
 
     override fun getBinding(): Int = R.layout.activity_executive

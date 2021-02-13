@@ -1,13 +1,22 @@
 package com.android.cattle360.ui.user.profile
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.os.Bundle
+import android.se.omapi.Session
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
+import com.android.cattle360.data.network.ApiService
+import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.ProfileFragmentBinding
+import com.android.cattle360.ui.appStart.MainActivity
 import com.android.cattle360.ui.base.BaseFragment
+import com.google.android.material.snackbar.Snackbar
+import java.lang.System.exit
 
 class ProfileFragment : BaseFragment<ProfileViewModel, ProfileFragmentBinding, ProfileRepository>(),
     View.OnClickListener {
@@ -21,7 +30,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel, ProfileFragmentBinding, P
     }
 
     override fun getFragmentRepository(): ProfileRepository {
-        return ProfileRepository()
+        return ProfileRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
 
     override fun getFragmentBinding(
@@ -72,7 +81,45 @@ class ProfileFragment : BaseFragment<ProfileViewModel, ProfileFragmentBinding, P
 
             }
             R.id.sighOutButton -> {
+                val pref = requireContext().getSharedPreferences("pref", Context.MODE_PRIVATE)
+                val mobile=pref.getString("mobileno", "")
+                println("${mobile}")
+                viewModel.logout(mobile.toString())
+                viewModel.logoutResponse.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                    //  println("sssssssssssssssssssssss ${it}")
+                    when (it) {
+                        is Resource.Loading -> {
+                            println("Loading ${it}")
+                        }
+                        is Resource.Success -> {
+                            if (it.value?.status.equals("1")) {
+                                 println("${it}")
 
+
+                                requireContext().getSharedPreferences("pref", MODE_PRIVATE)
+                                    .edit()
+                                    .clear()
+                                    .apply()
+                                exit(0)
+
+//                                val intent = Intent(context, MainActivity::class.java)
+//                                startActivity(intent)
+
+                            } else if (it.value?.status.equals("0")) {
+
+                                Snackbar.make(
+                                    requireView(),
+                                    "${it.value?.message}",
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                        is Resource.Failure -> {
+                            println("Failure  : ${it}")
+                        }
+
+                    }
+                })
             }
             R.id.editButton -> {
 

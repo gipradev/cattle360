@@ -69,6 +69,7 @@
             app:layout_constraintTop_toBottomOf="@+id/materialTextView4">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/titleEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
                 android:layout_height="match_parent" />
@@ -76,7 +77,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_16_dp"
@@ -86,6 +87,7 @@
             app:layout_constraintTop_toBottomOf="@+id/pinCodeLayout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/categoryEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
                 android:layout_height="match_parent" />
@@ -104,6 +106,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/weightEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
                 android:layout_height="match_parent" />
@@ -122,6 +125,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ageEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
                 android:layout_height="match_parent" />
@@ -140,6 +144,7 @@
             app:layout_constraintTop_toBottomOf="@+id/weightTextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/colorEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
                 android:layout_height="match_parent" />
@@ -159,6 +164,7 @@
             app:startIconDrawable="@drawable/ic_rupee_indian">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/biddingAmountEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
                 android:layout_height="match_parent" />
@@ -177,6 +183,7 @@
             app:startIconDrawable="@drawable/ic_rupee_indian">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/customerPriceEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
                 android:layout_height="match_parent" />

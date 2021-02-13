@@ -14,18 +14,20 @@ import com.android.cattle360.ui.appStart.searchLocation.SearchLocationRepository
 import com.android.cattle360.ui.appStart.searchLocation.SearchLocationViewModel
 import com.android.cattle360.ui.appStart.splash.SplashRepository
 import com.android.cattle360.ui.appStart.splash.SplashViewModel
-import com.android.cattle360.ui.executive.ExecutiveActivityViewModel
-import com.android.cattle360.ui.executive.ExecutiveRepository
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
 import com.android.cattle360.ui.executive.addCattle.AddCattleViewModel
+import com.android.cattle360.ui.executive.addCattle.enterCattle.EnterCattleViewModel
+import com.android.cattle360.ui.executive.addCattle.enterLocation.EnterLocationViewModel
+import com.android.cattle360.ui.executive.addCattle.uploadImage.CattleImageViewModel
+import com.android.cattle360.ui.executive.addCattle.uploadImage.uploadFragment.UploadViewModel
 import com.android.cattle360.ui.executive.exeHome.ExecutiveHomeRepository
 import com.android.cattle360.ui.executive.exeHome.ExecutiveHomeViewModel
-import com.android.cattle360.ui.user.HomeActivityViewModel
+import com.android.cattle360.ui.executive.exeHome.availableCattle.AvailableCattleViewModel
+import com.android.cattle360.ui.executive.exeProfile.ExecutiveProfileRepository
+import com.android.cattle360.ui.executive.exeProfile.ExecutiveProfileViewModel
 import com.android.cattle360.ui.user.bidding.BiddingRepository
 import com.android.cattle360.ui.user.bidding.BiddingViewModel
-import com.android.cattle360.ui.user.bidding.live.LiveBiddingViewModel
 import com.android.cattle360.ui.user.history.BiddingHistoryViewModel
-import com.android.cattle360.ui.user.history.totalFragment.TotalAmountViewModel
 import com.android.cattle360.ui.user.home.Cattle.CattleRepository
 import com.android.cattle360.ui.user.home.Cattle.CattleViewModel
 import com.android.cattle360.ui.user.home.HomeRepository
@@ -42,10 +44,8 @@ import com.android.cattle360.ui.user.home.location.LocationRepository
 import com.android.cattle360.ui.user.home.location.LocationViewModel
 import com.android.cattle360.ui.user.profile.ProfileRepository
 import com.android.cattle360.ui.user.profile.ProfileViewModel
-import com.android.cattle360.ui.user.profile.changePassword.ChangePasswordViewModel
 import com.android.cattle360.ui.user.profile.wallet.WalletRepository
 import com.android.cattle360.ui.user.profile.wallet.WalletViewModel
-import com.android.cattle360.ui.user.search.SearchViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(
@@ -96,10 +96,6 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(WalletViewModel::class.java) -> WalletViewModel(
                 repository as WalletRepository
             ) as T
-            modelClass.isAssignableFrom(ChangePasswordViewModel::class.java) -> ChangePasswordViewModel(
-                repository as ProfileRepository
-            ) as T
-
             modelClass.isAssignableFrom(BiddingViewModel::class.java) -> BiddingViewModel(
                 repository as BiddingRepository
             ) as T
@@ -109,11 +105,29 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(SearchLocationViewModel::class.java) -> SearchLocationViewModel(
                 repository as SearchLocationRepository
             ) as T
-            modelClass.isAssignableFrom(AddCattleViewModel::class.java) -> AddCattleViewModel(
-                repository as AddCattleRepository
-            ) as T
             modelClass.isAssignableFrom(ExecutiveHomeViewModel::class.java) -> ExecutiveHomeViewModel(
                 repository as ExecutiveHomeRepository
+            ) as T
+            modelClass.isAssignableFrom(ExecutiveProfileViewModel::class.java) -> ExecutiveProfileViewModel(
+                repository as ExecutiveProfileRepository
+            ) as T
+            modelClass.isAssignableFrom(AvailableCattleViewModel::class.java) -> AvailableCattleViewModel(
+                repository as ExecutiveHomeRepository
+            ) as T
+            modelClass.isAssignableFrom(CattleImageViewModel::class.java) -> CattleImageViewModel(
+                repository as AddCattleRepository
+            ) as T
+            modelClass.isAssignableFrom(EnterCattleViewModel::class.java) -> EnterCattleViewModel(
+                repository as AddCattleRepository
+            ) as T
+            modelClass.isAssignableFrom(EnterLocationViewModel::class.java) -> EnterLocationViewModel(
+                repository as AddCattleRepository
+            ) as T
+            modelClass.isAssignableFrom(UploadViewModel::class.java) -> UploadViewModel(
+                repository as AddCattleRepository
+            ) as T
+            modelClass.isAssignableFrom(CattleImageViewModel::class.java) -> CattleImageViewModel(
+                repository as AddCattleRepository
             ) as T
             else -> throw IllegalArgumentException("ViewModelClass Not Found")
         }

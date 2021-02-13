@@ -1,7 +1,8 @@
 package com.android.cattle360.ui.user.profile.deliveryAddress
 
-import com.android.cattle360.ui.base.BaseViewModel
+import androidx.lifecycle.ViewModel
 
-class AddressListViewModel : BaseViewModel() {
+
+class AddressListViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

@@ -15,6 +15,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding, R : BaseRe
     Fragment() {
 
 
+
     protected lateinit var binding: DB
     protected lateinit var viewModel: VM
     protected val remoteDataSource = RemoteDataSource()

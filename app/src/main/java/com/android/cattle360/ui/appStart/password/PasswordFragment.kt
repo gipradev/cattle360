@@ -40,7 +40,6 @@ class PasswordFragment : BaseFragment<PasswordViewModel, PasswordFragmentBinding
             val pass = binding.passwordEditText.text.toString()
             println("$mobile..........$pass")
 
-
             viewModel.login(mobile.toString(), binding.passwordEditText.text.toString())
             viewModel.passResponse.observe(viewLifecycleOwner,  {
                 when (it) {

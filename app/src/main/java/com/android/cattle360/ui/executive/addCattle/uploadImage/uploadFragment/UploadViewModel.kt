@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.android.cattle360.data.demmyModels.UploadModel
 import com.android.cattle360.data.demmyModels.uploadModelSupplier
 import com.android.cattle360.ui.base.BaseViewModel
+import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
 
-class UploadViewModel : BaseViewModel() {
+class UploadViewModel (private val repository: AddCattleRepository): BaseViewModel() {
 
     val uploadResponse: LiveData<List<UploadModel>> = MutableLiveData()
 

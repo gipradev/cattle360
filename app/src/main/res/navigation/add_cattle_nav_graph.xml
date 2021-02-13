@@ -26,13 +26,14 @@
     <fragment
         android:id="@+id/enterCattleFragment"
         android:name="com.android.cattle360.ui.executive.addCattle.enterCattle.EnterCattleFragment"
-        android:label="EnterCattleFragment" >
+        android:label="EnterCattleFragment"
+        tools:layout="@layout/enter_cattle_fragment">
         <action
             android:id="@+id/action_enterCattleFragment_to_cattleImageFragment"
             app:destination="@id/cattleImageFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 </navigation>

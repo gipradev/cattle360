@@ -34,7 +34,6 @@
              app:exitAnim="@anim/slide_out_left"
              app:popEnterAnim="@anim/slide_in_left"
              app:popExitAnim="@anim/slide_out_right"/>
-
      </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -92,7 +91,11 @@
         android:id="@+id/changePasswordFragment"
         android:name="com.android.cattle360.ui.user.profile.changePassword.ChangePasswordFragment"
         android:label="Change Password"
-        tools:layout="@layout/change_password_fragment"/>
+        tools:layout="@layout/change_password_fragment">
+        <action
+            android:id="@+id/action_changePasswordFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cattleFragment"
         android:name="com.android.cattle360.ui.user.home.Cattle.CattleFragment"
