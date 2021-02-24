@@ -22,15 +22,41 @@
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="TODO" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/enterText"
+        <ToggleButton
+            android:id="@+id/toggleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_16_dp"
-            android:text="Please enter your Phone number"
-            android:textSize="@dimen/font_20_sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logo" />
+            android:background="@drawable/selected_tab_indicator"
+            android:textOn="Login as Executive"
+            android:checked="true"
+            android:textColor="@color/quantum_yellow800"
+            android:gravity="center"
+            android:padding="@dimen/dimen_5_dp"
+            android:textOff="Login with phone number"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.922"
+            app:layout_constraintStart_toEndOf="@+id/logo"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="108dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/connstlayout_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorOnPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/enterText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16_dp"
+                android:text="Please enter your Phone number"
+                android:textSize="@dimen/font_20_sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/numberTextField"
@@ -47,12 +73,10 @@
                 android:id="@+id/mobileEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Mobile number / User Id"
+                android:hint="Mobile number "
                 android:maxLength="10"
-                android:inputType="phone"
-                />
+                android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
-
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/helperText"
             android:layout_width="wrap_content"
@@ -61,6 +85,59 @@
             android:text="An OTP will send via SMS"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/numberTextField" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/connstlayout_executive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorOnPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            android:visibility="invisible">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16_dp"
+                android:text="Please enter your username here"
+                android:textSize="@dimen/font_20_sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/executiveTextField"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/ErrorTextAppearance"
+                android:layout_margin="@dimen/dimen_16_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="User name "
+                    android:inputType="text"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/helperexecutiveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16_dp"
+            android:text="Login with your allotted username"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/executiveTextField" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/phoneButton"
@@ -72,6 +149,8 @@
             android:textAllCaps="true"
             android:textColor="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

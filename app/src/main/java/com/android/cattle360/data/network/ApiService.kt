@@ -2,12 +2,14 @@ package com.android.cattle360.data.network
 
 import com.android.cattle360.data.apiResponse.*
 import com.android.cattle360.data.util.ApiEndPoints.CHANGE_PASSWORD
+import com.android.cattle360.data.util.ApiEndPoints.INSERT_CATTLE
 import com.android.cattle360.data.util.ApiEndPoints.LOGIN
 import com.android.cattle360.data.util.ApiEndPoints.LOGIN_CHECK
 import com.android.cattle360.data.util.ApiEndPoints.LOGOUT
 import com.android.cattle360.data.util.ApiEndPoints.OTP_VERIFICATION_CHECKING
 import com.android.cattle360.data.util.ApiEndPoints.REGISTRATION
 import com.android.cattle360.data.util.ApiEndPoints.SEND_OTP
+import com.android.cattle360.data.util.ApiEndPoints.SEND_USERNAME
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -16,6 +18,10 @@ interface ApiService {
     @FormUrlEncoded
     @POST(SEND_OTP)
    suspend fun sendMobile(@Field("mobile_no") mobile : String) : GetOtpResponse
+
+    @FormUrlEncoded
+    @POST(SEND_USERNAME)
+    suspend fun sendUsername(@Field("username") username : String) : GetUsernameResponse
 
     @FormUrlEncoded
     @POST(OTP_VERIFICATION_CHECKING)
@@ -50,4 +56,17 @@ interface ApiService {
     @POST(LOGOUT)
     suspend fun loginOutAPI(@Field("mobile_no") mobile: String) : GetLogoutResponse
 
+    @FormUrlEncoded
+    @POST(INSERT_CATTLE)
+    suspend fun insertCattleDetailsAPI(@Field("pincode")pincode_value: String,
+                                       @Field("n_area")area_value: String,
+                                       @Field("n_district") district_value: String,
+                                       @Field("c_state")state_value: String,
+                                       @Field("c_title")title_value: String,
+                                       @Field("n_category")category_value: String,
+                                       @Field("n_weight") weight_value: String,
+                                       @Field("n_age") age_value: String,
+                                       @Field("c_colour")color_value: String,
+                                       @Field("n_bidding_price")biddingamount_value: String,
+                                       @Field("n_customer_price")customerprice_value: String): GetLogoutResponse
 }

@@ -11,8 +11,12 @@ class AvailableCattleViewModel(private val  repository: ExecutiveHomeRepository)
 
     val cattleResponse: LiveData<List<AvailableCattleModel>> = MutableLiveData()
 
+
+
     fun getCattleList() {
         cattleResponse as MutableLiveData
         cattleResponse.value = availableModelSupplier.availableCattleItem
     }
+
+
 }

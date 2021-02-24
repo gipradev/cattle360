@@ -86,7 +86,7 @@
             app:layout_constraintStart_toStartOf="@+id/pinCodeLayout"
             app:layout_constraintTop_toBottomOf="@+id/pinCodeLayout">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/categoryEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"

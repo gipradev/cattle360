@@ -37,52 +37,65 @@ class PasswordFragment : BaseFragment<PasswordViewModel, PasswordFragmentBinding
 
             val pref = requireContext().getSharedPreferences("pref", Context.MODE_PRIVATE)
             val mobile = pref.getString("mobileno", "")
-            val pass = binding.passwordEditText.text.toString()
-            println("$mobile..........$pass")
+            val username = pref.getString("username", "")
 
-            viewModel.login(mobile.toString(), binding.passwordEditText.text.toString())
-            viewModel.passResponse.observe(viewLifecycleOwner,  {
-                when (it) {
-                    is Resource.Loading -> {
-                        println("Loading ")
-                    }
-                    is Resource.Success -> {
-                        println("${it.value?.status}${it.value?.usertype} ")
-                        if (it.value?.status.equals("1") && it.value?.usertype.equals("customer")) {
-                            println("Success  : ${it}")
-                            Snackbar.make(
-                                requireView(),
-                                "${it.value?.message}",
-                                Snackbar.LENGTH_LONG
-                            ).show()
-                            val intent = Intent(requireContext(), HomeActivity::class.java)
-                            startActivity(intent)
-                            activity?.finish()
-                        } else if (it.value?.status.equals("1") && it.value?.usertype.equals("employee")) {
-                            println("Success  : ${it}")
-                            Snackbar.make(
-                                requireView(),
-                                "${it.value?.message}",
-                                Snackbar.LENGTH_LONG
-                            ).show()
-                            val intent = Intent(requireContext(), ExecutiveActivity::class.java)
-                            startActivity(intent)
-                            activity?.finish()
-                        } else {
-                            Snackbar.make(
-                                requireView(),
-                                "${it.value?.message}",
-                                Snackbar.LENGTH_LONG
-                            ).show()
-                        }
-                    }
-                    is Resource.Failure -> {
-                        println("Failure  : ${it}")
-                    }
-                }
-            })
+
+            val pass = binding.passwordEditText.text.toString()
+            println("$mobile...$username..$pass")
+            if (mobile?.isBlank() == true)
+loginbytwo(mobile.toString())
+            else
+            loginbytwo(username.toString())
 
         }
+    }
+
+    private fun loginbytwo(value: Any) {
+
+        viewModel.login(value as String, binding.passwordEditText.text.toString())
+        viewModel.passResponse.observe(viewLifecycleOwner,  {
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading ")
+                }
+                is Resource.Success -> {
+                    println("${it.value?.status}${it.value?.usertype} ")
+                    if (it.value?.status.equals("1") && it.value?.usertype.equals("customer")) {
+                        println("Success  : ${it}")
+                        Snackbar.make(
+                            requireView(),
+                            "${it.value?.message}",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                        val intent = Intent(requireContext(), HomeActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+                    } else if (it.value?.status.equals("1") && it.value?.usertype.equals("employee")) {
+                        println("Success  : ${it}")
+                        Snackbar.make(
+                            requireView(),
+                            "${it.value?.message}",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                        val intent = Intent(requireContext(), ExecutiveActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+                    } else {
+                        Snackbar.make(
+                            requireView(),
+                            "${it.value?.message}",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                }
+                is Resource.Failure -> {
+                    println("Failure  : ${it}")
+                }
+            }
+        })
+
+
+
     }
 }
 

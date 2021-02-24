@@ -9,4 +9,10 @@ class LoginRepository(private var api : ApiService ?= null) : BaseRepository() {
        println("On ApiService ")
         api?.sendMobile(mobile)
     }
+
+    suspend fun sendUsernameToService(username: String) = safeApiCall{
+        println("On ApiService ")
+        api?.sendUsername(username)
+    }
+
 }

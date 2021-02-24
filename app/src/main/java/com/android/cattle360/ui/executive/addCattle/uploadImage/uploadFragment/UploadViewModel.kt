@@ -14,5 +14,5 @@ class UploadViewModel (private val repository: AddCattleRepository): BaseViewMod
     fun getUploadModel() {
         uploadResponse as MutableLiveData
         uploadResponse.value = uploadModelSupplier.modelItem
-    }
+}
 }

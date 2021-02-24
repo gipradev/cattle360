@@ -21,6 +21,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
+import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.databinding.UploadFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
@@ -64,7 +65,7 @@ class UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, AddC
     }
 
     override fun getFragmentRepository(): AddCattleRepository {
-        return AddCattleRepository()
+        return AddCattleRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
 
 
