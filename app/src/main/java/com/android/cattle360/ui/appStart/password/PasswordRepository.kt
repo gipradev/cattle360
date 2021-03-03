@@ -10,4 +10,9 @@ class PasswordRepository (private var api : ApiService?= null): BaseRepository()
         println("On ApiService ")
         api?.loginAPI(mobile,password)
     }
+
+    suspend fun employeeLoginBy(username: String,password: String) = safeApiCall {
+        println("On ApiService ")
+        api?.employeeloginAPI(username,password)
+    }
 }

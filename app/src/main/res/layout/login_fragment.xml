@@ -41,12 +41,14 @@
             tools:layout_editor_absoluteY="108dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/connstlayout_mobile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorOnPrimary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo">
+            android:id="@+id/connstlayout_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="535dp"
+            android:background="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/enterText"
@@ -56,46 +58,61 @@
                 android:text="Please enter your Phone number"
                 android:textSize="@dimen/font_20_sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/numberTextField"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorTextAppearance"
-            android:layout_margin="@dimen/dimen_16_dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/enterText">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mobileEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/numberTextField"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Mobile number "
-                android:maxLength="10"
-                android:inputType="phone" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/helperText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_16_dp"
-            android:text="An OTP will send via SMS"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/numberTextField" />
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16_dp"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/ErrorTextAppearance"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/enterText">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mobileEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Mobile number "
+                    android:inputType="phone"
+                    android:maxLength="10" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/helperText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16_dp"
+                android:text="An OTP will send via SMS"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numberTextField" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/phoneButton"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_margin="16dp"
+                android:backgroundTint="?attr/colorPrimary"
+                android:text="Submit"
+                android:textAllCaps="true"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="16dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/connstlayout_executive"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="535dp"
             android:background="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logo"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/Text"
@@ -105,16 +122,16 @@
                 android:text="Please enter your username here"
                 android:textSize="@dimen/font_20_sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/executiveTextField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16_dp"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/ErrorTextAppearance"
-                android:layout_margin="@dimen/dimen_16_dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Text">
 
@@ -123,32 +140,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="User name "
-                    android:inputType="text"
-                    />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/helperexecutiveText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_16_dp"
-            android:text="Login with your allotted username"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/executiveTextField" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/helperexecutiveText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16_dp"
+                android:text="Login with your allotted username"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/executiveTextField" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/userButton"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_margin="16dp"
+                android:backgroundTint="?attr/colorPrimary"
+                android:text="Submit"
+                android:textAllCaps="true"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/phoneButton"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:layout_margin="16dp"
-            android:backgroundTint="?attr/colorPrimary"
-            android:text="Submit"
-            android:textAllCaps="true"
-            android:textColor="?attr/colorOnPrimary"
-            app:layout_constraintBottom_toBottomOf="parent" />
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/phoneButton"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?actionBarSize"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:backgroundTint="?attr/colorPrimary"-->
+<!--            android:text="Submit"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:textColor="?attr/colorOnPrimary"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent" />-->
 
 
 

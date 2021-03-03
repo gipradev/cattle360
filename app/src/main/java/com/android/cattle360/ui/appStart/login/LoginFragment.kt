@@ -1,6 +1,7 @@
-package com.android.cattle360.ui.appStart.login
+ package com.android.cattle360.ui.appStart.login
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -8,6 +9,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
@@ -38,29 +40,27 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding, LoginRe
         return LoginRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         // Set an checked change listener for toggle button
         user = "customer"
-        binding.toggleButton.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.toggleButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 // The toggle is enabled/checked
                 user = "employee"
-                binding.mobileEditText.isFocusable = false
-                binding.mobileEditText.isEnabled = false
-                binding.mobileEditText.isCursorVisible = false
-                binding.mobileEditText.keyListener = null
+
                 binding.connstlayoutMobile.visibility = View.VISIBLE
                 binding.connstlayoutExecutive.visibility = View.GONE
+
 
             } else {
                 // The toggle is disabled
                 user = "customer"
-                binding.mobileEditText.isFocusable = true
-                binding.mobileEditText.isEnabled = true
-                binding.mobileEditText.isCursorVisible = true
+
                 binding.connstlayoutExecutive.visibility = View.VISIBLE
                 binding.connstlayoutMobile.visibility = View.GONE
+
             }
         }
 
@@ -82,25 +82,19 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding, LoginRe
                     val mobile = s.toString()
                     if (TextUtils.isEmpty(mobile)) {
                         binding.numberTextField.requestFocus();
-                        binding.numberTextField.setError("Please enter mobile number");
+                        binding.numberTextField.error = "Please enter mobile number";
                         // Log.e("Validation", "Enter Mobile No or Email")
-                    } else if (mobile.length == 10) {
+                    } else if (mobile.length != 10) {
                         validPhone = false
                         binding.numberTextField.requestFocus();
-                        binding.numberTextField.setError("Invalid mobile number");
+                        binding.numberTextField.error = "Invalid mobile number";
                         // Log.e("Validation", "Invalid Mobile No")
                     }
                 }
 
             })
 
-
-
-
-
-
-                viewModel.sendPhoneNumber(binding.mobileEditText.text.toString())
-
+            viewModel.sendPhoneNumber(binding.mobileEditText.text.toString())
 
             viewModel.otpResponse.observe(viewLifecycleOwner, Observer {
                 when (it) {
@@ -108,22 +102,20 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding, LoginRe
                         println("Loading ")
                     }
                     is Resource.Success -> {
-                        if (it.value?.status.equals("1") && it.value?.usertype.equals("customer")) {
-                            println("Success  : ${it}")
+                        if (it.value?.status.equals("1") && it.value?.usertype.equals("customer") &&  user=="customer") {
+                            println("Success  : $it")
                             val sharedPreference = requireContext().getSharedPreferences(
-                                "pref",
-                                Context.MODE_PRIVATE
-                            )
+                                "pref", Context.MODE_PRIVATE)
                             val mobileno = binding.mobileEditText.text.toString()
                             println("mob.........................noo$mobileno")
                             val editor = sharedPreference.edit()
                             editor.putString("mobileno", mobileno)
+                            editor.putString("usertype", it.value?.usertype)
                             editor.apply()
-                            editor.commit()
                             NavHostFragment.findNavController(this)
                                 .navigate(R.id.action_loginFragment_to_otpFragment)
                         } else if (it.value?.status.equals("0") &&  user=="customer") {
-                            println("login  : ${it}")
+                            println("login  : $it")
                             val sharedPreference = requireContext().getSharedPreferences(
                                 "pref",
                                 Context.MODE_PRIVATE
@@ -132,8 +124,8 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding, LoginRe
                             println("mob.........................noo$mobileno")
                             val editor = sharedPreference.edit()
                             editor.putString("mobileno", mobileno)
+                            editor.putString("usertype", it.value?.usertype)
                             editor.apply()
-                            editor.commit()
                             NavHostFragment.findNavController(this)
                                 .navigate(R.id.action_loginFragment_to_passwordFragment)
                         } else {
@@ -146,47 +138,74 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding, LoginRe
 
                     }
                     is Resource.Failure -> {
-                        println("Failure  : ${it}")
+                        println("Failure  : $it")
                     }
 
                 }
             })
 
-            viewModel.sendUsername(binding.usernameEditText.text.toString())
+        }
+        binding.userButton.setOnClickListener {
+            //println("Clicked ")
+            binding.usernameEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
 
+                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+                override fun afterTextChanged(s: Editable) {
+
+                    val username = s.toString()
+                    if (TextUtils.isEmpty(username)) {
+                        binding.numberTextField.requestFocus();
+                        binding.numberTextField.error = "Please enter mobile number";
+                        // Log.e("Validation", "Enter Mobile No or Email")
+                    }
+                }
+
+            })
+
+            viewModel.sendUsername(binding.usernameEditText.text.toString())
             viewModel.usernsmeResponse.observe(viewLifecycleOwner, Observer {
                 when (it) {
                     is Resource.Loading -> {
                         println("Loading ")
                     }
                     is Resource.Success -> {
-                        if (it.value?.status.equals("0") && user=="employee") {
-                            println("login  : ${it}")
-                            val sharedPreference = requireContext().getSharedPreferences(
-                                "pref",
-                                Context.MODE_PRIVATE
-                            )
+                        if (it.value?.status.equals("1") && it.value?.usertype.equals("employee") || user=="employee") {
+                            println("login  : $it")
+                            val sharedPreference = requireContext().getSharedPreferences("pref", Context.MODE_PRIVATE)
                             val username = binding.usernameEditText.text.toString()
                             println("user........................$username")
                             val editor1 = sharedPreference.edit()
                             editor1.putString("username", username)
+                            editor1.putString("usertype", it.value?.usertype)
                             editor1.apply()
                             editor1.commit()
                             NavHostFragment.findNavController(this)
                                 .navigate(R.id.action_loginFragment_to_passwordFragment)
                         } else {
+                            val sharedPreference = requireContext().getSharedPreferences("pref", Context.MODE_PRIVATE)
+                            val editor1 = sharedPreference.edit()
+                            editor1.putString("usertype", it.value?.usertype)
+                            editor1.apply()
+                            editor1.commit()
+
                             Snackbar.make(
                                 requireView(),
                                 "${it.value?.message}",
                                 Snackbar.LENGTH_LONG
                             ).show()
                         }
-
                     }
+
                     is Resource.Failure -> {
                         println("Failure  : ${it}")
                     }
-
                 }
             })
 

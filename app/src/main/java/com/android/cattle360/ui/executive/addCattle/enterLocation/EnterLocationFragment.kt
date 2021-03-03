@@ -40,175 +40,62 @@ class EnterLocationFragment :
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-//        binding.pincodeEditText.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(
-//                s: CharSequence,
-//                start: Int,
-//                count: Int,
-//                after: Int
-//            ) {
-//            }
-//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-//
-//            }
-//
-//            override fun afterTextChanged(s: Editable) {
-//                println("dfghfjkjfffffffff")
-//
-//
-//                when {
-//                    binding.pincodeEditText.equals(null) -> {
-//                        invalid = true;
-//                        binding.pinCodeLayout.requestFocus()
-//                        binding.pinCodeLayout.error = "Zip code is required";
-//
-//                    }
-//                        s.length != 6 ->
-//                            binding.pinCodeLayout.error = "Enter a valid zip code !.... Zip code must be 6 digits"
-//                        else ->
-//                            binding.pinCodeLayout.error = null
-//                    }
-//            }
-//
-//
-//        })
-//        binding.areaEditText.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(
-//                s: CharSequence,
-//                start: Int,
-//                count: Int,
-//                after: Int
-//            ) {
-//            }
-//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-//
-//            }
-//
-//            override fun afterTextChanged(s: Editable) {
-//                println("dfghfjkjfffffffff")
-//                when {
-//                    binding.areaEditText.equals(null) -> {
-//                        invalid = true;
-//                        binding.textInputLayout.requestFocus()
-//                        binding.textInputLayout.error = "Area is required";
-//
-//                    }
-//
-//                }}
-//        })
-//
-//        binding.districtEditText.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(
-//                s: CharSequence,
-//                start: Int,
-//                count: Int,
-//                after: Int
-//            ) {
-//            }
-//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-//
-//            }
-//
-//            override fun afterTextChanged(s: Editable) {
-//                println("dfghfjkjfffffffff")
-//                when {
-//                    binding.districtEditText.equals(null) -> {
-//                        invalid = true;
-//                        binding.textInputLayout2.requestFocus()
-//                        binding.textInputLayout2.error = "District is required";
-//
-//                    }
-//
-//                }
-//            }
-//        })
-//        binding.stateEditText.addTextChangedListener(object : TextWatcher {
-//
-//            override fun beforeTextChanged(
-//                s: CharSequence,
-//                start: Int,
-//                count: Int,
-//                after: Int
-//            ) {
-//            }
-//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-//
-//            }
-//
-//            override fun afterTextChanged(s: Editable) {
-//                println("dfghfjkjfffffffff")
-//                when {
-//                    binding.stateEditText.equals(null) -> {
-//                        invalid = true;
-//                        binding.textInputLayout3.requestFocus()
-//                        binding.textInputLayout3.error = "State is required";
-//
-//                    }
-//
-//                }
-//            }
-//        })
-
+        invalid = false
 
         binding.locationNextButton.setOnClickListener(View.OnClickListener {
-validationfun()
+            invalid = false
+            when {
+                binding.pincodeEditText.equals("") -> {
+                    invalid = true
+                    binding.pincodeEditText.requestFocus()
+                    binding.pincodeEditText.error = "Please! fill your sponsors name"
+                }
+                binding.areaEditText.equals("") -> {
+                    invalid = true
+                    binding.areaEditText.requestFocusFromTouch();
+                    binding.areaEditText.error = "Please! fill your name"
 
+                }
+                binding.districtEditText.equals("") -> {
+                    invalid = true
+                    binding.districtEditText.requestFocusFromTouch();
+                    binding.districtEditText.error = "Please! fill your date of birth"
+
+                }
+                binding.stateEditText.equals("") -> {
+                    invalid = true
+                    binding.stateEditText.requestFocusFromTouch();
+                    binding.stateEditText.error = "Please! fill your postal address"
+
+                }
+                else -> {
+                    invalid = false
+                    println("invalid false")
+                    val pincode_value = binding.pincodeEditText.text.toString()
+                    val area_value = binding.areaEditText.text.toString()
+                    val district_value = binding.districtEditText.text.toString()
+                    val state_value = binding.stateEditText.text.toString()
+                    val enterLocationFragment = EnterLocationFragment()
+                    val args = Bundle()
+                    args.putString("pincode_value", pincode_value)
+                    args.putString("area_value", area_value)
+                    args.putString("district_value", district_value)
+                    args.putString("state_value", state_value)
+                    enterLocationFragment.arguments = args
+
+                    NavHostFragment.findNavController(requireParentFragment())
+                        .navigate(R.id.action_enterLocationFragment_to_enterCattleFragment)
+                }
+            }
         })
+
         binding.locationBackButton.setOnClickListener {
             requireActivity().onBackPressed()
         }
 
     }
 
-    private fun validationfun() {
 
-        when {
-            binding.pincodeEditText.equals("") -> {
-                invalid = true
-                binding.pincodeEditText.requestFocus()
-                binding.pincodeEditText.error = "Please! fill your sponsors name"
-
-            }
-            binding.areaEditText.equals("") -> {
-                invalid = true
-                binding.areaEditText.requestFocusFromTouch();
-                binding.areaEditText.error = "Please! fill your name"
-
-            }
-            binding.districtEditText.equals("") -> {
-                invalid = true
-                binding.districtEditText.requestFocusFromTouch();
-                binding.districtEditText.setError("Please! fill your date of birth")
-
-            }
-            binding.stateEditText.equals("") -> {
-                invalid = true
-                binding.stateEditText.requestFocusFromTouch();
-                binding.stateEditText.setError("Please! fill your postal address")
-
-            }
-            else -> {
-                invalid = false
-                println("sssssssssssssssssssssssss")
-                val pincode_value = binding.pincodeEditText.text.toString()
-                val area_value = binding.areaEditText.text.toString()
-                val district_value = binding.districtEditText.text.toString()
-                val state_value = binding.stateEditText.text.toString()
-                val enterLocationFragment = EnterLocationFragment()
-                val args = Bundle()
-                args.putString("pincode_value", pincode_value)
-                args.putString("area_value", area_value)
-                args.putString("district_value", district_value)
-                args.putString("state_value", state_value)
-                enterLocationFragment.setArguments(args)
-
-                NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_enterLocationFragment_to_enterCattleFragment)
-            }
-        }
-
-    }
 
 
 }

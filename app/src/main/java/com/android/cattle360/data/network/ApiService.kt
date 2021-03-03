@@ -1,7 +1,10 @@
 package com.android.cattle360.data.network
 
 import com.android.cattle360.data.apiResponse.*
+import com.android.cattle360.data.util.ApiEndPoints.AREA_LIST
 import com.android.cattle360.data.util.ApiEndPoints.CHANGE_PASSWORD
+import com.android.cattle360.data.util.ApiEndPoints.DISTRICT_LIST
+import com.android.cattle360.data.util.ApiEndPoints.EMPLOYEE_LOGIN
 import com.android.cattle360.data.util.ApiEndPoints.INSERT_CATTLE
 import com.android.cattle360.data.util.ApiEndPoints.LOGIN
 import com.android.cattle360.data.util.ApiEndPoints.LOGIN_CHECK
@@ -10,6 +13,7 @@ import com.android.cattle360.data.util.ApiEndPoints.OTP_VERIFICATION_CHECKING
 import com.android.cattle360.data.util.ApiEndPoints.REGISTRATION
 import com.android.cattle360.data.util.ApiEndPoints.SEND_OTP
 import com.android.cattle360.data.util.ApiEndPoints.SEND_USERNAME
+import com.android.cattle360.data.util.ApiEndPoints.STATE_LIST
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -43,6 +47,11 @@ interface ApiService {
                       @Field("password") password: String) : GetLoginResponse
 
     @FormUrlEncoded
+    @POST(EMPLOYEE_LOGIN)
+    suspend fun employeeloginAPI(@Field("username") username: String,
+                         @Field("password") password: String) : GetEmployeeLoginResponse
+
+    @FormUrlEncoded
     @POST(LOGIN_CHECK)
     suspend fun loginCheckAPI(@Field("mobile_no") mobile: String) : GetLoginCheckResponse
 
@@ -69,4 +78,18 @@ interface ApiService {
                                        @Field("c_colour")color_value: String,
                                        @Field("n_bidding_price")biddingamount_value: String,
                                        @Field("n_customer_price")customerprice_value: String): GetLogoutResponse
+
+    @FormUrlEncoded
+    @POST(STATE_LIST)
+    suspend fun stateAPI() : GetLogoutResponse
+
+
+    @FormUrlEncoded
+    @POST(DISTRICT_LIST)
+    suspend fun districtAPI(@Field("state_name") state_name: String) : GetLogoutResponse
+
+    @FormUrlEncoded
+    @POST(AREA_LIST)
+    suspend fun areaAPI(@Field("district_name") district_name: String) : GetLogoutResponse
+
 }

@@ -28,12 +28,20 @@
         android:name="com.android.cattle360.ui.executive.addCattle.enterCattle.EnterCattleFragment"
         android:label="EnterCattleFragment"
         tools:layout="@layout/enter_cattle_fragment">
+
         <action
-            android:id="@+id/action_enterCattleFragment_to_cattleImageFragment"
-            app:destination="@id/cattleImageFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            android:id="@+id/action_enterCattleFragment_to_enterDealerFragment"
+            app:destination="@id/enterDealerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/enterDealerFragment"
+        android:name="com.android.cattle360.ui.executive.addCattle.enterDealerDetails.EnterDealerFragment"
+        android:label="EnterDealerFragment"
+        tools:layout="@layout/enter_dealer_fragment">
+
+        <action
+            android:id="@+id/action_enterDealerFragment_to_cattleImageFragment"
+            app:destination="@id/cattleImageFragment" />
+
     </fragment>
 </navigation>

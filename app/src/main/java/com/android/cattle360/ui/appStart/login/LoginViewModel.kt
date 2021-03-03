@@ -13,7 +13,7 @@ class LoginViewModel(private val  repository: LoginRepository) : BaseViewModel()
 
     val otpResponse : LiveData<Resource<GetOtpResponse?>> = MutableLiveData()
 
-    val usernsmeResponse : LiveData<Resource<GetUsernameResponse?>> = MutableLiveData()
+
 
     fun sendPhoneNumber(mobile: String) = viewModelScope.launch {
         println("On View model ")
@@ -21,6 +21,9 @@ class LoginViewModel(private val  repository: LoginRepository) : BaseViewModel()
         otpResponse as MutableLiveData
        otpResponse.value = repository.sendMobileToService(mobile)
     }
+
+
+    val usernsmeResponse : LiveData<Resource<GetUsernameResponse?>> = MutableLiveData()
 
     fun sendUsername(username: String) = viewModelScope.launch {
         println("On View model ")

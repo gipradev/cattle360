@@ -38,21 +38,56 @@ class PasswordFragment : BaseFragment<PasswordViewModel, PasswordFragmentBinding
             val pref = requireContext().getSharedPreferences("pref", Context.MODE_PRIVATE)
             val mobile = pref.getString("mobileno", "")
             val username = pref.getString("username", "")
-
-
+            val usertype = pref.getString("usertype", "")
             val pass = binding.passwordEditText.text.toString()
+
             println("$mobile...$username..$pass")
-            if (mobile?.isBlank() == true)
-loginbytwo(mobile.toString())
-            else
-            loginbytwo(username.toString())
+if (usertype=="employee")
+    username?.let { it1 -> loginasEmployee(it1) }
+else
+    mobile?.let { it1 -> loginbyCustomer(it1) }
 
         }
     }
 
-    private fun loginbytwo(value: Any) {
+    private fun loginasEmployee(username: String) {
 
-        viewModel.login(value as String, binding.passwordEditText.text.toString())
+        viewModel.employeeLogin(username, binding.passwordEditText.text.toString())
+        viewModel.employeeLoginResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading ")
+                }
+                is Resource.Success -> {
+                    println("${it.value?.status}${it.value?.usertype} ")
+                    if (it.value?.status.equals("1") && it.value?.usertype.equals("employee")) {
+                        println("Success  : ${it}")
+                        Snackbar.make(
+                            requireView(),
+                            "${it.value?.message}",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                        val intent = Intent(requireContext(), ExecutiveActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+                    } else {
+                        Snackbar.make(
+                            requireView(),
+                            "${it.value?.message}",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                }
+                is Resource.Failure -> {
+                    println("Failure  : ${it}")
+                }
+            }
+        })
+    }
+
+    private fun loginbyCustomer(mobile: String) {
+       // println(value)
+        viewModel.login(mobile, binding.passwordEditText.text.toString())
         viewModel.passResponse.observe(viewLifecycleOwner,  {
             when (it) {
                 is Resource.Loading -> {
@@ -70,17 +105,7 @@ loginbytwo(mobile.toString())
                         val intent = Intent(requireContext(), HomeActivity::class.java)
                         startActivity(intent)
                         activity?.finish()
-                    } else if (it.value?.status.equals("1") && it.value?.usertype.equals("employee")) {
-                        println("Success  : ${it}")
-                        Snackbar.make(
-                            requireView(),
-                            "${it.value?.message}",
-                            Snackbar.LENGTH_LONG
-                        ).show()
-                        val intent = Intent(requireContext(), ExecutiveActivity::class.java)
-                        startActivity(intent)
-                        activity?.finish()
-                    } else {
+                    }else {
                         Snackbar.make(
                             requireView(),
                             "${it.value?.message}",

@@ -10,25 +10,24 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.executive.addCattle.enterLocation.EnterLocationFragment">
-
+        tools:context=".ui.executive.addCattle.enterDealerDetails.EnterDealerBankDetailFragment">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline15"
+            android:id="@+id/guideline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="@dimen/dimen_16_dp" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline16"
+            android:id="@+id/guideline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="@dimen/dimen_16_dp" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline17"
+            android:id="@+id/guideline7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -41,128 +40,116 @@
             android:layout_height="@dimen/dimen_100_dp"
             android:layout_marginTop="@dimen/dimen_32_dp"
             android:src="@mipmap/ic_logo_round"
-            app:layout_constraintStart_toStartOf="@+id/guideline15"
-            app:layout_constraintTop_toTopOf="@+id/guideline17" />
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView4"
+            android:id="@+id/materialText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_8_dp"
-            android:text="Enter Location Details"
+            android:text="Enter Dealer Bank Details"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="@dimen/font_25_sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline16"
-            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintEnd_toStartOf="@+id/guideline6"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/logo" />
 
+
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/pinCodeLayout"
+            android:id="@+id/bankNameInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_32_dp"
-            android:hint="Pin code*"
-            app:counterMaxLength="6"
+            android:layout_marginTop="@dimen/dimen_16_dp"
+            android:hint="Bank Name *"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/ErrorTextAppearance"
-            app:layout_constraintEnd_toEndOf="@+id/materialTextView4"
-            app:layout_constraintStart_toStartOf="@+id/materialTextView4"
-            app:layout_constraintTop_toBottomOf="@+id/materialTextView4">
+            app:layout_constraintEnd_toEndOf="@+id/materialText"
+            app:layout_constraintStart_toStartOf="@+id/materialText"
+            app:layout_constraintTop_toBottomOf="@+id/materialText">
 
             <com.google.android.material.textfield.TextInputEditText
-               android:id="@+id/pincodeEditText"
+                android:id="@+id/bankNameEditText"
                 android:layout_width="match_parent"
-                android:singleLine="true"
-                android:inputType="number"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_5_dp"
-            android:hint="Area*"
-            app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorTextAppearance"
-            app:layout_constraintEnd_toEndOf="@+id/pinCodeLayout"
-            app:layout_constraintStart_toStartOf="@+id/pinCodeLayout"
-            app:layout_constraintTop_toBottomOf="@+id/pinCodeLayout">
-
-            <AutoCompleteTextView
-                android:id="@+id/areaEditText"
-                android:layout_width="match_parent"
-                android:singleLine="true"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:id="@+id/branchNameInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_16_dp"
-            android:hint="District*"
+            android:hint="Branch Name *"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/ErrorTextAppearance"
-            app:layout_constraintEnd_toStartOf="@+id/guideline16"
-            app:layout_constraintStart_toStartOf="@+id/guideline15"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintEnd_toEndOf="@+id/bankNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/bankNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/bankNameInputLayout">
 
-            <AutoCompleteTextView
-                android:id="@+id/districtEditText"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/branchNameEditText"
                 android:layout_width="match_parent"
-                android:singleLine="true"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout3"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:id="@+id/accountNumberInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_16_dp"
-            android:hint="State*"
+            android:hint="Account Number *"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/ErrorTextAppearance"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+            app:layout_constraintEnd_toEndOf="@+id/branchNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/branchNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/branchNameInputLayout">
 
-            <AutoCompleteTextView
-                android:id="@+id/stateEditText"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/accountNumberEditText"
                 android:layout_width="match_parent"
-                android:singleLine="true"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/locationNextButton"
+            android:id="@+id/cattleNextButton"
             style="@style/Widget.MaterialComponents.Button"
-            android:stateListAnimator="@null"
             android:layout_width="@dimen/dimen_0_dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16_dp"
+            android:layout_marginEnd="8dp"
+            android:stateListAnimator="@null"
             android:text="Next"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/locationBackButton" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cattlePreviousButton" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/locationBackButton"
+            android:id="@+id/cattlePreviousButton"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="@dimen/dimen_0_dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16_dp"
-            android:text="Back"
+            android:text="Previous"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/locationNextButton"
+            app:layout_constraintEnd_toStartOf="@+id/cattleNextButton"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
 

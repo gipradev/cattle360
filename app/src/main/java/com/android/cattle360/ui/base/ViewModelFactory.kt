@@ -17,6 +17,7 @@ import com.android.cattle360.ui.appStart.splash.SplashViewModel
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
 import com.android.cattle360.ui.executive.addCattle.AddCattleViewModel
 import com.android.cattle360.ui.executive.addCattle.enterCattle.EnterCattleViewModel
+import com.android.cattle360.ui.executive.addCattle.enterDealerDetails.EnterDealerViewModel
 import com.android.cattle360.ui.executive.addCattle.enterLocation.EnterLocationViewModel
 import com.android.cattle360.ui.executive.addCattle.uploadImage.CattleImageViewModel
 import com.android.cattle360.ui.executive.addCattle.uploadImage.uploadFragment.UploadViewModel
@@ -28,6 +29,7 @@ import com.android.cattle360.ui.executive.exeProfile.ExecutiveProfileViewModel
 import com.android.cattle360.ui.user.bidding.BiddingRepository
 import com.android.cattle360.ui.user.bidding.BiddingViewModel
 import com.android.cattle360.ui.user.history.BiddingHistoryViewModel
+import com.android.cattle360.ui.user.history.totalFragment.TotalAmountViewModel
 import com.android.cattle360.ui.user.home.Cattle.CattleRepository
 import com.android.cattle360.ui.user.home.Cattle.CattleViewModel
 import com.android.cattle360.ui.user.home.HomeRepository
@@ -129,6 +131,10 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(CattleImageViewModel::class.java) -> CattleImageViewModel(
                 repository as AddCattleRepository
             ) as T
+            modelClass.isAssignableFrom(EnterDealerViewModel::class.java) -> EnterDealerViewModel(
+                repository as AddCattleRepository
+            ) as T
+
             else -> throw IllegalArgumentException("ViewModelClass Not Found")
         }
     }

@@ -44,8 +44,8 @@ class LiveBiddingFragment : Fragment() {
 
         viewModel.getLiveBiddingList()
         viewModel.liveBidResponse.observe(viewLifecycleOwner, Observer {
-
             liveBidAdaptor.list = it
+
         })
     }
 
