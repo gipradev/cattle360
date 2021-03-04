@@ -80,7 +80,7 @@ interface ApiService {
                                        @Field("n_bidding_price")biddingamount_value: String,
                                        @Field("n_customer_price")customerprice_value: String): GetLogoutResponse
 
-    @FormUrlEncoded
+
     @GET(STATE_LIST)
     suspend fun stateAPI() : GetStateListResponse
 

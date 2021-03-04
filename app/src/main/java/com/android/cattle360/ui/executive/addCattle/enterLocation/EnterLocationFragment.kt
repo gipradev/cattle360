@@ -1,23 +1,20 @@
 package com.android.cattle360.ui.executive.addCattle.enterLocation
 
-import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextUtils
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
+import com.android.cattle360.data.apiResponse.Data
 import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.EnterLocationFragmentBinding
-
 import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
-import com.google.android.material.snackbar.Snackbar
+
 
 class EnterLocationFragment :
     BaseFragment<EnterLocationViewModel, EnterLocationFragmentBinding, AddCattleRepository>() {
@@ -48,6 +45,8 @@ class EnterLocationFragment :
         stateLoading()
         districtLoading()
         areaLoading()
+
+        addObserver()
         binding.locationNextButton.setOnClickListener(View.OnClickListener {
             invalid = false
             when {
@@ -101,36 +100,31 @@ class EnterLocationFragment :
 
     }
 
-    private fun areaLoading() {
-
-
-
-
-    }
-
-    private fun districtLoading() {
-
-
-    }
-
-    private fun stateLoading() {
-
-        viewModel.state()
-
-        viewModel.stateResponse.observe(viewLifecycleOwner, Observer  {
+    private fun addObserver() {
+        viewModel.stateResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Loading -> {
                     println("Loading ")
                 }
                 is Resource.Success -> {
-                    if (it.value?.status.equals("1") ) {
-                        println("Successzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  : $it")
-                       println(it.value?.data)
+                    if (it.value?.status.equals("1")) {
 
-                       // println(it.value?.data)
+                        val data: List<Data>? = it.value?.data
 
-//                        NavHostFragment.findNavController(this)
-//                            .navigate(R.id.action_loginFragment_to_otpFragment)
+                        val stateList = mutableListOf<String>()
+
+                        if (data != null) {
+                            for (state in data) {
+                                stateList.add(state.state_name)
+                            }
+
+                            setStateUi(stateList)
+
+
+//                            NavHostFragment.findNavController(this)
+//                                .navigate(R.id.action_loginFragment_to_otpFragment)
+
+                        }
                     }
                 }
                 is Resource.Failure -> {
@@ -140,8 +134,26 @@ class EnterLocationFragment :
             }
         })
 
+    }
+
+    private fun areaLoading() {
 
 
+    }
+
+    private fun districtLoading() {
+
+
+    }
+
+    private fun stateLoading() = viewModel.state()
+
+
+    private fun setStateUi(stateList: MutableList<String>) {
+        val arrayAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, stateList)
+        binding.stateEditText.setAdapter(arrayAdapter)
+        binding.stateEditText.setThreshold(1)
 
     }
 

@@ -14,13 +14,15 @@ class EnterLocationViewModel (private  val repository: AddCattleRepository): Bas
 
     val stateResponse : LiveData<Resource<GetStateListResponse?>> = MutableLiveData()
    // val dataResponse : LiveData<Resource<Data?>> = MutableLiveData()
-    fun state() = viewModelScope.launch {
-        println("On View model ")
-        stateResponse as MutableLiveData
 
+
+
+    fun state() = viewModelScope.launch {
+
+        stateResponse as MutableLiveData
+        stateResponse.value = Resource.Loading
         stateResponse.value = repository.loadState()
 
-        println("On View model data........................................ ${stateResponse.value}")
     }
 
 
