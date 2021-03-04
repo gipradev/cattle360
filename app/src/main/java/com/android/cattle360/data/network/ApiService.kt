@@ -16,6 +16,7 @@ import com.android.cattle360.data.util.ApiEndPoints.SEND_USERNAME
 import com.android.cattle360.data.util.ApiEndPoints.STATE_LIST
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
@@ -80,16 +81,16 @@ interface ApiService {
                                        @Field("n_customer_price")customerprice_value: String): GetLogoutResponse
 
     @FormUrlEncoded
-    @POST(STATE_LIST)
-    suspend fun stateAPI() : GetLogoutResponse
+    @GET(STATE_LIST)
+    suspend fun stateAPI() : GetStateListResponse
 
 
-    @FormUrlEncoded
-    @POST(DISTRICT_LIST)
-    suspend fun districtAPI(@Field("state_name") state_name: String) : GetLogoutResponse
+//    @FormUrlEncoded
+//    @POST(DISTRICT_LIST)
+//    suspend fun districtAPI(@Field("state_name") state_name: String) : GetLogoutResponse
 
-    @FormUrlEncoded
-    @POST(AREA_LIST)
-    suspend fun areaAPI(@Field("district_name") district_name: String) : GetLogoutResponse
+//    @FormUrlEncoded
+//    @POST(AREA_LIST)
+//    suspend fun areaAPI(@Field("district_name") district_name: String) : GetLogoutResponse
 
 }
