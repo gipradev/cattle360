@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
 import com.android.cattle360.data.apiResponse.Data
+import com.android.cattle360.data.apiResponse.DataX
+import com.android.cattle360.data.apiResponse.DataXX
 import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.EnterLocationFragmentBinding
@@ -19,7 +22,8 @@ import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
 class EnterLocationFragment :
     BaseFragment<EnterLocationViewModel, EnterLocationFragmentBinding, AddCattleRepository>() {
     var invalid: Boolean = false
-
+   lateinit var state_code:String
+    lateinit var district_id:String
     companion object {
         fun newInstance() = EnterLocationFragment()
     }
@@ -41,12 +45,17 @@ class EnterLocationFragment :
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        invalid = false
-        stateLoading()
-        districtLoading()
-        areaLoading()
 
+
+
+        invalid = false
         addObserver()
+        stateLoading()
+        //districtLoading()
+     //   areaLoading()
+
+
+
         binding.locationNextButton.setOnClickListener(View.OnClickListener {
             invalid = false
             when {
@@ -57,19 +66,19 @@ class EnterLocationFragment :
                 }
                 binding.areaEditText.equals("") -> {
                     invalid = true
-                    binding.areaEditText.requestFocusFromTouch();
+                    binding.areaEditText.requestFocus()
                     binding.areaEditText.error = "Please! fill your name"
 
                 }
                 binding.districtEditText.equals("") -> {
                     invalid = true
-                    binding.districtEditText.requestFocusFromTouch();
+                    binding.districtEditText.requestFocus()
                     binding.districtEditText.error = "Please! fill your date of birth"
 
                 }
                 binding.stateEditText.equals("") -> {
                     invalid = true
-                    binding.stateEditText.requestFocusFromTouch();
+                    binding.stateEditText.requestFocus()
                     binding.stateEditText.error = "Please! fill your postal address"
 
                 }
@@ -100,6 +109,81 @@ class EnterLocationFragment :
 
     }
 
+    private fun stateLoading() = viewModel.state()
+
+
+    private fun addObserverForArea() {
+        viewModel.areaResponse.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading ")
+                }
+                is Resource.Success -> {
+                    if (it.value?.status.equals("1")) {
+
+                        val data: List<DataXX>? = it.value?.data
+
+                        val areaList = mutableListOf<String>()
+
+                        if (data != null) {
+                            for (area in data) {
+                                areaList.add(area.c_area_name)
+                                var area_id=area.n_area_id
+                            }
+
+                            setAreaUi(areaList)
+
+                        }
+                    }
+                }
+                is Resource.Failure -> {
+                    println("Failure  : $it")
+                }
+
+            }
+        })
+
+    }
+    private fun addObserverForDistrict() {
+
+        viewModel.districtResponse.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading ")
+                }
+                is Resource.Success -> {
+                    if (it.value?.status.equals("1")) {
+
+                        val data: List<DataX>? = it.value?.data
+
+                        val districtList = mutableListOf<String>()
+
+                        if (data != null) {
+                            for (district in data) {
+                                districtList.add(district.district_name)
+                                district_id=district.district_id
+                                println("...........................................................$district_id")
+                            }
+                            viewModel.area(district_id)
+                            addObserverForArea()
+                            setDistrictUi(districtList)
+
+
+
+                        }
+                    }
+                }
+                is Resource.Failure -> {
+                    println("Failure  : $it")
+                }
+
+            }
+        })
+
+    }
+
+   // private fun districtLoading()=
+
     private fun addObserver() {
         viewModel.stateResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -116,14 +200,27 @@ class EnterLocationFragment :
                         if (data != null) {
                             for (state in data) {
                                 stateList.add(state.state_name)
+
+                                println("............................................................$state_code")
+
                             }
 
-                            setStateUi(stateList)
+                          //  setStateUi(stateList)
+                            val arrayAdapter =
+                                ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, stateList)
+                            binding.stateEditText.setAdapter(arrayAdapter)
+                            binding.stateEditText.threshold = 1
+                            binding.stateEditText.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                                override fun onNothingSelected(parent: AdapterView<*>?) {
 
 
-//                            NavHostFragment.findNavController(this)
-//                                .navigate(R.id.action_loginFragment_to_otpFragment)
+                                }
 
+                                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                                }
+                            }
+                            viewModel.district(state_code)
                         }
                     }
                 }
@@ -136,26 +233,28 @@ class EnterLocationFragment :
 
     }
 
-    private fun areaLoading() {
-
-
-    }
-
-    private fun districtLoading() {
-
-
-    }
-
-    private fun stateLoading() = viewModel.state()
-
+  //  private fun areaLoading(district_id: String) =viewModel.area(this.district_id)
 
     private fun setStateUi(stateList: MutableList<String>) {
         val arrayAdapter =
             ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, stateList)
         binding.stateEditText.setAdapter(arrayAdapter)
-        binding.stateEditText.setThreshold(1)
+        binding.stateEditText.threshold = 1
 
     }
 
+    private fun setDistrictUi(districtList: MutableList<String>) {
+        val arrayAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, districtList)
+        binding.districtEditText.setAdapter(arrayAdapter)
+        binding.districtEditText.threshold = 1
 
+    }
+
+    private fun setAreaUi(areaList: MutableList<String>) {
+        val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, areaList)
+        binding.areaEditText.setAdapter(arrayAdapter)
+        binding.areaEditText.threshold = 1
+
+    }
 }

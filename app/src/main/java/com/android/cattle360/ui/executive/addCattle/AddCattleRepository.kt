@@ -10,15 +10,15 @@ class AddCattleRepository (private var api : ApiService?= null): BaseRepository(
         api?.stateAPI()
     }
 
-//    suspend fun loadDistrict(state_name: String) = safeApiCall {
-//        println("On ApiService ")
-//        api?.districtAPI(state_name)
-//    }
-//
-//    suspend fun loadArea(district_name: String) = safeApiCall {
-//        println("On ApiService ")
-//        api?.areaAPI(district_name)
-//    }
+    suspend fun loadDistrict(state_code: String) = safeApiCall {
+        println("On ApiService ")
+        api?.districtAPI(state_code)
+    }
+
+    suspend fun loadArea(district_name: String) = safeApiCall {
+        println("On ApiService ")
+        api?.areaAPI(district_name)
+    }
 //    suspend fun onCattleInsert(pincode_value: String,
 //                               area_value: String,
 //                               district_value: String,

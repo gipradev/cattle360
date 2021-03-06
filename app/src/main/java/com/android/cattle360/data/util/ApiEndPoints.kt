@@ -1,4 +1,5 @@
 package com.android.cattle360.data.util
+
 object ApiEndPoints {
     const val SEND_OTP="Send_otp"
     const val SEND_USERNAME="Send_username"
@@ -13,6 +14,4 @@ object ApiEndPoints {
     const val STATE_LIST="State_list"
     const val DISTRICT_LIST="District_list"
     const val AREA_LIST="Area_list"
-
-
 }

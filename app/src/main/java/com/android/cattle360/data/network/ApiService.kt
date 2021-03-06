@@ -85,12 +85,12 @@ interface ApiService {
     suspend fun stateAPI() : GetStateListResponse
 
 
-//    @FormUrlEncoded
-//    @POST(DISTRICT_LIST)
-//    suspend fun districtAPI(@Field("state_name") state_name: String) : GetLogoutResponse
+    @FormUrlEncoded
+    @POST(DISTRICT_LIST)
+    suspend fun districtAPI(@Field("state_code") state_code: String) :GetDistrictListResponse
 
-//    @FormUrlEncoded
-//    @POST(AREA_LIST)
-//    suspend fun areaAPI(@Field("district_name") district_name: String) : GetLogoutResponse
+    @FormUrlEncoded
+    @POST(AREA_LIST)
+    suspend fun areaAPI(@Field("district_id") district_id: String) : GetAreaListResponse
 
 }
