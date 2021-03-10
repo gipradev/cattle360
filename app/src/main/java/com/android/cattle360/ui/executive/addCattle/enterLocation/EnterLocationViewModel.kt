@@ -23,7 +23,7 @@ class EnterLocationViewModel (private  val repository: AddCattleRepository): Bas
         stateResponse as MutableLiveData
         stateResponse.value = Resource.Loading
         stateResponse.value = repository.loadState()
-        println("state........................................ ${areaResponse.value}")
+        println("state........................................ ${stateResponse.value}")
     }
 
     val districtResponse : LiveData<Resource<GetDistrictListResponse?>> = MutableLiveData()
@@ -32,10 +32,11 @@ class EnterLocationViewModel (private  val repository: AddCattleRepository): Bas
         println("On View model ")
 
         districtResponse as MutableLiveData
-        districtResponse.value = Resource.Loading
+      districtResponse.value = Resource.Loading
+
         districtResponse.value = repository.loadDistrict(state_code)
 
-        println("district....................................... ${areaResponse.value}")
+        println("district....................................... ${districtResponse.value}")
     }
 
 

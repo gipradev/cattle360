@@ -14,4 +14,5 @@ object ApiEndPoints {
     const val STATE_LIST="State_list"
     const val DISTRICT_LIST="District_list"
     const val AREA_LIST="Area_list"
+    const val VIEW_DEALER_MOBILE="View_dealer_mobile"
 }

@@ -19,6 +19,14 @@ class AddCattleRepository (private var api : ApiService?= null): BaseRepository(
         println("On ApiService ")
         api?.areaAPI(district_name)
     }
+
+
+    suspend fun verifyMobileDealer(mobile: String) = safeApiCall {
+        println("On ApiService ")
+        api?.verifyMobileAPI(mobile)
+    }
+
+
 //    suspend fun onCattleInsert(pincode_value: String,
 //                               area_value: String,
 //                               district_value: String,

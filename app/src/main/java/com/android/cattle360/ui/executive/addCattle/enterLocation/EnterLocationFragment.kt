@@ -19,11 +19,15 @@ import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
 
 
-class EnterLocationFragment :
-    BaseFragment<EnterLocationViewModel, EnterLocationFragmentBinding, AddCattleRepository>() {
+class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocationFragmentBinding, AddCattleRepository>() {
+
     var invalid: Boolean = false
-   lateinit var state_code:String
+    var data: List<Data>? = null
+    var state_code: String = ""
     lateinit var district_id:String
+    private var stateList = mutableListOf<String>()
+    private  val areaList = mutableListOf<String>()
+
     companion object {
         fun newInstance() = EnterLocationFragment()
     }
@@ -45,7 +49,8 @@ class EnterLocationFragment :
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+     
+        
 
 
         invalid = false
@@ -53,8 +58,6 @@ class EnterLocationFragment :
         stateLoading()
         //districtLoading()
      //   areaLoading()
-
-
 
         binding.locationNextButton.setOnClickListener(View.OnClickListener {
             invalid = false
@@ -111,7 +114,6 @@ class EnterLocationFragment :
 
     private fun stateLoading() = viewModel.state()
 
-
     private fun addObserverForArea() {
         viewModel.areaResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -120,20 +122,17 @@ class EnterLocationFragment :
                 }
                 is Resource.Success -> {
                     if (it.value?.status.equals("1")) {
-
                         val data: List<DataXX>? = it.value?.data
-
                         val areaList = mutableListOf<String>()
-
                         if (data != null) {
                             for (area in data) {
                                 areaList.add(area.c_area_name)
-                                var area_id=area.n_area_id
+                               // var area_id=area.n_area_id
                             }
-
                             setAreaUi(areaList)
 
                         }
+                        println("........${data}")
                     }
                 }
                 is Resource.Failure -> {
@@ -162,13 +161,11 @@ class EnterLocationFragment :
                             for (district in data) {
                                 districtList.add(district.district_name)
                                 district_id=district.district_id
-                                println("...........................................................$district_id")
                             }
+                            setDistrictUi(districtList)
+                            println("dist...........................................................$district_id")
                             viewModel.area(district_id)
                             addObserverForArea()
-                            setDistrictUi(districtList)
-
-
 
                         }
                     }
@@ -179,11 +176,9 @@ class EnterLocationFragment :
 
             }
         })
-
     }
 
    // private fun districtLoading()=
-
     private fun addObserver() {
         viewModel.stateResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -193,34 +188,41 @@ class EnterLocationFragment :
                 is Resource.Success -> {
                     if (it.value?.status.equals("1")) {
 
-                        val data: List<Data>? = it.value?.data
+                        var data: List<Data>? = it.value?.data
 
-                        val stateList = mutableListOf<String>()
+                        stateList = mutableListOf<String>()
 
                         if (data != null) {
                             for (state in data) {
                                 stateList.add(state.state_name)
-
-                                println("............................................................$state_code")
-
                             }
-
-                          //  setStateUi(stateList)
-                            val arrayAdapter =
-                                ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, stateList)
+                            val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, stateList)
                             binding.stateEditText.setAdapter(arrayAdapter)
                             binding.stateEditText.threshold = 1
                             binding.stateEditText.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                                 override fun onNothingSelected(parent: AdapterView<*>?) {
-
-
+                                    binding.stateEditText.error = "please select your state"
                                 }
 
                                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                                   // var data: List<Data>? = it.value?.data
+                                 var editStateVal= binding.stateEditText.text
+                                    println("edittext............................................................$editStateVal")
 
+                                        for (state in data) {
+
+                                           if(editStateVal.equals(state.state_name))
+                                            state_code = state.state_code
+
+                                            println("statecode............................................................$state_code")
+                                            //  stateList.add(state.state_name)
+                                        }
+
+                                    addObserverForDistrict();
                                 }
                             }
-                            viewModel.district(state_code)
+                            var state_cod: String="KL"
+                            viewModel.district(state_cod)
                         }
                     }
                 }
@@ -258,3 +260,5 @@ class EnterLocationFragment :
 
     }
 }
+
+

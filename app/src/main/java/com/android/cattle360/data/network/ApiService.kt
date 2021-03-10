@@ -14,6 +14,7 @@ import com.android.cattle360.data.util.ApiEndPoints.REGISTRATION
 import com.android.cattle360.data.util.ApiEndPoints.SEND_OTP
 import com.android.cattle360.data.util.ApiEndPoints.SEND_USERNAME
 import com.android.cattle360.data.util.ApiEndPoints.STATE_LIST
+import com.android.cattle360.data.util.ApiEndPoints.VIEW_DEALER_MOBILE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -92,5 +93,10 @@ interface ApiService {
     @FormUrlEncoded
     @POST(AREA_LIST)
     suspend fun areaAPI(@Field("district_id") district_id: String) : GetAreaListResponse
+
+    @FormUrlEncoded
+    @POST(VIEW_DEALER_MOBILE)
+    suspend fun verifyMobileAPI(@Field("mobile") mobile: String) : GetViewDealerResponse
+
 
 }
