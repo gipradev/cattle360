@@ -42,6 +42,7 @@ class ExecutiveHomeFragment :
             R.id.cattleListFragment,
             AvailableCattleFragment.newInstance(), AvailableCattleFragment::class.java.toString()
         ).commit()
+
     }
 
 

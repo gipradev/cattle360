@@ -9,6 +9,8 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -16,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
+import com.android.cattle360.data.apiResponse.DataXXX
 import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.data.util.toDp
@@ -30,8 +33,8 @@ import com.google.android.material.textfield.TextInputLayout
 
 class EnterCattleFragment :
     BaseFragment<EnterCattleViewModel, EnterCattleFragmentBinding, AddCattleRepository>() {
-    var invalid: Boolean = false
-
+   // var invalid: Boolean = false
+    lateinit var category:String
     companion object {
         fun newInstance() = EnterCattleFragment()
     }
@@ -53,6 +56,9 @@ class EnterCattleFragment :
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        categoryLoading()
+        addObserver()
+
 
         binding.cattlePreviousButton.setOnClickListener {
 
@@ -89,6 +95,7 @@ class EnterCattleFragment :
                         if (it.value?.status.equals("1")) {
                             println("Success  : $it")
 
+
                             val account_no: String = it.value?.account_no.toString()
                             val address: String = it.value?.address.toString()
                             val bank: String = it.value?.bank.toString()
@@ -101,23 +108,100 @@ class EnterCattleFragment :
                             val n_district: String = it.value?.n_district.toString()
                             val n_state: String = it.value?.n_state.toString()
 
-                            val enterCattleFragment = EnterCattleFragment()
-                            val args = Bundle()
-                            args.putString("account_no", account_no)
-                            args.putString("address", address)
-                            args.putString("bank", bank)
-                            args.putString("c_branch", c_branch)
-                            args.putString("dealer_name", dealer_name)
-                            args.putString("email", email)
-                            args.putString("ifsc", ifsc)
-                            args.putString("mobile", mobile)
-                            args.putString("n_dealer_id", n_dealer_id)
-                            args.putString("n_district", n_district)
-                            args.putString("n_state", n_state)
-                            enterCattleFragment.arguments = args
 
-                            NavHostFragment.findNavController(this)
-                                .navigate(R.id.action_enterCattleFragment_to_enterDealerFragment)
+                            when {
+                                binding.titleEditText.equals("") -> {
+                                    //invalid = true
+                                    binding.titleEditText.requestFocus()
+                                    binding.titleEditText.error = "Title is required"
+
+                                }
+                                binding.categoryEditText.equals("") -> {
+                                 //  invalid = true
+                                    binding.categoryEditText.requestFocusFromTouch();
+                                    binding.categoryEditText.error = "Category is required"
+
+                                }
+                                binding.weightEditText.equals("") -> {
+                                 //   invalid = true
+                                    binding.weightEditText.requestFocusFromTouch();
+                                    binding.weightEditText.error = "Weight is required"
+
+                                }
+                                binding.ageEditText.equals("") -> {
+                                   // invalid = true
+                                    binding.ageEditText.requestFocusFromTouch();
+                                    binding.ageEditText.error = "Age is required"
+
+                                }
+                                binding.colorEditText.equals("") -> {
+                                //    invalid = true
+                                    binding.colorEditText.requestFocusFromTouch();
+                                    binding.colorEditText.error = "Color is required"
+
+                                }
+                                binding.biddingAmountEditText.equals("") -> {
+                               //     invalid = true
+                                    binding.biddingAmountEditText.requestFocusFromTouch();
+                                    binding.biddingAmountEditText.error = "Bidding Amount is required"
+
+                                }
+                                binding.customerPriceEditText.equals("") -> {
+                                   // invalid = true
+                                    binding.customerPriceEditText.requestFocusFromTouch();
+                                    binding.customerPriceEditText.error = "Customer Price is required"
+
+                                }
+                                else -> {
+
+                               //     invalid = false
+                                    val title_value = binding.titleEditText.text.toString()
+                                    val category_value = category
+                                    val weight_value = binding.weightEditText.text.toString()
+                                    val age_value = binding.ageEditText.text.toString()
+                                    val color_value = binding.colorEditText.text.toString()
+                                    val biddingamount_value = binding.biddingAmountEditText.text.toString()
+                                    val customerprice_value = binding.customerPriceEditText.text.toString()
+
+                                    val pincode_value = arguments?.getString("pincode_value")
+                                    val area_value = arguments?.getString("area_value")
+                                    val district_value = arguments?.getString("district_value")
+                                    val state_value = arguments?.getString("state_value")
+
+                                    val enterCattleFragment = EnterCattleFragment()
+                                    val args = Bundle()
+                                    args.putString("pincode_value", pincode_value)
+                                    args.putString("area_value", area_value)
+                                    args.putString("district_value", district_value)
+                                    args.putString("state_value", state_value)
+                                    args.putString("title_value", title_value)
+                                    args.putString("category_value", category_value)
+                                    args.putString("weight_value", weight_value)
+                                    args.putString("age_value", age_value)
+                                    args.putString("color_value", color_value)
+                                    args.putString("biddingamount_value", biddingamount_value)
+                                    args.putString("customerprice_value", customerprice_value)
+
+                                    args.putString("account_no", account_no)
+                                    args.putString("address", address)
+                                    args.putString("bank", bank)
+                                    args.putString("c_branch", c_branch)
+                                    args.putString("dealer_name", dealer_name)
+                                    args.putString("email", email)
+                                    args.putString("ifsc", ifsc)
+                                    args.putString("mobile", mobile)
+                                    args.putString("n_dealer_id", n_dealer_id)
+                                    args.putString("n_district", n_district)
+                                    args.putString("n_state", n_state)
+
+                                    enterCattleFragment.arguments = args
+
+                                    NavHostFragment.findNavController(this)
+                                        .navigate(R.id.action_enterCattleFragment_to_enterDealerFragment)
+
+                                }
+                            }
+
 
                         }
 
@@ -144,8 +228,68 @@ class EnterCattleFragment :
             builder.show()
         }
 
+    }
 
-    }}
+    private fun categoryLoading() = viewModel.category()
+
+    private fun addObserver() {
+
+        viewModel.categoryResponse.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading ")
+                }
+                is Resource.Success -> {
+                    if (it.value?.status.equals("1")) {
+
+                        var data: List<DataXXX>? = it.value?.data
+
+                        var stateList = mutableListOf<String>()
+
+                        if (data != null) {
+                            for (category in data) {
+                                stateList.add(category.c_category_name)
+                            }
+                            val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, stateList)
+                            binding.categoryEditText.setAdapter(arrayAdapter)
+                            binding.categoryEditText.threshold = 1
+
+                            binding.categoryEditText.onItemSelectedListener =
+                                object : AdapterView.OnItemSelectedListener {
+                                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                                        binding.categoryEditText.error = "please select category"
+                                    }
+
+                                    override fun onItemSelected(
+                                        parent: AdapterView<*>?,
+                                        view: View?,
+                                        position: Int,
+                                        id: Long
+                                    ) {
+                                        category= binding.categoryEditText.text.toString()
+
+                                    }
+                                }
+
+
+                        }
+                    }
+                }
+                is Resource.Failure -> {
+                    println("Failure  : $it")
+                }
+
+            }
+        })
+
+    }
+
+
+
+
+
+
+}
 
 
 

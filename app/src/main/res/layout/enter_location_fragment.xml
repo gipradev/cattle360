@@ -73,6 +73,8 @@
             <AutoCompleteTextView
                 android:id="@+id/stateEditText"
                 android:layout_width="match_parent"
+                android:clickable="false"
+                android:editable="false"
                 android:singleLine="true"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -96,9 +98,10 @@
                 android:id="@+id/districtEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
+                android:editable="false"
+                android:clickable="false"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
@@ -118,6 +121,8 @@
                 android:id="@+id/areaEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
+                android:editable="false"
+                android:clickable="false"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,8 +138,7 @@
             app:errorTextAppearance="@style/ErrorTextAppearance"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pincodeEditText"

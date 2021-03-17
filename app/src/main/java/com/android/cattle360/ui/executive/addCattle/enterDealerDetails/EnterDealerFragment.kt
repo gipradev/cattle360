@@ -1,11 +1,18 @@
-package com.android.cattle360.ui.executive.addCattle.enterDealerDetails
+  package com.android.cattle360.ui.executive.addCattle.enterDealerDetails
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
+import com.android.cattle360.data.apiResponse.Data
+import com.android.cattle360.data.apiResponse.DataXXX
 import com.android.cattle360.data.network.ApiService
+import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.EnterDealerFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
@@ -37,6 +44,30 @@ class EnterDealerFragment :
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        val account_no =arguments?.getString("account_no")
+        val address = arguments?.getString("address")
+        val bank =arguments?.getString("bank")
+        val c_branch =arguments?.getString("c_branch")
+        val dealer_name = arguments?.getString("dealer_name")
+        val email =arguments?.getString("email")
+        val ifsc = arguments?.getString("ifsc")
+        val mobile = arguments?.getString("mobile")
+        val n_dealer_id =arguments?.getString("n_dealer_id")
+        val n_district = arguments?.getString("n_district")
+        val n_state = arguments?.getString("n_state")
+
+        binding.accountNumberEditText.setText(account_no)
+        binding.addressEditText.setText(address)
+        binding.bankNameEditText.setText(bank)
+        binding.branchNameEditText.setText(c_branch)
+        binding.nameEditText.setText(dealer_name)
+        binding.emailEditText.setText(email)
+        binding.ifscNumberEditText.setText(ifsc)
+        binding.mobileEditText.setText(mobile)
+       // binding.d.setText(n_dealer_id)
+        //binding.dis.setText(n_district)
+       // binding.accountNumberEditText.setText(n_state)
+
         binding.cattlePreviousButton.setOnClickListener {
 
             requireActivity().onBackPressed()
@@ -52,7 +83,11 @@ class EnterDealerFragment :
 
     }
 
-        }
+
+
+
+
+}
 
 
 

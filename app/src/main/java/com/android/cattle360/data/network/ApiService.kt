@@ -2,6 +2,7 @@ package com.android.cattle360.data.network
 
 import com.android.cattle360.data.apiResponse.*
 import com.android.cattle360.data.util.ApiEndPoints.AREA_LIST
+import com.android.cattle360.data.util.ApiEndPoints.CATEGORY
 import com.android.cattle360.data.util.ApiEndPoints.CHANGE_PASSWORD
 import com.android.cattle360.data.util.ApiEndPoints.DISTRICT_LIST
 import com.android.cattle360.data.util.ApiEndPoints.EMPLOYEE_LOGIN
@@ -98,5 +99,7 @@ interface ApiService {
     @POST(VIEW_DEALER_MOBILE)
     suspend fun verifyMobileAPI(@Field("mobile") mobile: String) : GetViewDealerResponse
 
+    @GET(CATEGORY)
+    suspend fun allCategoryAPI() : GetAllCategoryResponse
 
 }

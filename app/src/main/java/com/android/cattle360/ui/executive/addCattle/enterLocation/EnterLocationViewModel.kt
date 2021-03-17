@@ -3,7 +3,6 @@ package com.android.cattle360.ui.executive.addCattle.enterLocation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.cattle360.data.apiResponse.Data
 import com.android.cattle360.data.apiResponse.GetAreaListResponse
 import com.android.cattle360.data.apiResponse.GetDistrictListResponse
 import com.android.cattle360.data.apiResponse.GetStateListResponse
