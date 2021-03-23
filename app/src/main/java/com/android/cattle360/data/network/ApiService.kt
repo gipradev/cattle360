@@ -6,6 +6,7 @@ import com.android.cattle360.data.util.ApiEndPoints.CATEGORY
 import com.android.cattle360.data.util.ApiEndPoints.CHANGE_PASSWORD
 import com.android.cattle360.data.util.ApiEndPoints.DISTRICT_LIST
 import com.android.cattle360.data.util.ApiEndPoints.EMPLOYEE_LOGIN
+import com.android.cattle360.data.util.ApiEndPoints.EMP_LOGIN_CHECK
 import com.android.cattle360.data.util.ApiEndPoints.INSERT_CATTLE
 import com.android.cattle360.data.util.ApiEndPoints.LOGIN
 import com.android.cattle360.data.util.ApiEndPoints.LOGIN_CHECK
@@ -57,6 +58,10 @@ interface ApiService {
     @FormUrlEncoded
     @POST(LOGIN_CHECK)
     suspend fun loginCheckAPI(@Field("mobile_no") mobile: String) : GetLoginCheckResponse
+
+    @FormUrlEncoded
+    @POST(EMP_LOGIN_CHECK)
+    suspend fun employeeloginCheckAPI(@Field("username") username: String) : GetLoginCheckResponse
 
     @FormUrlEncoded
     @POST(CHANGE_PASSWORD)

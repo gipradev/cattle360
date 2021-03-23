@@ -15,9 +15,9 @@ class AddCattleRepository (private var api : ApiService?= null): BaseRepository(
         api?.districtAPI(state_code)
     }
 
-    suspend fun loadArea(district_name: String) = safeApiCall {
+    suspend fun loadArea(district_id: String) = safeApiCall {
         println("On ApiService ")
-        api?.areaAPI(district_name)
+        api?.areaAPI(district_id )
     }
 
 

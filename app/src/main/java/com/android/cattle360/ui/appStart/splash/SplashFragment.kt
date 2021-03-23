@@ -38,6 +38,7 @@ class SplashFragment : BaseFragment<SplashViewModel, SplashFragmentBinding, Spla
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         userTokenValidation()
+        employeeTokenValidation()
         val fm: FragmentManager = requireActivity().supportFragmentManager
         fm.addOnBackStackChangedListener {
             if (requireActivity().supportFragmentManager.backStackEntryCount == 0)
@@ -61,15 +62,41 @@ class SplashFragment : BaseFragment<SplashViewModel, SplashFragmentBinding, Spla
 
                         println("Success  : ${it}")
 
+                        val intent = Intent(requireContext(), HomeActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+                    } else {
+                        NavHostFragment.findNavController(this)
+                            .navigate(R.id.action_splashFragment_to_loginFragment)
+
 //                        Snackbar.make(
 //                            requireView(),
 //                            "${it.value?.message}",
 //                            Snackbar.LENGTH_LONG
 //                        ).show()
-                        val intent = Intent(requireContext(), HomeActivity::class.java)
-                        startActivity(intent)
-                        activity?.finish()
-                    } else if (it.value?.status.equals("1") && it.value?.usertype.equals("employee")) {
+                    }
+                }
+                is Resource.Failure -> {
+                    println("Failure  : ${it}")
+                }
+            }
+        })
+
+
+    }
+
+    private fun employeeTokenValidation() {
+        val pref = requireContext().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val username = pref.getString("username", "")
+        viewModel.employeeloginCheck(username.toString())
+        viewModel.employeeloginCheckResponse.observe(viewLifecycleOwner,  {
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading ")
+                }
+                is Resource.Success -> {
+                    println("${it.value?.status}${it.value?.usertype} ")
+                     if (it.value?.status.equals("1") && it.value?.usertype.equals("employee")) {
 
                         println("Success  : ${it}")
 //                        Snackbar.make(
@@ -84,11 +111,6 @@ class SplashFragment : BaseFragment<SplashViewModel, SplashFragmentBinding, Spla
                         NavHostFragment.findNavController(this)
                             .navigate(R.id.action_splashFragment_to_loginFragment)
 
-//                        Snackbar.make(
-//                            requireView(),
-//                            "${it.value?.message}",
-//                            Snackbar.LENGTH_LONG
-//                        ).show()
                     }
                 }
                 is Resource.Failure -> {

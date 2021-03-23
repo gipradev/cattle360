@@ -34,9 +34,25 @@ import com.google.android.material.textfield.TextInputLayout
 class EnterCattleFragment :
     BaseFragment<EnterCattleViewModel, EnterCattleFragmentBinding, AddCattleRepository>() {
    // var invalid: Boolean = false
-    lateinit var category:String
+
+    lateinit var pincode_value:String
+    lateinit var area_value:String
+    lateinit var district_value:String
+    lateinit var state_value:String
+
+    lateinit var title_value:String
+    lateinit var category_value:String
+    lateinit var weight_value:String
+    lateinit var age_value:String
+    lateinit var color_value:String
+    lateinit var biddingamount_value:String
+    lateinit var customerprice_value:String
+
+    var  category:String = ""
+
     companion object {
         fun newInstance() = EnterCattleFragment()
+
     }
 
     override fun getFragmentBinding(
@@ -56,10 +72,27 @@ class EnterCattleFragment :
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+
+        pincode_value =this. arguments?.get("pincode_value").toString()
+        area_value = arguments?.getString("area_value").toString()
+        district_value = arguments?.getString("district_value").toString()
+        state_value = arguments?.getString("state_value").toString()
+
+        title_value = binding.titleEditText.text.toString()
+        category_value = binding.categoryEditText.text.toString()
+        weight_value = binding.weightEditText.text.toString()
+        age_value = binding.ageEditText.text.toString()
+        color_value = binding.colorEditText.text.toString()
+        biddingamount_value = binding.biddingAmountEditText.text.toString()
+        customerprice_value = binding.customerPriceEditText.text.toString()
+
+        println(pincode_value+"................."+area_value+""+district_value+""+state_value)
+
         categoryLoading()
         addObserver()
 
-
+        openPopup()
         binding.cattlePreviousButton.setOnClickListener {
 
             requireActivity().onBackPressed()
@@ -68,7 +101,7 @@ class EnterCattleFragment :
 
         binding.cattleNextButton.setOnClickListener {
            // passValuesWithValidation()
-            openPopup()
+
         }
 
     }
@@ -82,10 +115,11 @@ class EnterCattleFragment :
         val editText = dialogLayout.findViewById<EditText>(R.id.mobileDialogEditText)
         builder.setView(dialogLayout)
 
+    //    println(pincode_value+","+area_value+","+district_value+","+state_value)
+
         builder.setPositiveButton("Verify") { _, _ ->
 
             viewModel.verifyMobile(editText.text.toString())
-
             viewModel.verifyMobileResponse.observe(viewLifecycleOwner, Observer {
                 when (it) {
                     is Resource.Loading -> {
@@ -94,7 +128,6 @@ class EnterCattleFragment :
                     is Resource.Success -> {
                         if (it.value?.status.equals("1")) {
                             println("Success  : $it")
-
 
                             val account_no: String = it.value?.account_no.toString()
                             val address: String = it.value?.address.toString()
@@ -107,66 +140,6 @@ class EnterCattleFragment :
                             val n_dealer_id: String = it.value?.n_dealer_id.toString()
                             val n_district: String = it.value?.n_district.toString()
                             val n_state: String = it.value?.n_state.toString()
-
-
-                            when {
-                                binding.titleEditText.equals("") -> {
-                                    //invalid = true
-                                    binding.titleEditText.requestFocus()
-                                    binding.titleEditText.error = "Title is required"
-
-                                }
-                                binding.categoryEditText.equals("") -> {
-                                 //  invalid = true
-                                    binding.categoryEditText.requestFocusFromTouch();
-                                    binding.categoryEditText.error = "Category is required"
-
-                                }
-                                binding.weightEditText.equals("") -> {
-                                 //   invalid = true
-                                    binding.weightEditText.requestFocusFromTouch();
-                                    binding.weightEditText.error = "Weight is required"
-
-                                }
-                                binding.ageEditText.equals("") -> {
-                                   // invalid = true
-                                    binding.ageEditText.requestFocusFromTouch();
-                                    binding.ageEditText.error = "Age is required"
-
-                                }
-                                binding.colorEditText.equals("") -> {
-                                //    invalid = true
-                                    binding.colorEditText.requestFocusFromTouch();
-                                    binding.colorEditText.error = "Color is required"
-
-                                }
-                                binding.biddingAmountEditText.equals("") -> {
-                               //     invalid = true
-                                    binding.biddingAmountEditText.requestFocusFromTouch();
-                                    binding.biddingAmountEditText.error = "Bidding Amount is required"
-
-                                }
-                                binding.customerPriceEditText.equals("") -> {
-                                   // invalid = true
-                                    binding.customerPriceEditText.requestFocusFromTouch();
-                                    binding.customerPriceEditText.error = "Customer Price is required"
-
-                                }
-                                else -> {
-
-                               //     invalid = false
-                                    val title_value = binding.titleEditText.text.toString()
-                                    val category_value = category
-                                    val weight_value = binding.weightEditText.text.toString()
-                                    val age_value = binding.ageEditText.text.toString()
-                                    val color_value = binding.colorEditText.text.toString()
-                                    val biddingamount_value = binding.biddingAmountEditText.text.toString()
-                                    val customerprice_value = binding.customerPriceEditText.text.toString()
-
-                                    val pincode_value = arguments?.getString("pincode_value")
-                                    val area_value = arguments?.getString("area_value")
-                                    val district_value = arguments?.getString("district_value")
-                                    val state_value = arguments?.getString("state_value")
 
                                     val enterCattleFragment = EnterCattleFragment()
                                     val args = Bundle()
@@ -193,14 +166,10 @@ class EnterCattleFragment :
                                     args.putString("n_dealer_id", n_dealer_id)
                                     args.putString("n_district", n_district)
                                     args.putString("n_state", n_state)
-
                                     enterCattleFragment.arguments = args
 
                                     NavHostFragment.findNavController(this)
-                                        .navigate(R.id.action_enterCattleFragment_to_enterDealerFragment)
-
-                                }
-                            }
+                                        .navigate(R.id.action_enterCattleFragment_to_enterDealerFragment,args)
 
 
                         }
@@ -254,22 +223,12 @@ class EnterCattleFragment :
                             binding.categoryEditText.setAdapter(arrayAdapter)
                             binding.categoryEditText.threshold = 1
 
-                            binding.categoryEditText.onItemSelectedListener =
-                                object : AdapterView.OnItemSelectedListener {
-                                    override fun onNothingSelected(parent: AdapterView<*>?) {
-                                        binding.categoryEditText.error = "please select category"
-                                    }
-
-                                    override fun onItemSelected(
-                                        parent: AdapterView<*>?,
-                                        view: View?,
-                                        position: Int,
-                                        id: Long
-                                    ) {
-                                        category= binding.categoryEditText.text.toString()
+                            binding.categoryEditText.onItemClickListener=AdapterView.OnItemClickListener{
+                                    parent, view, position, id ->
+                                        category= data[position].c_category_name
 
                                     }
-                                }
+
 
 
                         }
@@ -285,7 +244,54 @@ class EnterCattleFragment :
     }
 
 
+fun validationfun(){
+    when {
+        binding.titleEditText.equals("") -> {
+            //invalid = true
+            binding.titleEditText.requestFocus()
+            binding.titleEditText.error = "Title is required"
 
+        }
+        binding.categoryEditText.equals("") -> {
+            //  invalid = true
+            binding.categoryEditText.requestFocus();
+            binding.categoryEditText.error = "Category is required"
+
+        }
+        binding.weightEditText.equals("") -> {
+            //   invalid = true
+            binding.weightEditText.requestFocus();
+            binding.weightEditText.error = "Weight is required"
+
+        }
+        binding.ageEditText.equals("") -> {
+            // invalid = true
+            binding.ageEditText.requestFocus();
+            binding.ageEditText.error = "Age is required"
+
+        }
+        binding.colorEditText.equals("") -> {
+            //    invalid = true
+            binding.colorEditText.requestFocus();
+            binding.colorEditText.error = "Color is required"
+
+        }
+        binding.biddingAmountEditText.equals("") -> {
+            //     invalid = true
+            binding.biddingAmountEditText.requestFocus();
+            binding.biddingAmountEditText.error = "Bidding Amount is required"
+
+        }
+        binding.customerPriceEditText.equals("") -> {
+            // invalid = true
+            binding.customerPriceEditText.requestFocus();
+            binding.customerPriceEditText.error = "Customer Price is required"
+
+        }
+        else -> {
+        }}
+            //     invalid = false
+}
 
 
 

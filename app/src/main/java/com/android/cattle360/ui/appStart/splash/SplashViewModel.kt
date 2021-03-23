@@ -19,5 +19,20 @@ class SplashViewModel(private val repository: SplashRepository) : BaseViewModel(
 
         loginCheckResponse as MutableLiveData
         loginCheckResponse.value = repository.userLoginCheck(mobile)
+
     }
+
+    val employeeloginCheckResponse: LiveData<Resource<GetLoginCheckResponse?>> = MutableLiveData()
+
+    fun employeeloginCheck(username: String) = viewModelScope.launch {
+        println("On View model ")
+
+        employeeloginCheckResponse as MutableLiveData
+        employeeloginCheckResponse.value = repository.empLoginCheck(username)
+
+    }
+
+
+
+
 }

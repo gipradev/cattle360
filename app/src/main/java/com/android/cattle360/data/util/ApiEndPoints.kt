@@ -8,6 +8,7 @@ object ApiEndPoints {
     const val LOGIN="User_login"
     const val EMPLOYEE_LOGIN="Employee_login"
     const val  LOGIN_CHECK="Customer_login_check"
+    const val EMP_LOGIN_CHECK="Executive_login_check"
     const val  CHANGE_PASSWORD="Change_password"
     const val LOGOUT="User_logout"
     const val INSERT_CATTLE="Insert_livestock_details"

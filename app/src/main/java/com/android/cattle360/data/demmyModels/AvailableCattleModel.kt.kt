@@ -1,4 +1,4 @@
-package com.android.cattle360.data.demmyModels
+ package com.android.cattle360.data.demmyModels
 
 import com.android.cattle360.R
 

@@ -21,14 +21,16 @@ import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
 
 class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocationFragmentBinding, AddCattleRepository>() {
 
-   // var invalid: Boolean = false
+    var invalid: Boolean = false
     var data: List<Data>? = null
-    var state_code: String = ""
+
     lateinit var district_id:String
-    var pos:Int = 0
     private var stateList = mutableListOf<String>()
-    private  val areaList = mutableListOf<String>()
-    var st:String = ""
+ //   private  var districtList = mutableListOf<String>()
+    private  var areaList = mutableListOf<String>()
+
+    var  selectedText:String = ""
+    var  selectedTextdist:String = ""
 
     companion object {
         fun newInstance() = EnterLocationFragment()
@@ -57,66 +59,36 @@ class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocation
      // areaLoading()
 
         binding.locationNextButton.setOnClickListener(View.OnClickListener {
+            val state_value = binding.stateEditText.text.toString()
+            val district_value = binding.districtEditText.text.toString()
+            val area_value = binding.areaEditText.text.toString()
+            val pincode_value = binding.pincodeEditText.text.toString()
 
-            when {
 
-                binding.stateEditText.equals("") -> {
-                   // invalid = true
-                    binding.stateEditText.requestFocus()
-                    binding.stateEditText.error = "Please! fill your postal address"
-                }
+            val enterLocationFragment = EnterLocationFragment()
+            val args = Bundle()
+            args.putString("state_value", state_value)
+            args.putString("district_value", district_value)
+            args.putString("area_value", area_value)
+            args.putString("pincode_value", pincode_value)
+            enterLocationFragment.arguments = args
 
-                binding.districtEditText.equals("") -> {
-                 //   invalid = true
-                    binding.districtEditText.requestFocus()
-                    binding.districtEditText.error = "Please! fill your date of birth"
+            NavHostFragment.findNavController(requireParentFragment())
+                        .navigate(R.id.action_enterLocationFragment_to_enterCattleFragment,args)
 
-                }
-
-                binding.areaEditText.equals("") -> {
-                 //   invalid = true
-                    binding.areaEditText.requestFocus()
-                    binding.areaEditText.error = "Please! fill your name"
-
-                }
-
-                binding.pincodeEditText.equals("") -> {
-                  //  invalid = true
-                    binding.pincodeEditText.requestFocus()
-                    binding.pincodeEditText.error = "Please! fill your sponsors name"
-                }
-
-                else -> {
-                 //   invalid = false
-                    println("invalid false")
-                    val pincode_value = binding.pincodeEditText.text.toString()
-                    val area_value = binding.areaEditText.text.toString()
-                    val district_value = binding.districtEditText.text.toString()
-                    val state_value = binding.stateEditText.text.toString()
-
-                    val enterLocationFragment = EnterLocationFragment()
-                    val args = Bundle()
-                    args.putString("pincode_value", pincode_value)
-                    args.putString("area_value", area_value)
-                    args.putString("district_value", district_value)
-                    args.putString("state_value", state_value)
-                    enterLocationFragment.arguments = args
-
-                    NavHostFragment.findNavController(requireParentFragment())
-                        .navigate(R.id.action_enterLocationFragment_to_enterCattleFragment)
-                }
-            }
         })
 
         binding.locationBackButton.setOnClickListener {
             requireActivity().onBackPressed()
+//            NavHostFragment.findNavController(requireParentFragment())
+//                .navigate(R.id.action_enterLocationFragment_to_enterCattleFragment)
         }
 
     }
 
     private fun stateLoading() = viewModel.state()
 
-    // private fun districtLoading()=
+
     private fun addObserver() {
         viewModel.stateResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -134,44 +106,23 @@ class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocation
                             for (state in data) {
                                 stateList.add(state.state_name)
                             }
-                            var selectedText = stateList.first() // as default
+                           selectedText = stateList.first() // as default
                             val arrayAdapter = ArrayAdapter(
                                 requireContext(),
                                 android.R.layout.simple_dropdown_item_1line,
                                 stateList)
                             binding.stateEditText.setAdapter(arrayAdapter)
                             binding.stateEditText.threshold = 1
-
-                            binding.stateEditText.onItemSelectedListener =
-                                object : AdapterView.OnItemSelectedListener {
-                                    override fun onNothingSelected(parent: AdapterView<*>?) {
-                                        binding.stateEditText.error = "please select your state"
-                                    }
-
-                                    override fun onItemSelected(
-                                        parent: AdapterView<*>?,
-                                        view: View?,
-                                        position: Int,
-                                        id: Long
-                                    ) {
-                                        pos = arrayAdapter.getItem(position)?.toInt()!!
-                                        selectedText = stateList[pos]
-
-                                        println("..................selected............................$selectedText")
-                                    }
-                                }
-
-                            var state_cod: String = ""
-
-                             for (state in data) {
-                                 stateList.add(selectedText)
-                                     state_cod=state.state_code
-
-                        }
-                            viewModel.district(state_cod)
-
-
-                        addObserverForDistrict()
+                            binding.stateEditText.onItemClickListener=AdapterView.OnItemClickListener{
+                                    parent, view, position, id ->
+                               // selectedTextdist = districtList.first()
+                                //selectedTextdist = stateList.first()
+                                selectedText = data[position].state_code
+                                println("..................selected............................$selectedText")
+                                viewModel.district(selectedText)
+                                addObserverForDistrict()
+                            }
+                 println(".....................................................................select$selectedText")
 
                 }
                     }
@@ -197,37 +148,24 @@ class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocation
 
                         val data: List<DataX>? = it.value?.data
 
-                        val districtList = mutableListOf<String>()
+                       val districtList = mutableListOf<String>()
 
                         if (data != null) {
                             for (district in data) {
                                 districtList.add(district.district_name)
-                                district_id=district.district_id
+                                //district_id=district.district_id
                             }
-
+                            selectedTextdist = districtList.first() // as default
                             val arrayAdapter =ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, districtList)
                             binding.districtEditText.setAdapter(arrayAdapter)
                             binding.districtEditText.threshold = 1
-
-                            binding.stateEditText.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                                override fun onNothingSelected(parent: AdapterView<*>?) {
-                                    binding.stateEditText.error = "please select your state"
-                                }
-
-                                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                                val pos = arrayAdapter.getItem(position)?.toInt()
-                                    for (district in data) {
-
-                                        val district= district.district_id[pos!!].toString()
-                                        println("..................dist.............................$district")
-                                    }
-                                }
+                            binding.districtEditText.onItemClickListener=AdapterView.OnItemClickListener{
+                                    _, _, position, _ ->
+                                selectedTextdist = data[position].district_id
+                                println("..................selected...dist_id......................$selectedTextdist")
+                                viewModel.area(selectedTextdist)
+                                addObserverForArea()
                             }
-
-                            viewModel.area(district_id)
-                            addObserverForArea()
-                                    // setDistrictUi(districtList)
-                            //println("dist...........................................................$district_id")
 
                         }
                     }
@@ -255,8 +193,16 @@ class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocation
                                 areaList.add(area.c_area_name)
                                 // var area_id=area.n_area_id
                             }
-                            setAreaUi(areaList)
 
+                            val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, areaList)
+                            binding.areaEditText.setAdapter(arrayAdapter)
+                            binding.areaEditText.threshold = 1
+                            binding.areaEditText.onItemClickListener=AdapterView.OnItemClickListener{
+                                    _, _, position, _ ->
+                              var  selected = data[position].c_area_name
+                                println("..................areaselected......................$selected")
+
+                            }
 
                         }
                         println("........${data}")
@@ -272,30 +218,6 @@ class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocation
     }
 
 
-    //  private fun areaLoading(district_id: String) =viewModel.area(this.district_id)
-
-    private fun setStateUi(stateList: MutableList<String>) {
-        val arrayAdapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, stateList)
-        binding.stateEditText.setAdapter(arrayAdapter)
-        binding.stateEditText.threshold = 1
-
-    }
-
-    private fun setDistrictUi(districtList: MutableList<String>) {
-        val arrayAdapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, districtList)
-        binding.districtEditText.setAdapter(arrayAdapter)
-        binding.districtEditText.threshold = 1
-
-    }
-
-    private fun setAreaUi(areaList: MutableList<String>) {
-        val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, areaList)
-        binding.areaEditText.setAdapter(arrayAdapter)
-        binding.areaEditText.threshold = 1
-
-    }
 }
 
 

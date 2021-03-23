@@ -25,15 +25,13 @@ class CattleAdaptor :
 
         }
 
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         return CategoryViewHolder(
             AvailableCattleItemBinding.inflate(
                 LayoutInflater.from(parent.context),
-                parent,
-                false
+                parent,false
             )
         )
     }

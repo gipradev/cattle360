@@ -31,6 +31,7 @@ class ExecutiveProfileFragment :
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
     }
 
 }

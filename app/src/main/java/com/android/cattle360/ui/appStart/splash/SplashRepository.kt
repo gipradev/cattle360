@@ -8,4 +8,8 @@ class SplashRepository(private val api: ApiService ?= null) : BaseRepository() {
         println("On ApiService ")
         api?.loginCheckAPI(mobile)
     }
+    suspend fun empLoginCheck(username: String) = safeApiCall {
+        println("On ApiService ")
+        api?.employeeloginCheckAPI(username)
+    }
 }
