@@ -3,6 +3,7 @@ package com.android.cattle360.data.network
 import com.android.cattle360.data.apiResponse.*
 import com.android.cattle360.data.util.ApiEndPoints.AREA_LIST
 import com.android.cattle360.data.util.ApiEndPoints.CATEGORY
+import com.android.cattle360.data.util.ApiEndPoints.CATTLE_IMAGE_UPLOAD
 import com.android.cattle360.data.util.ApiEndPoints.CHANGE_PASSWORD
 import com.android.cattle360.data.util.ApiEndPoints.DISTRICT_LIST
 import com.android.cattle360.data.util.ApiEndPoints.EMPLOYEE_LOGIN
@@ -17,10 +18,8 @@ import com.android.cattle360.data.util.ApiEndPoints.SEND_OTP
 import com.android.cattle360.data.util.ApiEndPoints.SEND_USERNAME
 import com.android.cattle360.data.util.ApiEndPoints.STATE_LIST
 import com.android.cattle360.data.util.ApiEndPoints.VIEW_DEALER_MOBILE
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 interface ApiService {
     @FormUrlEncoded
@@ -106,5 +105,13 @@ interface ApiService {
 
     @GET(CATEGORY)
     suspend fun allCategoryAPI() : GetAllCategoryResponse
+
+
+    @FormUrlEncoded
+    @POST(CATTLE_IMAGE_UPLOAD)
+    suspend fun  imageUploadAPI(@Part("img") image: RequestBody,
+                                @Field("c_type") model_name: String) : GetImageUploadResponse
+
+
 
 }

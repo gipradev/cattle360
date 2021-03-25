@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.android.cattle360.data.apiResponse.GetAllCategoryResponse
-import com.android.cattle360.data.apiResponse.GetAreaListResponse
 import com.android.cattle360.data.apiResponse.GetViewDealerResponse
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.ui.base.BaseViewModel

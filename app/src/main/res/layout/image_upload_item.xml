@@ -6,7 +6,7 @@
 
         <variable
             name="uploadModel"
-            type="com.android.cattle360.data.demmyModels.UploadModel" />
+            type="com.android.cattle360.data.apiResponse.GetImageUploadResponse" />
 
     </data>
 
@@ -16,8 +16,7 @@
         android:layout_height="wrap_content"
         app:cardUseCompatPadding="true"
         app:cardElevation="@dimen/dimen_6_dp"
-        app:cardCornerRadius="@dimen/dimen_6_dp"
-        >
+        app:cardCornerRadius="@dimen/dimen_6_dp">
 
 
     <LinearLayout
@@ -29,7 +28,7 @@
 
         <ImageView
             android:id="@+id/modelImage"
-            coilFullCurvedLoader="@{uploadModel.modelImage}"
+            coilFullCurvedLoader="@{uploadModel.image}"
             android:layout_width="match_parent"
             android:layout_margin="@dimen/dimen_8_dp"
             android:layout_height="@dimen/dimen_100_dp"

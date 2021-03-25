@@ -21,7 +21,6 @@ import kotlin.system.exitProcess
 class SplashFragment : BaseFragment<SplashViewModel, SplashFragmentBinding, SplashRepository>() {
 
    // var mobile: String? =null
-
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?

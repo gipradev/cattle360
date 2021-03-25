@@ -9,6 +9,7 @@ data class UploadModel(
 )
 
 object uploadModelSupplier {
+
     val modelItem = listOf(
         UploadModel(id = 0 , modelName = "Head" , modelImage = R.mipmap.ic_launcher_round),
         UploadModel(id = 1 , modelName = "Front Leg" ,  modelImage =  R.mipmap.ic_launcher_round),
@@ -52,5 +53,5 @@ object uploadModelSupplier {
         UploadModel(id = 4 , modelName = "Right Side" ,  modelImage =  R.mipmap.ic_launcher_round),
         UploadModel(id = 5 , modelName = "Left Side" ,  modelImage =  R.mipmap.ic_launcher_round),
 
-    )
+        )
 }

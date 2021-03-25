@@ -2,6 +2,7 @@ package com.android.cattle360.ui.executive.addCattle
 
 import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.ui.base.BaseRepository
+import okhttp3.RequestBody
 
 class AddCattleRepository (private var api : ApiService?= null): BaseRepository() {
 
@@ -31,7 +32,10 @@ class AddCattleRepository (private var api : ApiService?= null): BaseRepository(
         api?.allCategoryAPI()
     }
 
-
+    suspend fun imageUpload(image: RequestBody, model_name: String) = safeApiCall {
+        println("On ApiService ")
+        api?.imageUploadAPI(image,model_name)
+    }
     suspend fun onCattleInsert(pincode_value: String,
                                area_value: String,
                                district_value: String,

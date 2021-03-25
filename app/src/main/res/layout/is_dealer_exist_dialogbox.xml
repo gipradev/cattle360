@@ -11,7 +11,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Mobile number *"
-        app:counterMaxLength="10"
         app:counterTextAppearance="@style/ErrorTextAppearance"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +21,7 @@
             android:id="@+id/mobileDialogEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="phone"
+            android:inputType="number"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 

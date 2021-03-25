@@ -17,4 +17,5 @@ object ApiEndPoints {
     const val AREA_LIST="Area_list"
     const val CATEGORY="Category"
     const val VIEW_DEALER_MOBILE="View_dealer_mobile"
+    const val CATTLE_IMAGE_UPLOAD="Cattle_image_upload"
 }

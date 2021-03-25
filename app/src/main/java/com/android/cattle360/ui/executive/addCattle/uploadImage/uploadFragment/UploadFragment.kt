@@ -25,13 +25,17 @@ import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.databinding.UploadFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, AddCattleRepository>(),
+class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, AddCattleRepository>(),
     UploadAdaptor.OnUploadClickEvent {
 
     private val REQUEST_IMAGE_CAPTURE: Int = 300
@@ -74,10 +78,13 @@ class UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, AddC
 
         binding.imageUploadRecycler.adapter = uploadAdaptor
 
-        viewModel.getUploadModel()
+        val file: File = File(imageFilePath);
+      val  requestBody : RequestBody =file.asRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+        //viewModel.getUploadModel()
+        viewModel.getimageUploadModel(requestBody, "head")
 
-        viewModel.uploadResponse.observe(viewLifecycleOwner, Observer {
-            uploadAdaptor.list = it
+        viewModel.imguploadResponse.observe(viewLifecycleOwner, Observer {
+        //    uploadAdaptor.list = it
         })
 
         requestPermission()
@@ -174,6 +181,7 @@ class UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, AddC
         if (!storageDir.exists()) storageDir.mkdirs()
         val imageFile = File.createTempFile(imageFileName, ".jpg", storageDir)
         imageFilePath = imageFile.absolutePath
+        println("image file path................................." + imageFilePath)
         return imageFile
     }
 
@@ -182,13 +190,13 @@ class UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, AddC
 
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> {
-/*                if(resultCode == Activity.RESULT_OK && data != null) {
-                    photoImageView.setImageBitmap(data.extras.get("data") as Bitmap)
-                }*/
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    imageView.setImageBitmap(data.extras?.get("data") as Bitmap)
+                }
                 if (resultCode == Activity.RESULT_OK) {
 
-//                    imageView.setImageBitmap(setScaledBitmap())
-//                    position?.let { uploadAdaptor.notifyItemChanged(it) }
+                    imageView.setImageBitmap(setScaledBitmap())
+                    position?.let { uploadAdaptor.notifyItemChanged(it) }
 
                 }
             }

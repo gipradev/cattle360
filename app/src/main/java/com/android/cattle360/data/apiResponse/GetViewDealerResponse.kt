@@ -10,7 +10,5 @@ data class GetViewDealerResponse(
     val ifsc: String,
     val mobile: String,
     val n_dealer_id: String,
-    val n_district: String,
-    val n_state: String,
     val status: String
 )
