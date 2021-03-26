@@ -55,7 +55,7 @@ class ChangePasswordFragment :
 
         val pref = requireContext().getSharedPreferences("pref", Context.MODE_PRIVATE)
         val mobile=pref.getString("mobileno", "")
-        viewModel.onchangePassword(mobile.toString(),binding.password.toString(),binding.confirmPassword.toString())
+        viewModel.onchangePassword(mobile.toString(),binding.password.text.toString(),binding.confirmPassword.text.toString())
         viewModel.changepasswordResponse.observe(viewLifecycleOwner,  {
             when (it) {
                 is Resource.Loading -> {

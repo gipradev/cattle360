@@ -33,7 +33,7 @@ class AddCattleRepository (private var api : ApiService?= null): BaseRepository(
     }
 
     suspend fun imageUpload(image: RequestBody, model_name: String) = safeApiCall {
-        println("On ApiService ")
+        println("On ApiService imgupload ")
         api?.imageUploadAPI(image,model_name)
     }
     suspend fun onCattleInsert(pincode_value: String,

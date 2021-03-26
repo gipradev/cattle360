@@ -109,9 +109,7 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST(CATTLE_IMAGE_UPLOAD)
-    suspend fun  imageUploadAPI(@Part("img") image: RequestBody,
+    suspend fun  imageUploadAPI(@Part("img\";filename=\"myfile.jpg\"") image: RequestBody,
                                 @Field("c_type") model_name: String) : GetImageUploadResponse
-
-
 
 }

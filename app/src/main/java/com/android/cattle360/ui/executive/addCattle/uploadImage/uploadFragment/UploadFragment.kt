@@ -3,10 +3,13 @@ package com.android.cattle360.ui.executive.addCattle.uploadImage.uploadFragment
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.content.Intent.getIntent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -22,14 +25,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
 import com.android.cattle360.data.network.ApiService
+import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.UploadFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
+import java.io.FileNotFoundException
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -77,14 +81,39 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
         super.onActivityCreated(savedInstanceState)
 
         binding.imageUploadRecycler.adapter = uploadAdaptor
+//list image
+     //  val file: File = File(imageFilePath)
+      val  requestBody : RequestBody =createImageFile().asRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
-        val file: File = File(imageFilePath);
-      val  requestBody : RequestBody =file.asRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
-        //viewModel.getUploadModel()
         viewModel.getimageUploadModel(requestBody, "head")
-
         viewModel.imguploadResponse.observe(viewLifecycleOwner, Observer {
-        //    uploadAdaptor.list = it
+
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading ")
+                }
+                is Resource.Success -> {
+                    println(it)
+                    if (it.value?.status.equals("1")) {
+                        Toast.makeText(requireContext(), "file uploaded ", Toast.LENGTH_SHORT)
+                            .show()
+
+                    } else {
+                        Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                is Resource.Failure -> {
+                    println("Failure  : $it")
+                }
+
+            }
+        })
+
+//upload image
+
+        viewModel.getUploadModel()
+        viewModel.uploadResponse.observe(viewLifecycleOwner, Observer {
+            uploadAdaptor.list = it
         })
 
         requestPermission()

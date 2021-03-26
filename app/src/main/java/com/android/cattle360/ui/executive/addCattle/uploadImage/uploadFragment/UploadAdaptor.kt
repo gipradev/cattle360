@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.android.cattle360.data.apiResponse.GetImageUploadResponse
+import com.android.cattle360.data.apiResponse.Data
 import com.android.cattle360.data.demmyModels.UploadModel
+
 import com.android.cattle360.databinding.ImageUploadItemBinding
 
 
 class UploadAdaptor(private val listener : OnUploadClickEvent) :
     RecyclerView.Adapter<UploadAdaptor.CategoryViewHolder>() {
 
-    var list: List<GetImageUploadResponse> = arrayListOf()
+    var list: List<UploadModel> = arrayListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -22,7 +23,7 @@ class UploadAdaptor(private val listener : OnUploadClickEvent) :
     inner class CategoryViewHolder(var binding: ImageUploadItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun setModel(uploadModel: GetImageUploadResponse) {
+        fun setModel(uploadModel: UploadModel) {
 
             binding.uploadModel = uploadModel
 
@@ -35,18 +36,16 @@ class UploadAdaptor(private val listener : OnUploadClickEvent) :
         fun uploadImage(position: Int?, scaledBitmap: Bitmap) {
 
 
-        }
 
+
+        }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         return CategoryViewHolder(
             ImageUploadItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+                LayoutInflater.from(parent.context), parent, false)
         )
     }
 

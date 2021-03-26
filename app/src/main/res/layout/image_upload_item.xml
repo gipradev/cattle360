@@ -6,7 +6,7 @@
 
         <variable
             name="uploadModel"
-            type="com.android.cattle360.data.apiResponse.GetImageUploadResponse" />
+            type="com.android.cattle360.data.demmyModels.UploadModel" />
 
     </data>
 
@@ -28,7 +28,7 @@
 
         <ImageView
             android:id="@+id/modelImage"
-            coilFullCurvedLoader="@{uploadModel.image}"
+            coilFullCurvedLoader="@{uploadModel.modelImage}"
             android:layout_width="match_parent"
             android:layout_margin="@dimen/dimen_8_dp"
             android:layout_height="@dimen/dimen_100_dp"
