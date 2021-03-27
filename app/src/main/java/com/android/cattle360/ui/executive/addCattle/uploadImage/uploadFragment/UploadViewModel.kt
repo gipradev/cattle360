@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.android.cattle360.data.apiResponse.Data
+import com.android.cattle360.data.apiResponse.GetImageListResponse
 import com.android.cattle360.data.apiResponse.GetImageUploadResponse
 import com.android.cattle360.data.demmyModels.UploadModel
 import com.android.cattle360.data.demmyModels.uploadModelSupplier
@@ -15,11 +16,14 @@ import okhttp3.RequestBody
 
 class UploadViewModel (private val repository: AddCattleRepository): BaseViewModel() {
 //image listing
-    val uploadResponse: LiveData<List<UploadModel>> = MutableLiveData()
+    val uploadResponse: LiveData<Resource<GetImageListResponse?>> = MutableLiveData()
 
-    fun getUploadModel() {
+    fun getUploadModel()= viewModelScope.launch {
+        println("On View model ")
         uploadResponse as MutableLiveData
-        uploadResponse.value = uploadModelSupplier.modelItem
+        uploadResponse.value = Resource.Loading
+       // uploadResponse.value = uploadModelSupplier.modelItem
+        uploadResponse.value = repository.imageList()
 
     }
 // image upload

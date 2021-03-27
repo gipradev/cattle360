@@ -3,7 +3,9 @@ package com.android.cattle360.data.network
 import com.android.cattle360.data.apiResponse.*
 import com.android.cattle360.data.util.ApiEndPoints.AREA_LIST
 import com.android.cattle360.data.util.ApiEndPoints.CATEGORY
+import com.android.cattle360.data.util.ApiEndPoints.CATTLE_IMAGE_DEFAULT_VIEW
 import com.android.cattle360.data.util.ApiEndPoints.CATTLE_IMAGE_UPLOAD
+import com.android.cattle360.data.util.ApiEndPoints.CATTLE_IMAGE_VIEW
 import com.android.cattle360.data.util.ApiEndPoints.CHANGE_PASSWORD
 import com.android.cattle360.data.util.ApiEndPoints.DISTRICT_LIST
 import com.android.cattle360.data.util.ApiEndPoints.EMPLOYEE_LOGIN
@@ -109,7 +111,10 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST(CATTLE_IMAGE_UPLOAD)
-    suspend fun  imageUploadAPI(@Part("img\";filename=\"myfile.jpg\"") image: RequestBody,
-                                @Field("c_type") model_name: String) : GetImageUploadResponse
+    suspend fun  imageUploadAPI(@Part("file\";filename=\"file.jpg\"") image: RequestBody,
+                                @Part("c_type") model_name: String) : GetImageUploadResponse
 
+
+    @GET(CATTLE_IMAGE_DEFAULT_VIEW)
+    suspend fun  imageListAPI() : GetImageListResponse
 }

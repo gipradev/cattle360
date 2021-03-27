@@ -18,4 +18,6 @@ object ApiEndPoints {
     const val CATEGORY="Category"
     const val VIEW_DEALER_MOBILE="View_dealer_mobile"
     const val CATTLE_IMAGE_UPLOAD="Cattle_image_upload"
+    const val CATTLE_IMAGE_VIEW="Cattle_image_view"
+    const val CATTLE_IMAGE_DEFAULT_VIEW= "Cattle_image_default_view"
 }

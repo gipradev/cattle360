@@ -36,6 +36,12 @@ class AddCattleRepository (private var api : ApiService?= null): BaseRepository(
         println("On ApiService imgupload ")
         api?.imageUploadAPI(image,model_name)
     }
+
+    suspend fun imageList() = safeApiCall {
+        println("On ApiService img list ")
+        api?.imageListAPI()
+    }
+
     suspend fun onCattleInsert(pincode_value: String,
                                area_value: String,
                                district_value: String,

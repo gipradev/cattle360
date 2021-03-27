@@ -1,6 +1,7 @@
 package com.android.cattle360.ui.executive.addCattle.uploadImage.uploadFragment
 
 import android.Manifest
+import android.R
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Activity.RESULT_OK
@@ -17,6 +18,8 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -24,6 +27,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
+import com.android.cattle360.data.apiResponse.Data
+import com.android.cattle360.data.apiResponse.DataXXXX
 import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.UploadFragmentBinding
@@ -82,8 +87,9 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
 
         binding.imageUploadRecycler.adapter = uploadAdaptor
 //list image
-     //  val file: File = File(imageFilePath)
-      val  requestBody : RequestBody =createImageFile().asRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+        //  val file: File = File(imageFilePath)
+        val requestBody: RequestBody =
+            createImageFile().asRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
         viewModel.getimageUploadModel(requestBody, "head")
         viewModel.imguploadResponse.observe(viewLifecycleOwner, Observer {
@@ -113,7 +119,32 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
 
         viewModel.getUploadModel()
         viewModel.uploadResponse.observe(viewLifecycleOwner, Observer {
-            uploadAdaptor.list = it
+
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading ")
+                }
+                is Resource.Success -> {
+
+                    if (it.value?.status.equals("1")) {
+
+                        uploadAdaptor.list = it.value?.data!!
+                        println(".............................list"+ it.value.data)
+
+                    }
+                    else
+                    {
+                        println(".............................no data found or error")
+                    }
+                }
+
+                is Resource.Failure -> {
+                    println("Failure  : $it")
+                }
+
+            }
+
+
         })
 
         requestPermission()
@@ -220,7 +251,8 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> {
                 if (resultCode == Activity.RESULT_OK && data != null) {
-                    imageView.setImageBitmap(data.extras?.get("data") as Bitmap)
+//                    imageView.setImageBitmap(data.extras!!.get("intent") as Bitmap)
+                    imageView.setImageBitmap(setScaledBitmap())
                 }
                 if (resultCode == Activity.RESULT_OK) {
 
