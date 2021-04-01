@@ -9,9 +9,9 @@ import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
-import com.android.cattle360.data.apiResponse.Data
-import com.android.cattle360.data.apiResponse.DataX
-import com.android.cattle360.data.apiResponse.DataXX
+import com.android.cattle360.data.apiResponse.DataState
+import com.android.cattle360.data.apiResponse.DataDistrict
+import com.android.cattle360.data.apiResponse.DataArea
 import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.EnterLocationFragmentBinding
@@ -22,7 +22,7 @@ import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
 class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocationFragmentBinding, AddCattleRepository>() {
 
     var invalid: Boolean = false
-    var data: List<Data>? = null
+    var data: List<DataState>? = null
 
     lateinit var district_id:String
     private var stateList = mutableListOf<String>()
@@ -98,7 +98,7 @@ class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocation
                 is Resource.Success -> {
                     if (it.value?.status.equals("1")) {
 
-                        var data: List<Data>? = it.value?.data
+                        var data: List<DataState>? = it.value?.data
 
                         stateList = mutableListOf<String>()
 
@@ -146,7 +146,7 @@ class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocation
                 is Resource.Success -> {
                     if (it.value?.status.equals("1")) {
 
-                        val data: List<DataX>? = it.value?.data
+                        val data: List<DataDistrict>? = it.value?.data
 
                        val districtList = mutableListOf<String>()
 
@@ -186,7 +186,7 @@ class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocation
                 }
                 is Resource.Success -> {
                     if (it.value?.status.equals("1")) {
-                        val data: List<DataXX>? = it.value?.data
+                        val data: List<DataArea>? = it.value?.data
                         val areaList = mutableListOf<String>()
                         if (data != null) {
                             for (area in data) {

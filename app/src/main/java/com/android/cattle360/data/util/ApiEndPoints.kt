@@ -20,4 +20,7 @@ object ApiEndPoints {
     const val CATTLE_IMAGE_UPLOAD="Cattle_image_upload"
     const val CATTLE_IMAGE_VIEW="Cattle_image_view"
     const val CATTLE_IMAGE_DEFAULT_VIEW= "Cattle_image_default_view"
+    const val LIVESTOCK_DETAIL_LIST= "Livestock_details_list"
+    const val ALL_LIVESTOCK_DETAILS= "All_livestock_details"
+    const val ALL_CATEGORY_LIST= "All_category_list"
 }

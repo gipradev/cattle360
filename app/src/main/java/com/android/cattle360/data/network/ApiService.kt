@@ -1,16 +1,18 @@
 package com.android.cattle360.data.network
 
 import com.android.cattle360.data.apiResponse.*
+import com.android.cattle360.data.util.ApiEndPoints.ALL_CATEGORY_LIST
+import com.android.cattle360.data.util.ApiEndPoints.ALL_LIVESTOCK_DETAILS
 import com.android.cattle360.data.util.ApiEndPoints.AREA_LIST
 import com.android.cattle360.data.util.ApiEndPoints.CATEGORY
 import com.android.cattle360.data.util.ApiEndPoints.CATTLE_IMAGE_DEFAULT_VIEW
 import com.android.cattle360.data.util.ApiEndPoints.CATTLE_IMAGE_UPLOAD
-import com.android.cattle360.data.util.ApiEndPoints.CATTLE_IMAGE_VIEW
 import com.android.cattle360.data.util.ApiEndPoints.CHANGE_PASSWORD
 import com.android.cattle360.data.util.ApiEndPoints.DISTRICT_LIST
 import com.android.cattle360.data.util.ApiEndPoints.EMPLOYEE_LOGIN
 import com.android.cattle360.data.util.ApiEndPoints.EMP_LOGIN_CHECK
 import com.android.cattle360.data.util.ApiEndPoints.INSERT_CATTLE
+import com.android.cattle360.data.util.ApiEndPoints.LIVESTOCK_DETAIL_LIST
 import com.android.cattle360.data.util.ApiEndPoints.LOGIN
 import com.android.cattle360.data.util.ApiEndPoints.LOGIN_CHECK
 import com.android.cattle360.data.util.ApiEndPoints.LOGOUT
@@ -106,7 +108,7 @@ interface ApiService {
     suspend fun verifyMobileAPI(@Field("mobile") mobile: String) : GetViewDealerResponse
 
     @GET(CATEGORY)
-    suspend fun allCategoryAPI() : GetAllCategoryResponse
+    suspend fun allCategoryAPI() : GetCategoryResponse
 
 
     @FormUrlEncoded
@@ -117,4 +119,17 @@ interface ApiService {
 
     @GET(CATTLE_IMAGE_DEFAULT_VIEW)
     suspend fun  imageListAPI() : GetImageListResponse
+
+    @FormUrlEncoded
+    @POST(LIVESTOCK_DETAIL_LIST)
+    suspend fun listLiveStockAPI(@Field("userid") userid: String) : GetLiveStockDetails
+
+
+    @GET(ALL_LIVESTOCK_DETAILS)
+    suspend fun homeLivestockAPI() : GetAllLivestockResponse
+
+
+    @GET(ALL_CATEGORY_LIST)
+    suspend fun homeCategoryAPI() : GetAllCategoryResponse
+
 }

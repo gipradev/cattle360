@@ -6,7 +6,7 @@
 
         <variable
             name="liveStockModel"
-            type="com.android.cattle360.data.demmyModels.LiveStockModel" />
+            type="com.android.cattle360.data.apiResponse.DataAllLivestock" />
 
     </data>
 
@@ -20,7 +20,8 @@
         android:padding="@dimen/dimen_10_dp">
 
         <ImageView
-            coilFullCurvedLoader="@{liveStockModel.image}"
+            android:id="@+id/livestockImage"
+            coilFullCurvedLoader="@{}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
@@ -40,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8_dp"
-            android:text="@{liveStockModel.title}"
+            android:text="@{liveStockModel.c_title}"
             android:textColor="?attr/colorOnPrimary"
             app:layout_constraintBottom_toTopOf="@+id/subTitle"
             app:layout_constraintStart_toStartOf="parent" />
@@ -52,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8_dp"
             android:layout_marginTop="@dimen/dimen_4_dp"
-            android:text="@{liveStockModel.subTitle}"
+            android:text="@{liveStockModel.c_description}"
             android:textColor="?attr/colorOnPrimary"
             android:textSize="@dimen/font_10_sp"
             app:layout_constraintBottom_toTopOf="@+id/bidButton"

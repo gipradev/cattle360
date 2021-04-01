@@ -1,6 +1,6 @@
 package com.android.cattle360.data.apiResponse
 
-data class GetDistrictListResponse(
-    val `data`: List<DataDistrict>,
+data class GetCategoryResponse(
+    val `data`: List<DataCategory>,
     val status: String
 )

@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
-import com.android.cattle360.data.apiResponse.DataXXX
+import com.android.cattle360.data.apiResponse.DataCategory
 import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.EnterCattleFragmentBinding
@@ -236,7 +236,7 @@ class EnterCattleFragment :
                 is Resource.Success -> {
                     if (it.value?.status.equals("1")) {
 
-                        val data: List<DataXXX>? = it.value?.data
+                        val data: List<DataCategory>? = it.value?.data
 
                         val List = mutableListOf<String>()
 

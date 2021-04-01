@@ -38,10 +38,12 @@ class HomeFragment : BaseFragment<HomeViewModel, HomeFragmentBinding, HomeReposi
     }
 
     private fun launchLiveStockFragment() {
+
         activity?.supportFragmentManager!!.beginTransaction().replace(
             R.id.live_stock_nav_fragment,
             LiveStockFragment.newInstance(), LiveStockFragment::class.java.toString()
         ).commit()
+
     }
 
     private fun launchCategoryFragment() {
@@ -50,7 +52,7 @@ class HomeFragment : BaseFragment<HomeViewModel, HomeFragmentBinding, HomeReposi
             CategoryFragment.newInstance(), CategoryFragment::class.java.toString()
         ).commit()
     }
-
+//to do in future
     private fun launchBannerFragment() {
         activity?.supportFragmentManager!!.beginTransaction().replace(
             R.id.banner_nav_fragment,

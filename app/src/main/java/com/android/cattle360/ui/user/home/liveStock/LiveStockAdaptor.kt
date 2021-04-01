@@ -3,14 +3,18 @@ package com.android.cattle360.ui.user.home.liveStock
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.android.cattle360.R
+import com.android.cattle360.data.apiResponse.DataAllLivestock
+import com.android.cattle360.data.apiResponse.DataLiveStockDetails
 import com.android.cattle360.data.demmyModels.LiveStockModel
 import com.android.cattle360.databinding.LiveStockItemBinding
+import com.bumptech.glide.Glide
 
 
 class LiveStockAdaptor(private val clickListener: OnLiveStockClickEvent) :
     RecyclerView.Adapter<LiveStockAdaptor.CategoryViewHolder>() {
 
-    var list: List<LiveStockModel> = arrayListOf()
+    var list: List<DataAllLivestock> = arrayListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -19,9 +23,21 @@ class LiveStockAdaptor(private val clickListener: OnLiveStockClickEvent) :
     inner class CategoryViewHolder(var binding: LiveStockItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun setModel(liveStockModel: LiveStockModel) {
+        fun setModel(liveStockModel: DataAllLivestock) {
 
             binding.liveStockModel = liveStockModel
+            val path:String= liveStockModel.c_image as String
+
+            if (path=="")
+            {
+                Glide.with(itemView)
+                    .load(R.drawable.cw1)
+                    .into(binding.livestockImage)
+            }else {
+                Glide.with(itemView)
+                    .load(path)
+                    .into(binding.livestockImage)
+            }
 
             binding.cattleItem.setOnClickListener {
                 clickListener.onItemClick()

@@ -1,16 +1,12 @@
 package com.android.cattle360.ui.executive.addCattle.uploadImage.uploadFragment
 
 import android.Manifest
-import android.R
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.content.Intent.getIntent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -18,8 +14,6 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -27,8 +21,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
-import com.android.cattle360.data.apiResponse.Data
-import com.android.cattle360.data.apiResponse.DataXXXX
 import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.UploadFragmentBinding
@@ -38,7 +30,6 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
-import java.io.FileNotFoundException
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -86,7 +77,7 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
         super.onActivityCreated(savedInstanceState)
 
         binding.imageUploadRecycler.adapter = uploadAdaptor
-//list image
+//..................................................................................upload image.................................................................................................................
         //  val file: File = File(imageFilePath)
         val requestBody: RequestBody =
             createImageFile().asRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
@@ -115,8 +106,8 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
             }
         })
 
-//upload image
 
+//....................................................................................................list dummy image.....................................................................................................
         viewModel.getUploadModel()
         viewModel.uploadResponse.observe(viewLifecycleOwner, Observer {
 
@@ -212,15 +203,10 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
     private fun takePicture() {
         try {
 
-
             val intent: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             val file: File = createImageFile()
 
-            val uri: Uri = FileProvider.getUriForFile(
-                requireActivity(),
-                "com.android.cattle360",
-                file
-            )
+            val uri: Uri = FileProvider.getUriForFile(requireActivity(), "com.android.cattle360", file)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
             startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
 
@@ -229,7 +215,6 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
             println("Exception $e")
         }
     }
-
 
     @SuppressLint("SimpleDateFormat")
     @Throws(IOException::class)
@@ -241,7 +226,7 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
         if (!storageDir.exists()) storageDir.mkdirs()
         val imageFile = File.createTempFile(imageFileName, ".jpg", storageDir)
         imageFilePath = imageFile.absolutePath
-        println("image file path................................." + imageFilePath)
+        println("image file return................................" + imageFile)
         return imageFile
     }
 
@@ -251,8 +236,8 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> {
                 if (resultCode == Activity.RESULT_OK && data != null) {
-//                    imageView.setImageBitmap(data.extras!!.get("intent") as Bitmap)
-                    imageView.setImageBitmap(setScaledBitmap())
+                 imageView.setImageBitmap(data.extras!!.get("data") as Bitmap)
+
                 }
                 if (resultCode == Activity.RESULT_OK) {
 

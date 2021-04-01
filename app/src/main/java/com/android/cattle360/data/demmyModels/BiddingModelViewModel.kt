@@ -4,7 +4,7 @@ import androidx.databinding.ObservableField
 
 
 /**
- * Data class for bidding sheet view
+ * DataLiveStockDetails class for bidding sheet view
  */
 data class BiddingModelViewModel(
 

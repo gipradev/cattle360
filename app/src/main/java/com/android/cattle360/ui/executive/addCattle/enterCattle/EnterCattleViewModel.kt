@@ -3,7 +3,7 @@ package com.android.cattle360.ui.executive.addCattle.enterCattle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.cattle360.data.apiResponse.GetAllCategoryResponse
+import com.android.cattle360.data.apiResponse.GetCategoryResponse
 import com.android.cattle360.data.apiResponse.GetViewDealerResponse
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.ui.base.BaseViewModel
@@ -23,7 +23,7 @@ class EnterCattleViewModel (private  val repository: AddCattleRepository): BaseV
         println("area........................................ ${verifyMobileResponse.value}")
     }
 
-    val categoryResponse : LiveData<Resource<GetAllCategoryResponse?>> = MutableLiveData()
+    val categoryResponse : LiveData<Resource<GetCategoryResponse?>> = MutableLiveData()
 
     fun category() = viewModelScope.launch {
 

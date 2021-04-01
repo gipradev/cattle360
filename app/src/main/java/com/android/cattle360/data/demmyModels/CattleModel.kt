@@ -11,7 +11,6 @@ object cattleModelSupplier {
     val cattle = CattleModel(
         data = cattleSupplier.cattleIt,
         product_image = cattleImageSuppiler.cattleImageItem,
-        status = "Success"
-    )
+        status = "Success")
 
 }

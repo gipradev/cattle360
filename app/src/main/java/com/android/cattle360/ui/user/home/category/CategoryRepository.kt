@@ -1,6 +1,12 @@
 package com.android.cattle360.ui.user.home.category
 
+import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.ui.base.BaseRepository
 
-class CategoryRepository : BaseRepository() {
+class CategoryRepository(private var api : ApiService?= null) : BaseRepository() {
+
+    suspend fun homeCategoryList() = safeApiCall {
+        api?.homeCategoryAPI()
+    }
+
 }

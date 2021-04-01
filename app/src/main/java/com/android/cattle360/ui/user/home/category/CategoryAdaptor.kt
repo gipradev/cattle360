@@ -3,12 +3,15 @@ package com.android.cattle360.ui.user.home.category
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.android.cattle360.R
+import com.android.cattle360.data.apiResponse.DataAllCategory
 import com.android.cattle360.data.demmyModels.CategoryModel
 import com.android.cattle360.databinding.CategoryItemBinding
+import com.bumptech.glide.Glide
 
 class CategoryAdaptor(val clickListener: CategoryOnClick) : RecyclerView.Adapter<CategoryAdaptor.CategoryViewHolder>() {
 
-    var list: List<CategoryModel> = arrayListOf()
+    var list: List<DataAllCategory> = arrayListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -17,8 +20,12 @@ class CategoryAdaptor(val clickListener: CategoryOnClick) : RecyclerView.Adapter
     inner class CategoryViewHolder(var binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun setModel(categoryModel: CategoryModel) {
+        fun setModel(categoryModel: DataAllCategory) {
             binding.categoryModel = categoryModel
+
+//            Glide.with(itemView)
+//                .load(R.drawable.grass)
+//                .into(binding.categoryImage)
 
             binding.categoryImage.setOnClickListener {
                 clickListener.onClick()
@@ -46,5 +53,6 @@ class CategoryAdaptor(val clickListener: CategoryOnClick) : RecyclerView.Adapter
 
     interface CategoryOnClick{
         fun onClick()
+
     }
 }

@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
+import com.android.cattle360.data.network.ApiService
+import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.CategoryFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 
@@ -29,7 +31,7 @@ CategoryAdaptor.CategoryOnClick{
     override fun getViewModel(): Class<CategoryViewModel> = CategoryViewModel::class.java
 
     override fun getFragmentRepository(): CategoryRepository {
-        return CategoryRepository()
+        return CategoryRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
 
 
@@ -41,7 +43,35 @@ CategoryAdaptor.CategoryOnClick{
         viewModel.getCategoryList()
 
         viewModel.categoryResponse.observe(viewLifecycleOwner, Observer {
-          categoryAdapter.list = it
+           // categoryAdapter.list = it
+
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading")
+                }
+                is Resource.Success -> {
+                    println(".............."+{it.value?.data!! })
+                    if (it.value?.status.equals("1")) {
+
+                        categoryAdapter.list = it.value?.data!!
+                        println(".............................list"+ it.value.data)
+
+                    }
+                    else
+                    {
+                        println(".............................no data found or error")
+                    }
+                }
+
+                is Resource.Failure -> {
+                    println("Failure  : $it")
+                }
+
+            }
+
+
+
+
         })
 
     }

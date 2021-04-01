@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.android.cattle360.data.network.ApiService
+import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.AvailableCattleFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.executive.exeHome.ExecutiveHomeRepository
@@ -29,18 +31,45 @@ class AvailableCattleFragment :
     }
 
     override fun getFragmentRepository(): ExecutiveHomeRepository {
-        return ExecutiveHomeRepository()
+        return ExecutiveHomeRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        val userid:String = "2"
         binding.cattleRecycler.adapter = cattleAdaptor
-        viewModel.getCattleList()
+        viewModel.getCattleList(userid)
 
         viewModel.cattleResponse.observe(viewLifecycleOwner, Observer {
-            cattleAdaptor.list = it
+            //cattleAdaptor.list = it
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading ")
+                }
+                is Resource.Success -> {
+
+                    if (it.value?.status.equals("1")) {
+
+                        cattleAdaptor.list = it.value?.data!!
+                        println(".............................list"+ it.value.data)
+
+                    }
+                    else
+                    {
+                        println(".............................no data found or error")
+                    }
+                }
+
+                is Resource.Failure -> {
+                    println("Failure  : $it")
+                }
+
+            }
+
+
+
         })
 
 

@@ -3,8 +3,6 @@ package com.android.cattle360.ui.user
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Window
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration

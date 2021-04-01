@@ -5,17 +5,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.android.cattle360.data.apiResponse.Data
-import com.android.cattle360.data.apiResponse.DataXXXX
-import com.android.cattle360.data.demmyModels.UploadModel
+import com.android.cattle360.data.apiResponse.DataImageDefaultView
+
 
 import com.android.cattle360.databinding.ImageUploadItemBinding
+import com.bumptech.glide.Glide
 
 
 class UploadAdaptor(private val listener : OnUploadClickEvent) :
     RecyclerView.Adapter<UploadAdaptor.CategoryViewHolder>() {
 
-    var list: List<DataXXXX> = arrayListOf()
+    var list: List<DataImageDefaultView> = arrayListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -24,19 +24,22 @@ class UploadAdaptor(private val listener : OnUploadClickEvent) :
     inner class CategoryViewHolder(var binding: ImageUploadItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun setModel(uploadModel: DataXXXX) {
+        fun setModel(uploadModel: DataImageDefaultView) {
 
             binding.uploadModel = uploadModel
+          val path:String=uploadModel.path
+          Glide.with(itemView)
+           .load(path)
+              .into(binding.modelImage)
 
             binding.cameraButton.setOnClickListener {
                 listener.onCameraClick(binding.modelImage , adapterPosition)
+
             }
 
         }
 
         fun uploadImage(position: Int?, scaledBitmap: Bitmap) {
-
-
 
 
         }

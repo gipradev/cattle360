@@ -33,6 +33,7 @@ class ExecutiveActivity : BaseActivity<ExecutiveActivityViewModel,ActivityExecut
         navController = findNavController(R.id.executive_nav_fragment)
         binding.bottomNavBar.setupWithNavController(navController)
         NavigationUI.setupWithNavController(binding.bottomNavBar, navController)
+
     }
 
     fun addNewCattle(view: View) {

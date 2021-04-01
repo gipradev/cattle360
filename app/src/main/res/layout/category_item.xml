@@ -6,7 +6,7 @@
 
         <variable
             name="categoryModel"
-            type="com.android.cattle360.data.demmyModels.CategoryModel" />
+            type="com.android.cattle360.data.apiResponse.DataAllCategory" />
 
     </data>
 
@@ -24,7 +24,7 @@
 
             <ImageView
                 android:id="@+id/categoryImage"
-                coilCurvedLoader="@{categoryModel.image}"
+                coilCurvedLoader="@{}"
                 android:layout_width="@dimen/dimen_120_dp"
                 android:layout_height="@dimen/dimen_140_dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8_dp"
                 android:paddingBottom="@dimen/dimen_8_dp"
-                android:text="@{categoryModel.name}"
+                android:text="@{categoryModel.c_category_name}"
                 android:textColor="?attr/colorOnSecondary"
                 app:layout_constraintEnd_toEndOf="@+id/categoryImage"
                 app:layout_constraintStart_toStartOf="parent"

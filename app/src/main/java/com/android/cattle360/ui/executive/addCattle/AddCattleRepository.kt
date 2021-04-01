@@ -21,7 +21,6 @@ class AddCattleRepository (private var api : ApiService?= null): BaseRepository(
         api?.areaAPI(district_id )
     }
 
-
     suspend fun verifyMobileDealer(mobile: String) = safeApiCall {
         println("On ApiService ")
         api?.verifyMobileAPI(mobile)

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 class EnterLocationViewModel (private  val repository: AddCattleRepository): BaseViewModel() {
 
     val stateResponse : LiveData<Resource<GetStateListResponse?>> = MutableLiveData()
-   // val dataResponse : LiveData<Resource<Data?>> = MutableLiveData()
+   // val dataResponse : LiveData<Resource<DataLiveStockDetails?>> = MutableLiveData()
 
 
     fun state() = viewModelScope.launch {

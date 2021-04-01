@@ -2,17 +2,10 @@
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
-import com.android.cattle360.data.apiResponse.Data
-import com.android.cattle360.data.apiResponse.DataXXX
 import com.android.cattle360.data.network.ApiService
-import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.EnterDealerFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository

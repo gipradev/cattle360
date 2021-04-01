@@ -94,6 +94,9 @@ else
                     println("Loading ")
                 }
                 is Resource.Success -> {
+
+                    var s=it.value?.userid
+
                     println("${it.value?.status}${it.value?.usertype} ")
                     if (it.value?.status.equals("1") && it.value?.usertype.equals("customer")) {
                         println("Success  : ${it}")
@@ -102,6 +105,7 @@ else
                             "${it.value?.message}",
                             Snackbar.LENGTH_LONG
                         ).show()
+
                         val intent = Intent(requireContext(), HomeActivity::class.java)
                         startActivity(intent)
                         activity?.finish()

@@ -4,13 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="cattleModel"
-            type="com.android.cattle360.data.demmyModels.AvailableCattleModel" />
-
+            type="com.android.cattle360.data.apiResponse.DataLiveStockDetails" />
     </data>
-
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -29,7 +26,7 @@
 
             <ImageView
                 android:id="@+id/cattleImage"
-                coilFullCurvedLoader="@{cattleModel.image}"
+                coilFullCurvedLoader="@{}"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_160_dp"
                 android:scaleType="centerCrop"
@@ -52,7 +49,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{cattleModel.title}"
+                android:text="@{cattleModel.c_title}"
                 android:textColor="?attr/colorOnSecondary"
                 app:layout_constraintTop_toBottomOf="@id/cattleImage"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_4_dp"
-                android:text="@{cattleModel.subTitle}"
+                android:text="@{cattleModel.n_min_bidding_price}"
                 android:textColor="?attr/colorOnSecondary"
                 android:textSize="@dimen/font_10_sp"
                 app:layout_constraintStart_toStartOf="@+id/title"

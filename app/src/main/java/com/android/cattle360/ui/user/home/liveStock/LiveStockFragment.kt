@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
+import com.android.cattle360.data.network.ApiService
+import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.LiveStockFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 
@@ -31,7 +33,7 @@ class LiveStockFragment :
     }
 
     override fun getFragmentRepository(): LiveStockRepository {
-        return LiveStockRepository()
+        return LiveStockRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -41,7 +43,30 @@ class LiveStockFragment :
         viewModel.getLiveStockList()
 
         viewModel.liveStockResponse.observe(viewLifecycleOwner, Observer {
-            liveStockAdaptor.list = it
+            //liveStockAdaptor.list = it
+
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading ")
+                }
+                is Resource.Success -> {
+
+                    if (it.value?.status.equals("1")) {
+
+                        liveStockAdaptor.list = it.value?.data!!
+                        println(".............................list"+ it.value.data)
+
+                    }
+                    else
+                    {
+                        println(".............................no data found or error")
+                    }
+                }
+
+                is Resource.Failure -> {
+                    println("Failure  : $it")
+                }
+        }
         })
 
     }
