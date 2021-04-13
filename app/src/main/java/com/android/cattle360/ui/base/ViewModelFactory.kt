@@ -32,12 +32,14 @@ import com.android.cattle360.ui.user.history.BiddingHistoryViewModel
 import com.android.cattle360.ui.user.history.totalFragment.TotalAmountViewModel
 import com.android.cattle360.ui.user.home.Cattle.CattleRepository
 import com.android.cattle360.ui.user.home.Cattle.CattleViewModel
+import com.android.cattle360.ui.user.home.Cattle.cattleImageSlider.ImageSliderViewModel
 import com.android.cattle360.ui.user.home.HomeRepository
 import com.android.cattle360.ui.user.home.HomeViewModel
 import com.android.cattle360.ui.user.home.banner.BannerRepository
 import com.android.cattle360.ui.user.home.banner.BannerViewModel
 import com.android.cattle360.ui.user.home.category.CategoryRepository
 import com.android.cattle360.ui.user.home.category.CategoryViewModel
+import com.android.cattle360.ui.user.home.category.categoryList.CategoryListViewModel
 import com.android.cattle360.ui.user.home.cattleCart.CattleCartRepository
 import com.android.cattle360.ui.user.home.cattleCart.CattleCartViewModel
 import com.android.cattle360.ui.user.home.liveStock.LiveStockRepository
@@ -133,6 +135,12 @@ class ViewModelFactory(
             ) as T
             modelClass.isAssignableFrom(EnterDealerViewModel::class.java) -> EnterDealerViewModel(
                 repository as AddCattleRepository
+            ) as T
+            modelClass.isAssignableFrom(CategoryListViewModel::class.java) -> CategoryListViewModel(
+                repository as CategoryRepository
+            ) as T
+            modelClass.isAssignableFrom(ImageSliderViewModel::class.java) -> ImageSliderViewModel(
+                repository as CattleRepository
             ) as T
 
             else -> throw IllegalArgumentException("ViewModelClass Not Found")

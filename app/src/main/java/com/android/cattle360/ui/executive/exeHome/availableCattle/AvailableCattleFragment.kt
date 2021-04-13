@@ -53,6 +53,7 @@ class AvailableCattleFragment :
                     if (it.value?.status.equals("1")) {
 
                         cattleAdaptor.list = it.value?.data!!
+
                         println(".............................list"+ it.value.data)
 
                     }

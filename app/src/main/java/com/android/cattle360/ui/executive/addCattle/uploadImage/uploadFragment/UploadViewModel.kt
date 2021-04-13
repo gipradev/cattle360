@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.android.cattle360.data.apiResponse.GetImageListResponse
 import com.android.cattle360.data.apiResponse.GetImageUploadResponse
+import com.android.cattle360.data.apiResponse.GetImageViewResponse
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.ui.base.BaseViewModel
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
@@ -34,6 +35,18 @@ class UploadViewModel (private val repository: AddCattleRepository): BaseViewMod
         imguploadResponse.value = repository.imageUpload(image, model_name)
         println("On View model data........................................ ${imguploadResponse.value}")
     }
+//imageView
+val imgViewResponse : LiveData<Resource<GetImageViewResponse?>> = MutableLiveData()
+
+    fun imageViewModel(livestock_id: String,c_type: String) = viewModelScope.launch {
+        println("On View model ")
+
+        imgViewResponse as MutableLiveData
+        imgViewResponse.value = repository.imageView(livestock_id, c_type)
+        println("On View model data........................................ ${imgViewResponse.value}")
+    }
+
+
 
 
 }

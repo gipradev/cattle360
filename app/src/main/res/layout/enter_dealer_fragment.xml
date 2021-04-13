@@ -92,7 +92,7 @@
                         android:id="@+id/nameEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,7 +113,8 @@
                         android:id="@+id/mobileEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -135,7 +136,7 @@
                         android:id="@+id/emailEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="number"
+                        android:inputType="textEmailAddress"
                         android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,7 +157,7 @@
                         android:id="@+id/addressEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:singleLine="true" />
+                        android:inputType="textPostalAddress"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -177,7 +178,8 @@
                         android:id="@+id/bankNameEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -198,7 +200,8 @@
                         android:id="@+id/branchNameEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -218,7 +221,8 @@
                         android:id="@+id/ifscNumberEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -239,7 +243,8 @@
                         android:id="@+id/accountNumberEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 

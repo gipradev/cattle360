@@ -6,12 +6,12 @@
 
         <variable
             name="cattleImageModel"
-            type="com.android.cattle360.data.demmyModels.CattleImageModel" />
+            type="com.android.cattle360.data.apiResponse.DataLivestockImageList" />
     </data>
 
     <ImageView
         android:id="@+id/bannerImage"
-        coilFullCurvedLoader="@{cattleImageModel.image}"
+        coilFullCurvedLoader="@{}"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/dimen_6_dp" />

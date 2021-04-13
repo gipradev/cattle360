@@ -69,22 +69,7 @@ class EnterCattleFragment :
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        state_value = arguments?.getString("state_value").toString()
-        district_value = arguments?.getString("district_value").toString()
-        area_value = arguments?.getString("area_value").toString()
-        pincode_value = this.arguments?.get("pincode_value").toString()
-
-        title_value = binding.titleEditText.text.toString()
-        category_value = binding.categoryEditText.text.toString()
-        weight_value = binding.weightEditText.text.toString()
-        age_value = binding.ageEditText.text.toString()
-        color_value = binding.colorEditText.text.toString()
-        biddingamount_value = binding.biddingAmountEditText.text.toString()
-        customerprice_value = binding.customerPriceEditText.text.toString()
-
-        println(pincode_value + "........." + area_value + "" + district_value + "" + state_value)
-        categoryLoading()
+  categoryLoading()
        addObserver()
 
         binding.cattlePreviousButton.setOnClickListener {
@@ -123,6 +108,24 @@ class EnterCattleFragment :
                     is Resource.Success -> {
                         if (it.value?.status.equals("1")) {
                             println("Success  : $it")
+
+
+
+                            state_value = arguments?.getString("state_value").toString()
+                            district_value = arguments?.getString("district_value").toString()
+                            area_value = arguments?.getString("area_value").toString()
+                            pincode_value = this.arguments?.get("pincode_value").toString()
+
+                            title_value = binding.titleEditText.text.toString()
+                            category_value = binding.categoryEditText.text.toString()
+                            weight_value = binding.weightEditText.text.toString()
+                            age_value = binding.ageEditText.text.toString()
+                            color_value = binding.colorEditText.text.toString()
+                            biddingamount_value = binding.biddingAmountEditText.text.toString()
+                            customerprice_value = binding.customerPriceEditText.text.toString()
+
+                            println(pincode_value + "........." + area_value + "" + district_value + "" + state_value)
+                            println(title_value + "-title" + category_value + "" + weight_value + "" + age_value + "" + biddingamount_value + "" + color_value + "" + customerprice_value)
 
                             account_no = it.value?.account_no.toString()
                             address= it.value?.address.toString()
@@ -209,7 +212,6 @@ class EnterCattleFragment :
                 args.putString("mobile", mobile)
                 args.putString("n_dealer_id", n_dealer_id)
                 enterCattleFragment.arguments = args
-
 
                 NavHostFragment.findNavController(this)
                     .navigate(R.id.action_enterCattleFragment_to_enterDealerFragment,args)

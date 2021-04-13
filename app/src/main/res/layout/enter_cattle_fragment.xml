@@ -72,6 +72,7 @@
                 android:id="@+id/titleEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
+                android:inputType="text"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,6 +110,7 @@
                 android:id="@+id/weightEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
+                android:inputType="number"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,6 +130,7 @@
                 android:id="@+id/ageEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
+                android:inputType="number"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -167,6 +170,7 @@
                 android:id="@+id/biddingAmountEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
+                android:inputType="number"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -186,6 +190,7 @@
                 android:id="@+id/customerPriceEditText"
                 android:layout_width="match_parent"
                 android:singleLine="true"
+                android:inputType="number"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
 

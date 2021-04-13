@@ -10,6 +10,7 @@ import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.CategoryFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
+import com.android.cattle360.ui.executive.addCattle.enterLocation.EnterLocationFragment
 
 class CategoryFragment : BaseFragment<CategoryViewModel,CategoryFragmentBinding,CategoryRepository>() ,
 CategoryAdaptor.CategoryOnClick{
@@ -50,12 +51,9 @@ CategoryAdaptor.CategoryOnClick{
                     println("Loading")
                 }
                 is Resource.Success -> {
-                    println(".............."+{it.value?.data!! })
+
                     if (it.value?.status.equals("1")) {
-
                         categoryAdapter.list = it.value?.data!!
-                        println(".............................list"+ it.value.data)
-
                     }
                     else
                     {
@@ -76,9 +74,16 @@ CategoryAdaptor.CategoryOnClick{
 
     }
 
-    override fun onClick() {
+    override fun onClick(category_id:String) {
+
+        val categoryFragment = CategoryFragment()
+        val args = Bundle()
+        args.putString("category_id", category_id)
+        println(".........category_id....................$category_id")
+        categoryFragment.arguments = args
+
         NavHostFragment.findNavController(this)
-            .navigate(R.id.action_homeFragment_to_categoryListFragment)
+            .navigate(R.id.action_homeFragment_to_categoryListFragment,args)
     }
 
 }

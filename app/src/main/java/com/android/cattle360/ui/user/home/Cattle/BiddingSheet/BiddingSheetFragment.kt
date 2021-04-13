@@ -69,13 +69,16 @@ class BiddingSheetFragment : BottomSheetDialogFragment() {
             override fun beforeTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (!text.isNullOrEmpty() && !text.isNullOrBlank()) binding.seekBar.progress =
-                    Integer.parseInt(text.trim().toString())
-                else binding.seekBar.progress = 0
+                if (!text.isNullOrEmpty() && !text.isNullOrBlank())
+                    binding.seekBar.progress = Integer.parseInt(text.trim().toString())
+                else
+                    binding.seekBar.progress = 0
             }
 
             override fun afterTextChanged(p0: Editable?) {
+              // binding.seekText.text?.clearSpans()
                 binding.seekText.setSelection(p0.toString().length)
+
             }
 
         })
@@ -99,3 +102,5 @@ class BiddingSheetFragment : BottomSheetDialogFragment() {
 
 
 }
+
+

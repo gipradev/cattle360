@@ -18,7 +18,9 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Cattle360"
-        tools:targetApi="m">
+        android:requestLegacyExternalStorage="true"
+        android:preserveLegacyExternalStorage="true"
+        >
 
 
         <activity android:name=".ui.executive.addCattle.AddCattleActivity"/>

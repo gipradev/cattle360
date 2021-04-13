@@ -10,6 +10,7 @@ import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.LiveStockFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
+import com.android.cattle360.ui.user.home.category.CategoryFragment
 
 class LiveStockFragment :
     BaseFragment<LiveStockViewModel, LiveStockFragmentBinding, LiveStockRepository>(),
@@ -71,9 +72,16 @@ class LiveStockFragment :
 
     }
 
-    override fun onItemClick() {
+    override fun onItemClick(livestock_id:String) {
+
+        val liveStockFragment = LiveStockFragment()
+        val args = Bundle()
+        args.putString("livestock_id", livestock_id)
+        println(".........livestock_id....................$livestock_id")
+        liveStockFragment.arguments = args
+
         NavHostFragment.findNavController(this)
-            .navigate(R.id.action_homeFragment_to_cattleFragment)
+            .navigate(R.id.action_homeFragment_to_cattleFragment,args)
     }
 
     override fun onBidClick() {

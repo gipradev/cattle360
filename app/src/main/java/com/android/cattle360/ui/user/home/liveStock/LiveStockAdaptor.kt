@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 
 class LiveStockAdaptor(private val clickListener: OnLiveStockClickEvent) :
     RecyclerView.Adapter<LiveStockAdaptor.CategoryViewHolder>() {
-
+lateinit var livestock_id:String
     var list: List<DataAllLivestock> = arrayListOf()
         set(value) {
             field = value
@@ -27,7 +27,7 @@ class LiveStockAdaptor(private val clickListener: OnLiveStockClickEvent) :
 
             binding.liveStockModel = liveStockModel
             val path:String= liveStockModel.c_image as String
-
+            livestock_id=liveStockModel.n_livestock_id
             if (path=="")
             {
                 Glide.with(itemView)
@@ -40,7 +40,7 @@ class LiveStockAdaptor(private val clickListener: OnLiveStockClickEvent) :
             }
 
             binding.cattleItem.setOnClickListener {
-                clickListener.onItemClick()
+                clickListener.onItemClick(livestock_id)
             }
 
             binding.bidButton.setOnClickListener {
@@ -69,7 +69,7 @@ class LiveStockAdaptor(private val clickListener: OnLiveStockClickEvent) :
     override fun getItemCount(): Int = list.size
 
     interface OnLiveStockClickEvent {
-        fun onItemClick()
+        fun onItemClick(livestock_id:String)
         fun onBidClick()
     }
 }

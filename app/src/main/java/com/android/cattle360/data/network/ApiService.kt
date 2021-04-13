@@ -5,14 +5,18 @@ import com.android.cattle360.data.util.ApiEndPoints.ALL_CATEGORY_LIST
 import com.android.cattle360.data.util.ApiEndPoints.ALL_LIVESTOCK_DETAILS
 import com.android.cattle360.data.util.ApiEndPoints.AREA_LIST
 import com.android.cattle360.data.util.ApiEndPoints.CATEGORY
+import com.android.cattle360.data.util.ApiEndPoints.CATEGORY_LIVESTOCK
 import com.android.cattle360.data.util.ApiEndPoints.CATTLE_IMAGE_DEFAULT_VIEW
 import com.android.cattle360.data.util.ApiEndPoints.CATTLE_IMAGE_UPLOAD
+import com.android.cattle360.data.util.ApiEndPoints.CATTLE_IMAGE_VIEW
 import com.android.cattle360.data.util.ApiEndPoints.CHANGE_PASSWORD
 import com.android.cattle360.data.util.ApiEndPoints.DISTRICT_LIST
 import com.android.cattle360.data.util.ApiEndPoints.EMPLOYEE_LOGIN
 import com.android.cattle360.data.util.ApiEndPoints.EMP_LOGIN_CHECK
 import com.android.cattle360.data.util.ApiEndPoints.INSERT_CATTLE
+import com.android.cattle360.data.util.ApiEndPoints.LIVESTOCK_DETAILS
 import com.android.cattle360.data.util.ApiEndPoints.LIVESTOCK_DETAIL_LIST
+import com.android.cattle360.data.util.ApiEndPoints.LIVESTOCK_IMAGE_LIST
 import com.android.cattle360.data.util.ApiEndPoints.LOGIN
 import com.android.cattle360.data.util.ApiEndPoints.LOGIN_CHECK
 import com.android.cattle360.data.util.ApiEndPoints.LOGOUT
@@ -88,7 +92,16 @@ interface ApiService {
                                        @Field("n_age") age_value: String,
                                        @Field("c_colour")color_value: String,
                                        @Field("n_bidding_price")biddingamount_value: String,
-                                       @Field("n_customer_price")customerprice_value: String): GetLogoutResponse
+                                       @Field("n_customer_price")customerprice_value: String,
+                                       @Field("dealer_id")dealer_id: String,
+                                       @Field("dealer_account_no")dealer_account_no: String,
+                                       @Field("dealer_address")dealer_address: String,
+                                       @Field("dealer_bank")dealer_bank: String,
+                                       @Field("dealer_branch")dealer_c_branch: String,
+                                       @Field("dealer_name")dealer_name: String,
+                                       @Field("dealer_email")dealer_email: String,
+                                       @Field("dealer_ifsc")dealer_ifsc: String,
+                                       @Field("dealer_mobile")dealer_mobile: String): GetInsertLivestockResponse
 
 
     @GET(STATE_LIST)
@@ -116,14 +129,17 @@ interface ApiService {
     suspend fun  imageUploadAPI(@Part("file\";filename=\"file.jpg\"") image: RequestBody,
                                 @Part("c_type") model_name: String) : GetImageUploadResponse
 
+    @FormUrlEncoded
+    @POST(CATTLE_IMAGE_VIEW)
+    suspend fun  imageViewAPI(@Field("livestock_id") livestock_id: String,
+                              @Field("c_type") c_type: String) : GetImageViewResponse
 
     @GET(CATTLE_IMAGE_DEFAULT_VIEW)
     suspend fun  imageListAPI() : GetImageListResponse
 
     @FormUrlEncoded
     @POST(LIVESTOCK_DETAIL_LIST)
-    suspend fun listLiveStockAPI(@Field("userid") userid: String) : GetLiveStockDetails
-
+    suspend fun listLiveStockAPI(@Field("userid") userid: String) : GetLiveStockDetailsResponse
 
     @GET(ALL_LIVESTOCK_DETAILS)
     suspend fun homeLivestockAPI() : GetAllLivestockResponse
@@ -131,5 +147,18 @@ interface ApiService {
 
     @GET(ALL_CATEGORY_LIST)
     suspend fun homeCategoryAPI() : GetAllCategoryResponse
+
+    @FormUrlEncoded
+    @POST(CATEGORY_LIVESTOCK)
+    suspend fun categoryAPI(@Field("category") category_id: String) : GetCategoryListResponse
+
+    @FormUrlEncoded
+    @POST(LIVESTOCK_DETAILS)
+    suspend fun livestockAPI(@Field("livestock_id") livestock_id: String) : GetLiveStockDetailedViewResponse
+
+    @FormUrlEncoded
+    @POST(LIVESTOCK_IMAGE_LIST)
+    suspend fun imagelivestockAPI(@Field("livestock_id") livestock_id: String) : GetLivestockImageListResponse
+
 
 }

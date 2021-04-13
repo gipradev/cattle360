@@ -9,4 +9,8 @@ class CategoryRepository(private var api : ApiService?= null) : BaseRepository()
         api?.homeCategoryAPI()
     }
 
+    suspend fun CategoryList(category_id: String) = safeApiCall {
+        api?.categoryAPI(category_id)
+    }
+
 }

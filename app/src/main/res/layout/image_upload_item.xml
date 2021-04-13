@@ -7,6 +7,9 @@
         <variable
             name="uploadModel"
             type="com.android.cattle360.data.apiResponse.DataImageDefaultView" />
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="com.android.cattle360.data.apiResponse.GetImageViewResponse" />-->
 
     </data>
 
@@ -30,6 +33,7 @@
         <ImageView
             android:id="@+id/modelImage"
             coilFullCurvedLoader="@{}"
+            imageUrl="@{uploadModel.path}"
             android:layout_width="match_parent"
             android:src="@drawable/cow"
             android:layout_margin="@dimen/dimen_8_dp"

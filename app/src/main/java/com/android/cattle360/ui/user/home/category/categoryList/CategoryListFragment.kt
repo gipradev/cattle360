@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.android.cattle360.data.network.ApiService
+import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.CategoryListFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.user.home.category.CategoryRepository
@@ -30,7 +32,7 @@ class CategoryListFragment :
     }
 
     override fun getFragmentRepository(): CategoryRepository {
-        return CategoryRepository()
+        return CategoryRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
 
 
@@ -38,14 +40,40 @@ class CategoryListFragment :
         super.onActivityCreated(savedInstanceState)
 
 
-
+        val category_id =arguments?.getString("category_id")
+println("passed value cat id.................."+category_id)
         binding.categoryRecyclerview.adapter = liveStockAdaptor
-        viewModel.getCategoryList()
+        viewModel.getCategoryList(category_id.toString())
 
         viewModel.categoryResponse.observe(viewLifecycleOwner, Observer {
 
-            binding.categoryModel = it
-            liveStockAdaptor.list = it.categoryItem
+
+//            liveStockAdaptor.list = it.categoryItem
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading")
+                }
+                is Resource.Success -> {
+                    binding.categoryModel = it.value
+                    println(".............."+{it.value?.data!! })
+                    if (it.value?.status.equals("1")) {
+
+                        liveStockAdaptor.list = it.value?.data!!
+                        println(".............................list"+ it.value.data)
+
+                    }
+                    else
+                    {
+                        println(".............................no data found or error")
+                    }
+                }
+
+                is Resource.Failure -> {
+                    println("Failure  : $it")
+                }
+
+            }
+
         })
 
 

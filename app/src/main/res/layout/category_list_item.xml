@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="model"
-            type="com.android.cattle360.data.demmyModels.CategoryLiveStockModel" />
-
+            type="com.android.cattle360.data.apiResponse.DataCategoryList" />
     </data>
 
 
@@ -22,7 +20,7 @@
 
         <ImageView
             android:id="@+id/imageView"
-            coilFullCurvedLoader="@{model.image}"
+            coilFullCurvedLoader="@{}"
             android:layout_width="@dimen/dimen_160_dp"
             android:layout_height="@dimen/dimen_160_dp"
             android:layout_margin="@dimen/dimen_8_dp"
@@ -48,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{model.title}"
+            android:text="@{model.c_title}"
             android:textColor="?attr/colorOnSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -60,7 +58,7 @@
             android:layout_width="@dimen/dimen_0_dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_8_dp"
-            android:text="@{model.subTitle}"
+            android:text="@{model.c_description}"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="@dimen/font_10_sp"
             app:layout_constraintEnd_toEndOf="@+id/materialTextView8"

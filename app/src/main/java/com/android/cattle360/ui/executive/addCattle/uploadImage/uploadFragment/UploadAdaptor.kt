@@ -15,27 +15,32 @@ import com.bumptech.glide.Glide
 class UploadAdaptor(private val listener : OnUploadClickEvent) :
     RecyclerView.Adapter<UploadAdaptor.CategoryViewHolder>() {
 
+    lateinit var type:String
     var list: List<DataImageDefaultView> = arrayListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
+
+
     inner class CategoryViewHolder(var binding: ImageUploadItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun setModel(uploadModel: DataImageDefaultView) {
-
-            binding.uploadModel = uploadModel
-          val path:String=uploadModel.path
-          Glide.with(itemView)
-           .load(path)
-              .into(binding.modelImage)
+            //var type:String=binding.cameraButton.text.toString()
+             binding.uploadModel = uploadModel
+             val path: String = uploadModel.path
+             Glide.with(itemView)
+                 .load(path)
+                 .into(binding.modelImage)
 
             binding.cameraButton.setOnClickListener {
-                listener.onCameraClick(binding.modelImage , adapterPosition)
+                listener.onCameraClick(binding.modelImage, adapterPosition)
 
             }
+
+
 
         }
 
@@ -55,7 +60,6 @@ class UploadAdaptor(private val listener : OnUploadClickEvent) :
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         holder.setModel(list[position])
-
     }
 
     override fun getItemCount(): Int = list.size

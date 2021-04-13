@@ -3,8 +3,10 @@ package com.android.cattle360.ui.executive.addCattle.uploadImage.uploadFragment
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -12,6 +14,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.provider.MediaStore.MediaColumns
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -40,8 +43,9 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
 
     private val REQUEST_IMAGE_CAPTURE: Int = 300
     private val PERMISSION_REQUEST_CODE: Int = 200
+    private val PICK_IMAGE_CAPTURE: Int = 1
     lateinit var imageFilePath: String
-
+    lateinit var c_type: String
     lateinit var imageView: ImageView
     var position: Int? = null
 
@@ -120,11 +124,10 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
                     if (it.value?.status.equals("1")) {
 
                         uploadAdaptor.list = it.value?.data!!
-                        println(".............................list"+ it.value.data)
 
-                    }
-                    else
-                    {
+                        println(".............................list" + it.value.data)
+
+                    } else {
                         println(".............................no data found or error")
                     }
                 }
@@ -134,11 +137,38 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
                 }
 
             }
-
-
         })
 
-        requestPermission()
+        val pref = requireContext().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val livestock_idsp = pref.getString("livestock_id", "")
+        println(livestock_idsp)
+
+       // var livestock_id:String="154"
+
+        viewModel.imageViewModel(livestock_idsp.toString(), "tail")
+        viewModel.imgViewResponse.observe(viewLifecycleOwner, Observer {
+
+            when (it) {
+                is Resource.Loading -> {
+                    println("Loading ")
+                }
+                is Resource.Success -> {
+                    println(it)
+                    if (it.value?.status.equals("1")) {
+
+                        println("success view")
+
+                    } else {
+                        Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                is Resource.Failure -> {
+                    println("Failure  : $it")
+                }
+
+            }
+        })
+     requestPermission()
 
     }
 
@@ -194,7 +224,7 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
 
         this.imageView = modelImage
         this.position = adapterPosition
-
+       // this.c_type = type
         if (hasNoPermissions()) requestPermission()
         else takePicture()
     }
@@ -203,10 +233,14 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
     private fun takePicture() {
         try {
 
-            val intent: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             val file: File = createImageFile()
 
-            val uri: Uri = FileProvider.getUriForFile(requireActivity(), "com.android.cattle360", file)
+            val uri: Uri = FileProvider.getUriForFile(
+                requireActivity(),
+                "com.android.cattle360",
+                file
+            )
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
             startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
 
@@ -231,14 +265,12 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> {
-                if (resultCode == Activity.RESULT_OK && data != null) {
-                 imageView.setImageBitmap(data.extras!!.get("data") as Bitmap)
-
-                }
+//                if (resultCode == Activity.RESULT_OK && data != null) {
+//        //            imageView.setImageBitmap(data.extras!!.get("data") as Bitmap)
+//                }
                 if (resultCode == Activity.RESULT_OK) {
 
                     imageView.setImageBitmap(setScaledBitmap())
@@ -251,6 +283,7 @@ class  UploadFragment : BaseFragment<UploadViewModel, UploadFragmentBinding, Add
                     .show()
             }
         }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     fun setScaledBitmap(): Bitmap {
