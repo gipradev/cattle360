@@ -97,7 +97,7 @@ class EnterCattleFragment :
         builder.setPositiveButton("Verify") { _, _ ->
             println("c................................................. ")
          //   println("Loading" + editText.text.toString())
-            viewModel.verifyMobile("1234567890")
+            viewModel.verifyMobile(editText.text.toString())
 
             println("c......dss........................ ")
             viewModel.verifyMobileResponse.observe(viewLifecycleOwner, Observer {
@@ -202,14 +202,6 @@ class EnterCattleFragment :
                 args.putString("biddingamount_value", biddingamount_value)
                 args.putString("customerprice_value", customerprice_value)
 
-                args.putString("account_no", account_no)
-                args.putString("address", address)
-                args.putString("bank", bank)
-                args.putString("c_branch", c_branch)
-                args.putString("dealer_name", dealer_name)
-                args.putString("email", email)
-                args.putString("ifsc", ifsc)
-                args.putString("mobile", mobile)
                 args.putString("n_dealer_id", n_dealer_id)
                 enterCattleFragment.arguments = args
 

@@ -11,14 +11,16 @@ import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.EnterDealerFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
+import com.android.cattle360.ui.executive.addCattle.enterCattle.EnterCattleFragment
 import com.google.android.material.snackbar.Snackbar
 
 
   class EnterDealerFragment :
     BaseFragment<EnterDealerViewModel, EnterDealerFragmentBinding, AddCattleRepository>() {
     var invalid: Boolean = false
+      val args=Bundle()
 
-    companion object {
+      companion object {
         fun newInstance() = EnterDealerFragment()
     }
 
@@ -84,11 +86,6 @@ import com.google.android.material.snackbar.Snackbar
                 +biddingamount_value.toString()+",,,"+customerprice_value.toString())
 
 
-
-
-
-
-
         binding.cattlePreviousButton.setOnClickListener {
 
             requireActivity().onBackPressed()
@@ -97,7 +94,6 @@ import com.google.android.material.snackbar.Snackbar
 
         binding.cattleNextButton.setOnClickListener {
             //passValuesWithValidation()
-
 
             viewModel.insertCattleDetails(pincode_value.toString(),area_value.toString(),district_value.toString(),state_value.toString(),title_value.toString()
                 ,category_value.toString(),weight_value.toString(),age_value.toString(),color_value.toString(),biddingamount_value.toString(),customerprice_value.toString(),
@@ -115,12 +111,20 @@ import com.google.android.material.snackbar.Snackbar
                     is Resource.Success -> {
                         if (it.value?.status.equals("1")) {
                             println("Success 1 : ${it}")
+                            var livestock_id=it.value?.livestock_id.toString()
+                            val enterDealerFragment = EnterDealerFragment()
+                            //args = Bundle()
+                            println(".........................live............................................"+livestock_id)
+                            args.putString("livestock_id", livestock_id)
+                            enterDealerFragment.arguments = args
+
                             val sharedPreference = requireContext().getSharedPreferences(
                                 "pref", Context.MODE_PRIVATE)
                             val editor = sharedPreference.edit()
                             editor.putString("livestock_id", it.value?.livestock_id.toString())
                             println("livestock id...${it.value?.livestock_id}")
                             editor.apply()
+                            editor.commit()
 
                             Snackbar.make(
                                 requireView(),
@@ -146,7 +150,7 @@ import com.google.android.material.snackbar.Snackbar
 
 
             NavHostFragment.findNavController(this)
-                .navigate(R.id.action_enterDealerFragment_to_cattleImageFragment)
+                .navigate(R.id.action_enterDealerFragment_to_cattleImageFragment,args)
         }
 
 

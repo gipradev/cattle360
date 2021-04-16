@@ -54,6 +54,7 @@ fun coilCurvedLoader(view: ImageView, image: Int) {
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String) { // This methods should not have any return type, = declaration would make it return that object declaration.
     Glide.with(view.context).load(url).into(view)
+
 }
 
 
