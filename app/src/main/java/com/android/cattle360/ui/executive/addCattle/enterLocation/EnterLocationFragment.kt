@@ -98,7 +98,7 @@ class EnterLocationFragment : BaseFragment<EnterLocationViewModel, EnterLocation
                 is Resource.Success -> {
                     if (it.value?.status.equals("1")) {
 
-                        var data: List<DataState>? = it.value?.data
+                        val data: List<DataState>? = it.value?.data
 
                         stateList = mutableListOf<String>()
 
