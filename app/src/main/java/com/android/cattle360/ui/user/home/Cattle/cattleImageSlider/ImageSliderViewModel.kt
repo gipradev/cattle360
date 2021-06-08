@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 
 class ImageSliderViewModel (private val  repository: CattleRepository): BaseViewModel() {
 
-
     val cattleImageResponse: LiveData<Resource<GetLivestockImageListResponse?>> = MutableLiveData()
 
     fun getCattleImageData(livestock_id:String) = viewModelScope.launch {
@@ -21,6 +20,5 @@ class ImageSliderViewModel (private val  repository: CattleRepository): BaseView
         //cattleResponse.value = cattleModelSupplier.cattle
         cattleImageResponse.value = repository.ImageLivestockList(livestock_id)
     }
-
 
 }

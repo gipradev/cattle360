@@ -13,6 +13,7 @@ import com.android.cattle360.data.util.ApiEndPoints.CHANGE_PASSWORD
 import com.android.cattle360.data.util.ApiEndPoints.DISTRICT_LIST
 import com.android.cattle360.data.util.ApiEndPoints.EMPLOYEE_LOGIN
 import com.android.cattle360.data.util.ApiEndPoints.EMP_LOGIN_CHECK
+import com.android.cattle360.data.util.ApiEndPoints.INSERT_BIDDING
 import com.android.cattle360.data.util.ApiEndPoints.INSERT_CATTLE
 import com.android.cattle360.data.util.ApiEndPoints.LIVESTOCK_DETAILS
 import com.android.cattle360.data.util.ApiEndPoints.LIVESTOCK_DETAIL_LIST
@@ -160,5 +161,11 @@ interface ApiService {
     @POST(LIVESTOCK_IMAGE_LIST)
     suspend fun imagelivestockAPI(@Field("livestock_id") livestock_id: String) : GetLivestockImageListResponse
 
+
+    @FormUrlEncoded
+    @POST(INSERT_BIDDING)
+    suspend fun insertBidAPI(@Field("n_bid_amount") bid_amount: String,
+                             @Field("pn_id") user_id: String,
+                             @Field("hid_livestock") livestock_id: String) : GetInsertBidResponse
 
 }

@@ -29,8 +29,8 @@
             android:layout_height="@dimen/dimen_200_dp"
             app:layout_constraintBottom_toTopOf="@+id/checkOutFab"
             app:layout_constraintEnd_toEndOf="@+id/checkOutFab"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/checkOutFab" />
-
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/checkOutFab"

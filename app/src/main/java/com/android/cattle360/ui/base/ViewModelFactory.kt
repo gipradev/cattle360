@@ -15,7 +15,6 @@ import com.android.cattle360.ui.appStart.searchLocation.SearchLocationViewModel
 import com.android.cattle360.ui.appStart.splash.SplashRepository
 import com.android.cattle360.ui.appStart.splash.SplashViewModel
 import com.android.cattle360.ui.executive.addCattle.AddCattleRepository
-import com.android.cattle360.ui.executive.addCattle.AddCattleViewModel
 import com.android.cattle360.ui.executive.addCattle.enterCattle.EnterCattleViewModel
 import com.android.cattle360.ui.executive.addCattle.enterDealerDetails.EnterDealerViewModel
 import com.android.cattle360.ui.executive.addCattle.enterLocation.EnterLocationViewModel
@@ -28,8 +27,10 @@ import com.android.cattle360.ui.executive.exeProfile.ExecutiveProfileRepository
 import com.android.cattle360.ui.executive.exeProfile.ExecutiveProfileViewModel
 import com.android.cattle360.ui.user.bidding.BiddingRepository
 import com.android.cattle360.ui.user.bidding.BiddingViewModel
+import com.android.cattle360.ui.user.bidding.live.LiveBiddingViewModel
 import com.android.cattle360.ui.user.history.BiddingHistoryViewModel
-import com.android.cattle360.ui.user.history.totalFragment.TotalAmountViewModel
+import com.android.cattle360.ui.user.history.biddingHistoryList.BiddingHistoryListViewModel
+import com.android.cattle360.ui.user.home.Cattle.BiddingSheet.BiddingSheetViewModel
 import com.android.cattle360.ui.user.home.Cattle.CattleRepository
 import com.android.cattle360.ui.user.home.Cattle.CattleViewModel
 import com.android.cattle360.ui.user.home.Cattle.cattleImageSlider.ImageSliderViewModel
@@ -52,7 +53,7 @@ import com.android.cattle360.ui.user.profile.wallet.WalletRepository
 import com.android.cattle360.ui.user.profile.wallet.WalletViewModel
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory(
+class     ViewModelFactory(
     private val repository: BaseRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
@@ -142,7 +143,15 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(ImageSliderViewModel::class.java) -> ImageSliderViewModel(
                 repository as CattleRepository
             ) as T
-
+            modelClass.isAssignableFrom(LiveBiddingViewModel::class.java) -> LiveBiddingViewModel(
+                repository as BiddingRepository
+            ) as T
+            modelClass.isAssignableFrom( BiddingHistoryListViewModel::class.java) ->  BiddingHistoryListViewModel(
+                repository as BiddingRepository
+            ) as T
+            modelClass.isAssignableFrom( BiddingSheetViewModel::class.java) ->  BiddingSheetViewModel(
+                repository as CattleRepository
+            ) as T
             else -> throw IllegalArgumentException("ViewModelClass Not Found")
         }
     }

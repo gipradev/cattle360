@@ -1,4 +1,4 @@
-package com.android.cattle360.ui.user.home.liveStock
+ package com.android.cattle360.ui.user.home.liveStock
 
 import android.os.Bundle
 import android.view.LayoutInflater

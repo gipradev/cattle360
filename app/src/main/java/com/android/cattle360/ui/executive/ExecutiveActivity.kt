@@ -10,11 +10,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.cattle360.R
 import com.android.cattle360.databinding.ActivityExecutiveBinding
 import com.android.cattle360.ui.base.BaseActivity
-import com.android.cattle360.ui.base.BaseRepository
 import com.android.cattle360.ui.executive.addCattle.AddCattleActivity
-import com.android.cattle360.ui.executive.exeHome.ExecutiveHomeViewModel
 
-class ExecutiveActivity : BaseActivity<ExecutiveActivityViewModel,ActivityExecutiveBinding>() {
+class ExecutiveActivity : BaseActivity<ExecutiveActivityViewModel, ActivityExecutiveBinding>() {
 
     private lateinit var navController: NavController
 
@@ -46,5 +44,10 @@ class ExecutiveActivity : BaseActivity<ExecutiveActivityViewModel,ActivityExecut
 //
 //        return ExecutiveRepository()
 //    }
-
+override fun onBackPressed() {
+    val startMain = Intent(Intent.ACTION_MAIN)
+    startMain.addCategory(Intent.CATEGORY_HOME)
+    startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    startActivity(startMain)
+}
 }

@@ -4,12 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="cattleDataModel"
             type="com.android.cattle360.data.apiResponse.GetLiveStockDetailedViewResponse" />
-
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="italic"
+            android:hint="XXXXXX"
             android:text="@{cattleDataModel.category}"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/cattleName" />
@@ -71,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_8_dp"
+            android:hint="XXXXXXXX XXXXXXXXXXX\nXXXXXXXXXX"
             android:text="@{`₹ `+cattleDataModel.n_min_bidding_price}"
             android:textColor="?attr/colorPrimary"
             android:textSize="@dimen/font_20_sp"
@@ -90,6 +89,51 @@
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/bidAmount" />
 
+        <ProgressBar
+            android:id="@+id/barTimer"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:textColor="@color/green_apple"
+            android:textAlignment="center"
+            android:backgroundTint="@color/cardview_shadow_end_color"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/cattleDes"/>
+
+        <!--        <Chronometer-->
+<!--            android:id="@+id/view_timer"-->
+<!--            tools:targetApi="24"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="35sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/green_apple"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline7"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/guideline6"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/cattleDes"/>-->
+
+        <TextView
+            android:id="@+id/textView_timerview_time"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:alpha="0.6"
+            android:background="@drawable/circleshape_timerview"
+            android:gravity="center"
+            android:text="00:00"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/barTimer"
+            app:layout_constraintEnd_toEndOf="@+id/barTimer"
+            app:layout_constraintStart_toStartOf="@+id/barTimer"
+            app:layout_constraintTop_toTopOf="@+id/barTimer" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/startBiddingButton"

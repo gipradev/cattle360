@@ -1,10 +1,21 @@
 package com.android.cattle360.ui.user.home.Cattle.BiddingSheet
 
 import androidx.databinding.ObservableField
-import com.android.cattle360.data.demmyModels.BiddingModelViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.android.cattle360.data.apiResponse.GetInsertBidResponse
+import com.android.cattle360.data.apiResponse.GetLiveStockDetailedViewResponse
+import com.android.cattle360.data.demmyModels. BiddingModelViewModel
+import com.android.cattle360.data.network.ApiService
+import com.android.cattle360.data.network.Resource
 import com.android.cattle360.ui.base.BaseViewModel
+import com.android.cattle360.ui.user.home.Cattle.CattleRepository
+import kotlinx.coroutines.launch
 
-class BiddingSheetViewModel : BaseViewModel() {
+
+class BiddingSheetViewModel(private val  repository: CattleRepository) : ViewModel() {
 
     var showSeekBar: ObservableField<Boolean> = ObservableField()
     var seekValue: ObservableField<Boolean> = ObservableField()
@@ -12,6 +23,17 @@ class BiddingSheetViewModel : BaseViewModel() {
     var seekSubmitButton: ObservableField<Boolean> = ObservableField()
     var enterSubmitButton: ObservableField<Boolean> = ObservableField()
     var biddingViewModel: ObservableField<BiddingModelViewModel> = ObservableField()
+
+    val getbidamountResponse: LiveData<Resource<GetInsertBidResponse?>> = MutableLiveData()
+
+    fun getBid(bid_amount: String,
+               user_id: String,
+               livestock_id: String) = viewModelScope.launch {
+        getbidamountResponse as MutableLiveData
+        getbidamountResponse.value = Resource.Loading
+        //cattleResponse.value = cattleModelSupplier.cattle
+        getbidamountResponse.value = repository.InsertBid(bid_amount,user_id,livestock_id)
+    }
 
     /**
      * Method to add header data

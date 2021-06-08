@@ -1,4 +1,4 @@
-package com.android.cattle360.ui.user
+       package com.android.cattle360.ui.user
 
 import android.content.res.Configuration
 import android.os.Bundle

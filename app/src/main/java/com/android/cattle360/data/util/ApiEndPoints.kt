@@ -21,9 +21,11 @@ object ApiEndPoints {
     const val CATTLE_IMAGE_VIEW="Cattle_image_view"
     const val CATTLE_IMAGE_DEFAULT_VIEW= "Cattle_image_default_view"
     const val LIVESTOCK_DETAIL_LIST= "Livestock_details_list"
-    const val ALL_LIVESTOCK_DETAILS= "All_livestock_details"
+    //const val ALL_LIVESTOCK_DETAILS= "All_livestock_details"
+    const val ALL_LIVESTOCK_DETAILS= "Live_stock_view"
     const val ALL_CATEGORY_LIST= "All_category_list"
     const val CATEGORY_LIVESTOCK= "Category_livestock"
     const val LIVESTOCK_DETAILS= "Livestock_details"
     const val LIVESTOCK_IMAGE_LIST= "Livestock_image_list"
+    const val INSERT_BIDDING= "Insert_bidding"
 }

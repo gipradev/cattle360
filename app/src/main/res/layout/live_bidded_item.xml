@@ -4,13 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="liveBidModel"
             type="com.android.cattle360.data.demmyModels.LiveBidModel" />
-
     </data>
-
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -18,7 +15,6 @@
         app:cardUseCompatPadding="true"
         app:cardCornerRadius="@dimen/dimen_8_dp"
         android:clickable="true">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cattleItem"

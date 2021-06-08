@@ -59,10 +59,10 @@ println("..............shhdg....................................................
 
         if (it.value?.status.equals("1")) {
 
-        //imageiist = it.value?.data!!
+        imageiist = it.value?.data!!
         binding.imageViewPager.adapter = imageSliderAdapter
        //imageSliderAdapter.list = imageiist
-        imageSliderAdapter.list = it.value?.data!!
+        imageSliderAdapter.list = imageiist
         binding.indicator.setViewPager(binding.imageViewPager)
         imageSliderAdapter.registerAdapterDataObserver(binding.indicator.adapterDataObserver);
 

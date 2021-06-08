@@ -1,6 +1,5 @@
 package com.android.cattle360.ui.base
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

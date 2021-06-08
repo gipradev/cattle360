@@ -8,7 +8,9 @@ import android.se.omapi.Session
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.android.cattle360.R
 import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.Resource
@@ -17,6 +19,7 @@ import com.android.cattle360.ui.appStart.MainActivity
 import com.android.cattle360.ui.base.BaseFragment
 import com.google.android.material.snackbar.Snackbar
 import java.lang.System.exit
+import kotlin.system.exitProcess
 
 class ProfileFragment : BaseFragment<ProfileViewModel, ProfileFragmentBinding, ProfileRepository>(),
     View.OnClickListener {
@@ -100,10 +103,9 @@ class ProfileFragment : BaseFragment<ProfileViewModel, ProfileFragmentBinding, P
                                     .edit()
                                     .clear()
                                     .apply()
-                                exit(0)
-
-//                                val intent = Intent(context, MainActivity::class.java)
-//                                startActivity(intent)
+                            //    exitProcess(0)
+                            val intent = Intent(context, MainActivity::class.java)
+                            startActivity(intent)
 
                             } else if (it.value?.status.equals("0")) {
 

@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8_dp"
             android:layout_marginTop="@dimen/dimen_4_dp"
-            android:text="@{liveStockModel.c_description}"
+            android:text="@{liveStockModel.n_min_bidding_price }"
             android:textColor="?attr/colorOnPrimary"
             android:textSize="@dimen/font_10_sp"
             app:layout_constraintBottom_toTopOf="@+id/bidButton"
