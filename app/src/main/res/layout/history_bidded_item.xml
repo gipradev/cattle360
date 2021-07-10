@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="liveBidModel"
-            type="com.android.cattle360.data.demmyModels.LiveBidModel" />
-
+            name="liveHistoryBidModel"
+            type="com.android.cattle360.data.apiResponse.DataBiddingHistory" />
     </data>
 
 
@@ -28,7 +26,7 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            coilFullCurvedLoader="@{liveBidModel.image}"
+            coilFullCurvedLoader="@{}"
             android:layout_width="@dimen/dimen_160_dp"
             android:layout_height="@dimen/dimen_140_dp"
             android:scaleType="centerCrop"
@@ -43,7 +41,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/font_20_sp"
             android:layout_marginStart="@dimen/dimen_8_dp"
-            android:text="@{liveBidModel.title}"
+            android:text="@{liveHistoryBidModel.livestock_title}"
             android:textColor="?attr/colorOnSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -55,7 +53,7 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_8_dp"
-            android:text="@{liveBidModel.subTitle}"
+            android:text="@{liveHistoryBidModel.status}"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="@dimen/font_16_sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,10 +65,10 @@
             android:id="@+id/bidButton"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
-            android:layout_height="@dimen/dimen_40_dp"
+            android:layout_height="wrap_content"
             android:autoSizeTextType="uniform"
             android:clickable="false"
-            android:text="@{`Bid amount - ₹ `+liveBidModel.bidAmount}"
+            android:text="@{`Bid amount - ₹ `+liveHistoryBidModel.bidamount}"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintEnd_toEndOf="@+id/subTitle"

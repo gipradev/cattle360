@@ -1,6 +1,8 @@
  package com.android.cattle360.ui.user.home.Cattle.BiddingSheet
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -14,6 +16,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.android.cattle360.R
+import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.data.network.RemoteDataSource
 import com.android.cattle360.data.network.Resource
 import com.android.cattle360.databinding.BiddingSheetFragmentBinding
@@ -31,7 +34,7 @@ import java.util.*
      private lateinit var countDownTimer: CountDownTimer
     private lateinit var binding: BiddingSheetFragmentBinding
     private lateinit var viewModel: BiddingSheetViewModel
-  private lateinit var remoteDataSource:RemoteDataSource
+
 
      companion object {
         fun newInstance() = BiddingSheetFragment()
@@ -52,7 +55,7 @@ import java.util.*
             false
         )
         println(".............................viewmodel")
-        val factory = ViewModelFactory(CattleRepository())
+        val factory = ViewModelFactory(CattleRepository(RemoteDataSource().buildApi(ApiService::class.java)))
         viewModel = ViewModelProvider(this, factory).get(BiddingSheetViewModel::class.java)
         return binding.root
     }
@@ -60,9 +63,10 @@ import java.util.*
     @SuppressLint("SetTextI18n")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        val livestock_id = arguments?.getString("livestock_id")
         startTimer()
-
+        val pref: SharedPreferences = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val userid = pref.getString("userid", "")
         binding.seekText.setText("10000")
         binding.seekBar.max = 100000
         binding.seekBar.progress = 10000
@@ -108,9 +112,10 @@ import java.util.*
         binding.checkOutButton.setOnClickListener {
 
 
-            viewModel.getBid("200", "49", "4")
+            viewModel.getBid( binding.seekText.text.toString(), 49.toString(), livestock_id.toString())
             viewModel.getbidamountResponse.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
+                println("...................................................it"+it)
                 when (it) {
                     is Resource.Loading -> {
                         println("Loading")
@@ -120,17 +125,17 @@ import java.util.*
                         if (it.value?.status.equals("1")) {
                             //    binding.cattleDataModel = it.value
                             startTimer()
-                            Snackbar.make(
-                                requireView(),
+                            Toast.makeText(
+                               requireContext(),
                                 "${it.value?.message}",
-                                Snackbar.LENGTH_LONG
+                                Toast.LENGTH_LONG
                             ).show()
                             NavHostFragment.findNavController(this)
                                 .navigate(R.id.action_biddingSheetFragment_to_cattleCartFragment)
                         } else {
                             Toast.makeText(
                                requireContext(),
-                                "${it.value?.message},d_date_time=${it.value?.d_date_time}",
+                                "${it.value?.message}",
                                 Toast.LENGTH_LONG
                             ).show()
                             println("..........................else msg..${it.value?.message}.")
@@ -160,7 +165,7 @@ import java.util.*
         val endDate = format1.parse(endDateDay)
         val startDate = format1.parse(startDateDay)
         //milliseconds
-        var different =  endDate.time - startDate.time
+        val different =  endDate.time - startDate.time
         println("diffrnt........................................." + different)
         countDownTimer = object : CountDownTimer(different, 1000) {
 

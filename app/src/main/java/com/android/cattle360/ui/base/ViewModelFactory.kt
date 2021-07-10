@@ -30,6 +30,7 @@ import com.android.cattle360.ui.user.bidding.BiddingViewModel
 import com.android.cattle360.ui.user.bidding.live.LiveBiddingViewModel
 import com.android.cattle360.ui.user.history.BiddingHistoryViewModel
 import com.android.cattle360.ui.user.history.biddingHistoryList.BiddingHistoryListViewModel
+import com.android.cattle360.ui.user.history.totalFragment.TotalAmountViewModel
 import com.android.cattle360.ui.user.home.Cattle.BiddingSheet.BiddingSheetViewModel
 import com.android.cattle360.ui.user.home.Cattle.CattleRepository
 import com.android.cattle360.ui.user.home.Cattle.CattleViewModel
@@ -151,6 +152,9 @@ class     ViewModelFactory(
             ) as T
             modelClass.isAssignableFrom( BiddingSheetViewModel::class.java) ->  BiddingSheetViewModel(
                 repository as CattleRepository
+            ) as T
+            modelClass.isAssignableFrom( TotalAmountViewModel::class.java) ->  TotalAmountViewModel(
+                repository as BiddingRepository
             ) as T
             else -> throw IllegalArgumentException("ViewModelClass Not Found")
         }

@@ -4,13 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="walletModel"
             type="com.android.cattle360.data.demmyModels.WalletModel" />
-
     </data>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -48,7 +45,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/dimen_10_dp"
             app:cardElevation="@dimen/dimen_6_dp"
@@ -64,37 +61,74 @@
                 android:layout_margin="@dimen/dimen_8_dp"
                 android:backgroundTint="?attr/colorOnPrimary">
 
+
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="@dimen/dimen_5_dp"
                     android:text="Balance"
                     android:textSize="@dimen/font_16_sp"
-                    app:layout_constraintBottom_toTopOf="@+id/materialTextView1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toTopOf="@id/materialTextView1"
+                    />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/materialTextView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="@dimen/dimen_5_dp"
                     android:autoSizeTextType="uniform"
                     android:text="@{`₹ `+ walletModel.totalAmount}"
                     android:textColor="?attr/colorPrimary"
-                    android:textSize="@dimen/font_30_sp"
-                    android:layout_marginTop="@dimen/dimen_8_dp"
+                    android:textSize="@dimen/font_50_sp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/entermoneyinput"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView1" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/entermoneyinput"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="?actionBarSize"
+                    android:layout_margin="@dimen/dimen_10_dp"
+                    app:layout_constraintEnd_toStartOf="@+id/addMoneyButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:startIconDrawable="@drawable/ic_rupee_indian"
+                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/materialTextView1"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/textView1"
-                    />
+                    tools:ignore="MissingConstraints">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/enterAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Enter Amount"
+                        android:layout_gravity="center"
+                        android:inputType="numberDecimal" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/addMoneyButton"
                     android:layout_width="wrap_content"
+                    android:layout_margin="@dimen/dimen_10_dp"
                     android:layout_height="?actionBarSize"
-                    android:layout_marginTop="@dimen/dimen_16_dp"
+                    android:layout_marginEnd="20dp"
                     android:text="Add Money"
                     android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                   />
+
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

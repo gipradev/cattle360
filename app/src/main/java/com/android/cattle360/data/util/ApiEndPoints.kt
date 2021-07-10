@@ -28,4 +28,8 @@ object ApiEndPoints {
     const val LIVESTOCK_DETAILS= "Livestock_details"
     const val LIVESTOCK_IMAGE_LIST= "Livestock_image_list"
     const val INSERT_BIDDING= "Insert_bidding"
+    const val  BIDDING_LIST= "Bidding_list"
+    const val BIDDING_HISTORY= "Bidding_history"
+    const val WINNER_LIST= "Winner_list"
+    const val PAYTM= "Paytm"
 }

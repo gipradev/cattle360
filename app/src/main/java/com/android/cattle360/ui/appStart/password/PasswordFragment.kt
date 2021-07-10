@@ -2,6 +2,7 @@ package com.android.cattle360.ui.appStart.password
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ import java.util.Observer
 
 
 class PasswordFragment : BaseFragment<PasswordViewModel, PasswordFragmentBinding, PasswordRepository>() {
-
+    lateinit var sharedPreference :SharedPreferences
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -95,11 +96,16 @@ else
                 }
                 is Resource.Success -> {
 
-                    var s=it.value?.userid
 
-                    println("${it.value?.status}${it.value?.usertype} ")
+                    println("status:${it.value?.status} \n usertype:${it.value?.usertype} ")
                     if (it.value?.status.equals("1") && it.value?.usertype.equals("customer")) {
                         println("Success  : ${it}")
+
+                        val userid=it.value?.userid
+                        println("userid_logined_customer: $userid")
+                        val editor = sharedPreference.edit()
+                        editor?.putString("userid", userid)
+                        editor?.commit()
                         Snackbar.make(
                             requireView(),
                             "${it.value?.message}",
@@ -126,5 +132,12 @@ else
 
 
     }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        sharedPreference = context.getSharedPreferences("pref", 0)
+    }
+
+
+
 }
 

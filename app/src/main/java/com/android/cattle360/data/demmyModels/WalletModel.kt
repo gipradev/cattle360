@@ -9,7 +9,7 @@ data class WalletModel(
 
 object walletModelSupplier {
     val wallet = WalletModel(
-        totalAmount = "1524.00",
+        totalAmount = "100.00",
         transaction = transcationSupplier.transactionItem,
         status = "Success"
     )

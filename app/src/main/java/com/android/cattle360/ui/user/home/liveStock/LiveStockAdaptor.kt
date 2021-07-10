@@ -44,7 +44,7 @@ lateinit var livestock_id:String
             }
 
             binding.bidButton.setOnClickListener {
-                clickListener.onBidClick()
+                clickListener.onBidClick(livestock_id)
             }
         }
 
@@ -70,6 +70,6 @@ lateinit var livestock_id:String
 
     interface OnLiveStockClickEvent {
         fun onItemClick(livestock_id:String)
-        fun onBidClick()
+        fun onBidClick(livestock_id:String)
     }
 }

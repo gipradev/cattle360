@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.cattle360.R
+import com.android.cattle360.data.network.ApiService
 import com.android.cattle360.databinding.BiddingHistoryFragmentBinding
 import com.android.cattle360.ui.base.BaseFragment
 import com.android.cattle360.ui.user.bidding.BiddingRepository
@@ -30,7 +31,7 @@ class BiddingHistoryFragment :
     }
 
     override fun getFragmentRepository(): BiddingRepository {
-        return BiddingRepository()
+        return BiddingRepository(remoteDataSource.buildApi(ApiService::class.java))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

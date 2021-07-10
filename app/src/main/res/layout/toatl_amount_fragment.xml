@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="liveBidHistoryTotalModel"
+            type="com.android.cattle360.data.apiResponse.GetBiddingHistoryResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +50,7 @@
                 android:layout_marginTop="@dimen/dimen_24_dp"
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:text="₹ 250000.00"
+                android:text="@{` ₹ `+liveBidHistoryTotalModel.toal_bid_amount}"
                 android:textColor="?attr/colorOnPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -139,10 +141,12 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textview.MaterialTextView
+
+                        android:id="@+id/text22"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="₹ 12500.00"
+                        android:text="@{liveBidHistoryTotalModel.toal_bid_amount}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textSize="@dimen/font_25_sp" />
 

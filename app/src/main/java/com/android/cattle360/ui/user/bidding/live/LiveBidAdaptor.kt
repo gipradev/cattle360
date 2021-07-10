@@ -3,14 +3,15 @@ package com.android.cattle360.ui.user.bidding.live
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.android.cattle360.data.apiResponse.DataBiddingList
 import com.android.cattle360.data.demmyModels.LiveBidModel
 import com.android.cattle360.databinding.LiveBiddedItemBinding
 
 
-class LiveBidAdaptor :
+class  LiveBidAdaptor :
     RecyclerView.Adapter<LiveBidAdaptor.CategoryViewHolder>() {
 
-    var list: List<LiveBidModel> = arrayListOf()
+    var list: List<DataBiddingList> = arrayListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -19,7 +20,7 @@ class LiveBidAdaptor :
     inner class CategoryViewHolder(var binding: LiveBiddedItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun setModel(liveBidModel: LiveBidModel) {
+        fun setModel(liveBidModel: DataBiddingList) {
 
             binding.liveBidModel = liveBidModel
 

@@ -15,7 +15,7 @@ import com.android.cattle360.ui.user.home.Cattle.CattleRepository
 import kotlinx.coroutines.launch
 
 
-class BiddingSheetViewModel(private val  repository: CattleRepository) : ViewModel() {
+class BiddingSheetViewModel(private val  repository: CattleRepository) : BaseViewModel() {
 
     var showSeekBar: ObservableField<Boolean> = ObservableField()
     var seekValue: ObservableField<Boolean> = ObservableField()
@@ -33,6 +33,7 @@ class BiddingSheetViewModel(private val  repository: CattleRepository) : ViewMod
         getbidamountResponse.value = Resource.Loading
         //cattleResponse.value = cattleModelSupplier.cattle
         getbidamountResponse.value = repository.InsertBid(bid_amount,user_id,livestock_id)
+        println(getbidamountResponse.value)
     }
 
     /**

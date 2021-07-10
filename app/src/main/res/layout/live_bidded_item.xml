@@ -6,7 +6,7 @@
     <data>
         <variable
             name="liveBidModel"
-            type="com.android.cattle360.data.demmyModels.LiveBidModel" />
+            type="com.android.cattle360.data.apiResponse.DataBiddingList" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -24,7 +24,7 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            coilFullCurvedLoader="@{liveBidModel.image}"
+            coilFullCurvedLoader="@{}"
             android:layout_width="@dimen/dimen_160_dp"
             android:layout_height="@dimen/dimen_120_dp"
             android:scaleType="centerCrop"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/font_20_sp"
             android:layout_marginStart="@dimen/dimen_8_dp"
-            android:text="@{liveBidModel.title}"
+            android:text="@{liveBidModel.livestock_title}"
             android:textColor="?attr/colorOnSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -50,7 +50,7 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_8_dp"
-            android:text="@{liveBidModel.subTitle}"
+            android:text="@{`Bid Status:  `+liveBidModel.status}"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="@dimen/font_16_sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:clickable="false"
             android:outlineSpotShadowColor="@color/grey"
-            android:text="@{`Bid amount - ₹ `+liveBidModel.bidAmount}"
+            android:text="@{`Bid amount - ₹ `+liveBidModel.bidamount}"
             android:textAllCaps="false"
             app:elevation="@dimen/dimen_10_dp"
             app:layout_constraintBottom_toBottomOf="parent"

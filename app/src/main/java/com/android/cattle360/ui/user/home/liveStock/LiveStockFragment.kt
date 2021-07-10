@@ -18,6 +18,7 @@ class LiveStockFragment :
 
     private val liveStockAdaptor: LiveStockAdaptor by lazy { LiveStockAdaptor(this) }
 
+
     companion object {
         fun newInstance() = LiveStockFragment()
     }
@@ -84,9 +85,15 @@ class LiveStockFragment :
             .navigate(R.id.action_homeFragment_to_cattleFragment,args)
     }
 
-    override fun onBidClick() {
+    override fun onBidClick(livestock_id:String) {
+        val liveStockFragment = LiveStockFragment()
+        val args = Bundle()
+        args.putString("livestock_id", livestock_id)
+        println(".........livestock_id....................$livestock_id")
+        liveStockFragment.arguments = args
+
         NavHostFragment.findNavController(this)
-            .navigate(R.id.action_homeFragment_to_biddingSheetFragment)
+            .navigate(R.id.action_homeFragment_to_biddingSheetFragment,args)
     }
 
 

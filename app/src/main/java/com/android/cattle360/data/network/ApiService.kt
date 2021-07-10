@@ -4,6 +4,8 @@ import com.android.cattle360.data.apiResponse.*
 import com.android.cattle360.data.util.ApiEndPoints.ALL_CATEGORY_LIST
 import com.android.cattle360.data.util.ApiEndPoints.ALL_LIVESTOCK_DETAILS
 import com.android.cattle360.data.util.ApiEndPoints.AREA_LIST
+import com.android.cattle360.data.util.ApiEndPoints.BIDDING_HISTORY
+import com.android.cattle360.data.util.ApiEndPoints.BIDDING_LIST
 import com.android.cattle360.data.util.ApiEndPoints.CATEGORY
 import com.android.cattle360.data.util.ApiEndPoints.CATEGORY_LIVESTOCK
 import com.android.cattle360.data.util.ApiEndPoints.CATTLE_IMAGE_DEFAULT_VIEW
@@ -22,11 +24,13 @@ import com.android.cattle360.data.util.ApiEndPoints.LOGIN
 import com.android.cattle360.data.util.ApiEndPoints.LOGIN_CHECK
 import com.android.cattle360.data.util.ApiEndPoints.LOGOUT
 import com.android.cattle360.data.util.ApiEndPoints.OTP_VERIFICATION_CHECKING
+import com.android.cattle360.data.util.ApiEndPoints.PAYTM
 import com.android.cattle360.data.util.ApiEndPoints.REGISTRATION
 import com.android.cattle360.data.util.ApiEndPoints.SEND_OTP
 import com.android.cattle360.data.util.ApiEndPoints.SEND_USERNAME
 import com.android.cattle360.data.util.ApiEndPoints.STATE_LIST
 import com.android.cattle360.data.util.ApiEndPoints.VIEW_DEALER_MOBILE
+import com.android.cattle360.data.util.ApiEndPoints.WINNER_LIST
 import okhttp3.RequestBody
 import retrofit2.http.*
 
@@ -168,4 +172,24 @@ interface ApiService {
                              @Field("pn_id") user_id: String,
                              @Field("hid_livestock") livestock_id: String) : GetInsertBidResponse
 
+
+
+    @FormUrlEncoded
+    @POST(BIDDING_LIST)
+    suspend fun biddingListAPI(@Field("pn_id") user_id: String) : GetBiddingListResponse
+
+    @FormUrlEncoded
+    @POST(BIDDING_HISTORY)
+    suspend fun biddingHistoryAPI(@Field("pn_id") user_id: String) : GetBiddingHistoryResponse
+
+    @FormUrlEncoded
+    @POST(WINNER_LIST)
+    suspend fun winnerListAPI(@Field("pn_id") user_id: String) : GetWinnerListResponse
+
+    @FormUrlEncoded
+    @POST(PAYTM)
+    suspend fun getTokenAPI(@Part("code") code: String,
+                            @Part("MID") MID: String,
+                            @Part("ORDER_ID") ORDER_ID: String,
+                            @Part("AMOUNT") AMOUNT: String) : GetTokenResponse
 }
